@@ -99,10 +99,56 @@ function initCloudSyncBadge() {
   if (!badge) {
     badge = document.createElement('div');
     badge.id = 'cloud-sync-badge';
-    badge.className = 'cloud-status-badge synced';
-    badge.title = 'تزامن سحابي فوري ومباشر بين آلاف الأجهزة عبر Firebase';
-    badge.innerHTML = '<span class="cloud-dot"></span><span>سحابي متزامن</span>';
+    badge.className = 'cloud-status-badge connecting';
+    badge.title = 'جاري التحقق من المزامنة السحابية عبر Firebase...';
+    badge.innerHTML = '<span class="cloud-dot"></span><span>جاري المزامنة...</span>';
     navActions.prepend(badge);
+  }
+
+  const updateBadgeUI = (connected, error) => {
+    let alertBanner = document.getElementById('cloud-action-banner');
+    if (!alertBanner) {
+      alertBanner = document.createElement('div');
+      alertBanner.id = 'cloud-action-banner';
+      alertBanner.className = 'cloud-action-banner';
+      const mainHeader = document.querySelector('header.app-header') || document.querySelector('.app-header');
+      if (mainHeader && mainHeader.parentNode) {
+        mainHeader.parentNode.insertBefore(alertBanner, mainHeader.nextSibling);
+      }
+    }
+
+    if (connected) {
+      badge.className = 'cloud-status-badge synced';
+      badge.title = 'متصل سحابياً بلحظية 0ms عبر Firebase Firestore';
+      badge.innerHTML = '<span class="cloud-dot" style="background:#10b981; box-shadow: 0 0 8px #10b981;"></span><span>متزامن لحظياً ⚡</span>';
+      if (alertBanner) alertBanner.style.display = 'none';
+    } else {
+      badge.className = 'cloud-status-badge offline';
+      badge.title = error || 'لم يتم تفعيل قاعدة بيانات Firestore في حساب الفايربيز';
+      badge.innerHTML = '<span class="cloud-dot" style="background:#ef4444; box-shadow: 0 0 8px #ef4444;"></span><span>السحابة غير مفعلة</span>';
+      if (alertBanner) {
+        alertBanner.style.display = 'block';
+        alertBanner.innerHTML = `
+          <div style="background: #7f1d1d; color: #fecaca; padding: 0.75rem 1.25rem; font-size: 0.95rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #ef4444; flex-wrap: wrap; gap: 0.5rem; text-align: right;">
+            <div>
+              <strong>⚠️ تنبيه تفعيل المزامنة بين الأجهزة:</strong>
+              قاعدة بيانات Cloud Firestore لم تُنشأ بعد في مشروعك (<code>abo-sefen-d143a</code>). لن تظهر البيانات في الأجهزة الأخرى حتى تنشئ قاعدة البيانات في لوحة تحكم Firebase.
+            </div>
+            <a href="https://console.firebase.google.com/project/abo-sefen-d143a/firestore" target="_blank" style="background: #ef4444; color: white; padding: 0.4rem 0.9rem; border-radius: 6px; text-decoration: none; font-weight: bold; white-space: nowrap;">
+              👉 اضغط هنا لإنشاء قاعدة البيانات (خطوة واحدة)
+            </a>
+          </div>
+        `;
+      }
+    }
+  };
+
+  window.addEventListener('abs-cloud-status', (e) => {
+    updateBadgeUI(e.detail.connected, e.detail.error);
+  });
+
+  if (window.DB && DB.isCloudConnected) {
+    updateBadgeUI(true);
   }
 }
 

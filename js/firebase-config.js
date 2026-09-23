@@ -40,6 +40,7 @@ const DB = {
   firestore: null,
   firestoreSdk: null,
   isCloudConnected: false,
+  cloudError: null,
   _listenersAttached: false,
 
   initDatabase() {
@@ -74,6 +75,14 @@ const DB = {
     this.connectFirebase();
   },
 
+  notifyCloudStatus(connected, error = null) {
+    this.isCloudConnected = connected;
+    this.cloudError = error;
+    window.dispatchEvent(new CustomEvent('abs-cloud-status', {
+      detail: { connected, error, projectId: firebaseConfig.projectId }
+    }));
+  },
+
   async connectFirebase() {
     try {
       // Dynamic import of Firebase SDK (Modular v11)
@@ -93,14 +102,14 @@ const DB = {
       this.firebaseApp = initializeApp(firebaseConfig);
       this.firestore = getFirestore(this.firebaseApp);
       this.firestoreSdk = { collection, doc, getDoc, getDocs, setDoc, deleteDoc, onSnapshot, writeBatch };
-      this.isCloudConnected = true;
 
-      console.log("🔥 [Firebase] تم الاتصال السحابي بمشروع كنيسة أبي سيفين (abo-sefen-d143a) بنجاح!");
+      console.log("🔥 [Firebase] تهيئة SDK لمشروع كنيسة أبي سيفين (abo-sefen-d143a)...");
 
-      // Start Real-time synchronization stream (الاستماع للتغييرات اللحظية في نفس الثانية)
+      // Start Real-time synchronization stream
       this.attachRealtimeListeners();
     } catch (err) {
-      console.warn("⚠️ [Firebase] تنبيه الاتصال السحابي (يعمل في وضع التخزين المحلي فائق السرعة):", err);
+      console.warn("⚠️ [Firebase] خطأ في تحميل مكتبة Firebase:", err);
+      this.notifyCloudStatus(false, err.message);
     }
   },
 
@@ -109,57 +118,82 @@ const DB = {
     if (this._listenersAttached || !this.firestore || !this.firestoreSdk) return;
     this._listenersAttached = true;
 
-    const { collection, onSnapshot } = this.firestoreSdk;
+    const { collection, doc, setDoc, onSnapshot } = this.firestoreSdk;
 
     // 1. مزامنة الطلاب المباشرة
     const studentsColl = collection(this.firestore, "students");
     onSnapshot(studentsColl, (snapshot) => {
-      // عند حدوث أي تعديل في الكلاود من أي جهاز
+      this.notifyCloudStatus(true);
       const remoteStudents = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-      
-      // حفظ في الذاكرة المحلية
-      localStorage.setItem(this.STORAGE_KEYS.STUDENTS, JSON.stringify(remoteStudents));
-      console.log(`🔄 [Firebase Live Sync] تم مزامنة ${remoteStudents.length} مخدوم من السحابة في نفس اللحظة!`);
 
-      // إخطار الشاشات المفتوحة لتحديث الواجهة فوراً
-      window.dispatchEvent(new CustomEvent('abs-students-updated', { detail: remoteStudents }));
-      if (window.StudentsManager && typeof StudentsManager.renderStudentsList === 'function') {
-        StudentsManager.renderStudentsList();
-      }
-      if (window.AttendanceManager && typeof AttendanceManager.renderAttendanceTable === 'function') {
-        AttendanceManager.renderAttendanceTable();
-        AttendanceManager.updateHeaderSummary();
-      }
-      if (typeof loadDashboardStats === 'function') {
-        loadDashboardStats();
+      if (snapshot.empty) {
+        // إذا كانت السحابة فارغة ولكن لدينا طلاب محلياً، نرفعهم للسحابة
+        const localStudents = this.getStudents();
+        if (localStudents.length > 0) {
+          console.log(`🚀 [Firebase Upload] رفع ${localStudents.length} مخدوم محلي إلى السحابة لأول مرة...`);
+          localStudents.forEach(st => {
+            const studentRef = doc(this.firestore, "students", st.id);
+            setDoc(studentRef, JSON.parse(JSON.stringify(st)), { merge: true }).catch(() => {});
+          });
+        }
+      } else {
+        // حفظ في الذاكرة المحلية وتحديث الواجهات
+        localStorage.setItem(this.STORAGE_KEYS.STUDENTS, JSON.stringify(remoteStudents));
+        console.log(`🔄 [Firebase Live Sync] تم مزامنة ${remoteStudents.length} مخدوم من السحابة في نفس اللحظة!`);
+
+        window.dispatchEvent(new CustomEvent('abs-students-updated', { detail: remoteStudents }));
+        if (window.StudentsManager && typeof StudentsManager.renderStudentsList === 'function') {
+          StudentsManager.renderStudentsList();
+        }
+        if (window.AttendanceManager && typeof AttendanceManager.renderAttendanceTable === 'function') {
+          AttendanceManager.renderAttendanceTable();
+          AttendanceManager.updateHeaderSummary();
+        }
+        if (typeof loadDashboardStats === 'function') {
+          loadDashboardStats();
+        }
       }
     }, (err) => {
-      console.warn("Students realtime sync warning:", err.message);
+      console.warn("⚠️ [Firebase Students Sync Warning]:", err.message);
+      this.notifyCloudStatus(false, err.message);
     });
 
     // 2. مزامنة سجلات الحضور المباشرة
     const attendanceColl = collection(this.firestore, "attendance");
     onSnapshot(attendanceColl, (snapshot) => {
+      this.notifyCloudStatus(true);
       const remoteAttendance = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-      
-      localStorage.setItem(this.STORAGE_KEYS.ATTENDANCE, JSON.stringify(remoteAttendance));
-      console.log(`🔄 [Firebase Live Sync] تم مزامنة ${remoteAttendance.length} عملية حضور وغياب لحظياً!`);
 
-      window.dispatchEvent(new CustomEvent('abs-attendance-updated', { detail: remoteAttendance }));
-      if (window.AttendanceManager && typeof AttendanceManager.renderAttendanceTable === 'function') {
-        AttendanceManager.renderAttendanceTable();
-        AttendanceManager.updateHeaderSummary();
-      }
-      if (typeof loadDashboardStats === 'function') {
-        loadDashboardStats();
-        if (typeof loadLiveFeed === 'function') loadLiveFeed();
-        if (typeof updateChartData === 'function') updateChartData();
-      }
-      if (window.ReportsManager && typeof ReportsManager.renderMatrixReport === 'function') {
-        ReportsManager.renderMatrixReport();
+      if (snapshot.empty) {
+        const localAttendance = this.getAttendance();
+        if (localAttendance.length > 0) {
+          console.log(`🚀 [Firebase Upload] رفع ${localAttendance.length} سجل حضور محلي إلى السحابة لأول مرة...`);
+          localAttendance.forEach(rec => {
+            const recordRef = doc(this.firestore, "attendance", rec.id);
+            setDoc(recordRef, JSON.parse(JSON.stringify(rec)), { merge: true }).catch(() => {});
+          });
+        }
+      } else {
+        localStorage.setItem(this.STORAGE_KEYS.ATTENDANCE, JSON.stringify(remoteAttendance));
+        console.log(`🔄 [Firebase Live Sync] تم مزامنة ${remoteAttendance.length} عملية حضور وغياب لحظياً!`);
+
+        window.dispatchEvent(new CustomEvent('abs-attendance-updated', { detail: remoteAttendance }));
+        if (window.AttendanceManager && typeof AttendanceManager.renderAttendanceTable === 'function') {
+          AttendanceManager.renderAttendanceTable();
+          AttendanceManager.updateHeaderSummary();
+        }
+        if (typeof loadDashboardStats === 'function') {
+          loadDashboardStats();
+          if (typeof loadLiveFeed === 'function') loadLiveFeed();
+          if (typeof updateChartData === 'function') updateChartData();
+        }
+        if (window.ReportsManager && typeof ReportsManager.renderMatrixReport === 'function') {
+          ReportsManager.renderMatrixReport();
+        }
       }
     }, (err) => {
-      console.warn("Attendance realtime sync warning:", err.message);
+      console.warn("⚠️ [Firebase Attendance Sync Warning]:", err.message);
+      this.notifyCloudStatus(false, err.message);
     });
 
     // 3. مزامنة الإعدادات العامة
@@ -220,8 +254,10 @@ const DB = {
       try {
         const { doc, setDoc } = this.firestoreSdk;
         const studentRef = doc(this.firestore, "students", student.id);
-        setDoc(studentRef, student, { merge: true }).catch(err => {
+        const cleanPayload = JSON.parse(JSON.stringify(student));
+        setDoc(studentRef, cleanPayload, { merge: true }).catch(err => {
           console.warn("Cloud student sync error:", err);
+          this.notifyCloudStatus(false, err.message);
         });
       } catch (e) {}
     }
@@ -279,7 +315,11 @@ const DB = {
       try {
         const { doc, setDoc } = this.firestoreSdk;
         const recordRef = doc(this.firestore, "attendance", newRecord.id);
-        setDoc(recordRef, newRecord).catch(err => console.warn("Cloud attendance sync error:", err));
+        const cleanPayload = JSON.parse(JSON.stringify(newRecord));
+        setDoc(recordRef, cleanPayload).catch(err => {
+          console.warn("Cloud attendance sync error:", err);
+          this.notifyCloudStatus(false, err.message);
+        });
       } catch (e) {}
     }
 
@@ -315,7 +355,8 @@ const DB = {
       try {
         const { doc, setDoc } = this.firestoreSdk;
         const settingsRef = doc(this.firestore, "settings", "general");
-        setDoc(settingsRef, updated, { merge: true }).catch(err => console.warn("Cloud settings error:", err));
+        const cleanPayload = JSON.parse(JSON.stringify(updated));
+        setDoc(settingsRef, cleanPayload, { merge: true }).catch(err => console.warn("Cloud settings error:", err));
       } catch (e) {}
     }
 

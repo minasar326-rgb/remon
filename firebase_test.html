@@ -6,8 +6,11 @@
   <style>
     body { font-family: sans-serif; padding: 2rem; background: #0f172a; color: white; direction: rtl; }
     .box { background: #1e293b; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 1px solid #334155; }
-    .btn { background: #1e40af; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-size: 1rem; }
-    .status { font-weight: bold; margin-top: 10px; }
+    .btn { background: #1e40af; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: bold; }
+    .btn:hover { background: #2563eb; }
+    .status { font-weight: bold; margin-top: 10px; font-size: 1.1rem; }
+    .alert-box { background: #7f1d1d; border: 1px solid #ef4444; border-radius: 8px; padding: 1rem; margin-top: 1rem; color: #fecaca; }
+    .link-btn { display: inline-block; background: #ef4444; color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 0.5rem; }
   </style>
 </head>
 <body>
@@ -15,26 +18,47 @@
   <div class="box">
     <h3>مشروع الفايربيز: <code>abo-sefen-d143a</code></h3>
     <button class="btn" onclick="testAdd()">➕ تجربة إضافة مخدوم تجريبي للفايربيز</button>
-    <div id="status" class="status">جاري فحص الاتصال...</div>
+    <a href="dashboard.html" class="btn" style="background:#059669; margin-right: 0.5rem; text-decoration:none;">📊 العودة للوحة التحكم</a>
+    <div id="status" class="status">جاري فحص الاتصال بالفايربيز...</div>
+    <div id="alert-container"></div>
   </div>
 
   <div class="box">
-    <h3>الطلاب المتزامنون سحابياً الآن في نفس اللحظة: (<span id="count">0</span>)</h3>
+    <h3>الطلاب المتزامنون سحابياً الآن في نفس اللحظة عبر جميع الأجهزة: (<span id="count">0</span>)</h3>
     <ul id="list"></ul>
   </div>
 
   <script src="js/utils.js"></script>
   <script src="js/firebase-config.js"></script>
   <script>
-    setTimeout(() => {
+    function updateStatusUI(connected, error) {
       const statusEl = document.getElementById('status');
-      if (DB.isCloudConnected) {
-        statusEl.innerHTML = '<span style="color:#10b981;">✅ متصل بسحابة Firebase ومفعل Realtime Sync عبر onSnapshot!</span>';
+      const alertContainer = document.getElementById('alert-container');
+
+      if (connected) {
+        statusEl.innerHTML = '<span style="color:#10b981;">✅ متصل بسحابة Firebase بنجاح! التزامن اللحظي (0ms) شغال بين كل الأجهزة.</span>';
+        alertContainer.innerHTML = '';
       } else {
-        statusEl.innerHTML = '<span style="color:#f59e0b;">⏳ جاري تجهيز الاتصال بالسحابة...</span>';
+        statusEl.innerHTML = '<span style="color:#ef4444;">⚠️ تنبيه: تعذر المزامنة السحابية الفورية.</span>';
+        alertContainer.innerHTML = `
+          <div class="alert-box">
+            <strong>سبب عدم ظهور البيانات في الأجهزة الأخرى:</strong><br>
+            قاعدة بيانات Cloud Firestore لم يتم إنشاؤها بعد داخل مشروع الفايربيز <code>abo-sefen-d143a</code> أو قواعد الأمان مغلقة.<br>
+            <a class="link-btn" href="https://console.firebase.google.com/project/abo-sefen-d143a/firestore" target="_blank">
+              👉 اضغط هنا لإنشاء قاعدة بيانات Firestore في لوحة Firebase
+            </a>
+            <div style="margin-top: 8px; font-size: 0.85rem; color: #cbd5e1;">
+              (اختر Start in test mode ثم اضغط Create، وستعمل المزامنة في نفس اللحظة عبر جميع الأجهزة!)
+            </div>
+          </div>
+        `;
       }
       render();
-    }, 1500);
+    }
+
+    window.addEventListener('abs-cloud-status', (e) => {
+      updateStatusUI(e.detail.connected, e.detail.error);
+    });
 
     window.addEventListener('abs-students-updated', (e) => {
       console.log('Event received: abs-students-updated');
@@ -45,7 +69,7 @@
       const students = DB.getStudents();
       document.getElementById('count').textContent = students.length;
       const list = document.getElementById('list');
-      list.innerHTML = students.map(s => `<li>${s.name} - باركود: ${s.barcode || s.code} - مرحلة: ${s.stage}</li>`).join('');
+      list.innerHTML = students.map(s => `<li><strong>${s.name}</strong> - باركود: ${s.barcode || s.code} - مرحلة: ${s.stage}</li>`).join('');
     }
 
     function testAdd() {
@@ -58,9 +82,16 @@
         code: code,
         stage: 'أولى إعداد خدام'
       });
-      document.getElementById('status').innerHTML = '<span style="color:#10b981;">✅ تم إرسال الطالب للفايربيز والمزامنة الفورية!</span>';
       render();
     }
+
+    setTimeout(() => {
+      if (DB.isCloudConnected) {
+        updateStatusUI(true);
+      } else {
+        updateStatusUI(false, DB.cloudError);
+      }
+    }, 2000);
   </script>
 </body>
 </html>
