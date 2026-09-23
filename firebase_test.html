@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>فحص اتصال وتزامن Firebase اللحظي | كنيسة أبي سيفين</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #0f172a; color: white; direction: rtl; }
+    .box { background: #1e293b; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 1px solid #334155; }
+    .btn { background: #1e40af; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+    .status { font-weight: bold; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>🔥 أداة اختبار التزامن السحابي المباشر - كنيسة أبي سيفين</h1>
+  <div class="box">
+    <h3>مشروع الفايربيز: <code>abo-sefen-d143a</code></h3>
+    <button class="btn" onclick="testAdd()">➕ تجربة إضافة مخدوم تجريبي للفايربيز</button>
+    <div id="status" class="status">جاري فحص الاتصال...</div>
+  </div>
+
+  <div class="box">
+    <h3>الطلاب المتزامنون سحابياً الآن في نفس اللحظة: (<span id="count">0</span>)</h3>
+    <ul id="list"></ul>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script>
+    setTimeout(() => {
+      const statusEl = document.getElementById('status');
+      if (DB.isCloudConnected) {
+        statusEl.innerHTML = '<span style="color:#10b981;">✅ متصل بسحابة Firebase ومفعل Realtime Sync عبر onSnapshot!</span>';
+      } else {
+        statusEl.innerHTML = '<span style="color:#f59e0b;">⏳ جاري تجهيز الاتصال بالسحابة...</span>';
+      }
+      render();
+    }, 1500);
+
+    window.addEventListener('abs-students-updated', (e) => {
+      console.log('Event received: abs-students-updated');
+      render();
+    });
+
+    function render() {
+      const students = DB.getStudents();
+      document.getElementById('count').textContent = students.length;
+      const list = document.getElementById('list');
+      list.innerHTML = students.map(s => `<li>${s.name} - باركود: ${s.barcode || s.code} - مرحلة: ${s.stage}</li>`).join('');
+    }
+
+    function testAdd() {
+      const id = 'test-' + Date.now();
+      const code = Math.floor(100000 + Math.random() * 900000).toString();
+      DB.saveStudent({
+        id: id,
+        name: 'مخدوم تجريبي ' + code,
+        barcode: code,
+        code: code,
+        stage: 'أولى إعداد خدام'
+      });
+      document.getElementById('status').innerHTML = '<span style="color:#10b981;">✅ تم إرسال الطالب للفايربيز والمزامنة الفورية!</span>';
+      render();
+    }
+  </script>
+</body>
+</html>
