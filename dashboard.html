@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم | نظام حضور كنيسة أبي سيفين</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="navbar">
+  <div class="nav-brand">
+    <div class="brand-icon">
+      <img src="icons/icon-192.svg" alt="شعار أبي سيفين">
+    </div>
+    <div class="brand-info">
+      <h1>كنيسة أبي سيفين</h1>
+      <span>نظام الحضور والغياب بالكارنيه الذكي</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="dashboard.html" class="nav-link active"><span>📊</span><span>لوحة التحكم</span></a></li>
+    <li><a href="attendance.html" class="nav-link "><span>📷</span><span>تسجيل الحضور</span></a></li>
+    <li><a href="students.html" class="nav-link "><span>👥</span><span>دليل الطلاب</span></a></li>
+    <li><a href="reports.html" class="nav-link "><span>📄</span><span>التقارير و Word</span></a></li>
+    <li><a href="settings.html" class="nav-link "><span>⚙️</span><span>الإعدادات</span></a></li>
+  </ul>
+  <div class="nav-actions">
+    <button id="theme-toggle-btn" class="btn-icon" title="تبديل الوضع الليلي / النهاري"><span id="theme-toggle-icon">🌙</span></button>
+    <div class="user-badge"><div class="user-avatar">✝️</div><span id="current-user-name">أمين الخدمة</span></div>
+    <button class="btn-icon" title="تسجيل الخروج" onclick="Auth.logout()" style="color: var(--danger);"><span>🚪</span></button>
+  </div>
+</header>
+<div id="offline-banner" class="offline-banner"></div>
+
+  <main class="main-wrapper">
+    <div class="dash-header">
+      <div class="dash-title-group">
+        <h2>
+          <span>📊</span>
+          <span>لوحة المتابعة المباشرة والإحصائيات</span>
+        </h2>
+        <p>متابعة فورية للحضور بالثانية، تحليلات الالتزام، وشريط البث الحي لكنيسة أبي سيفين</p>
+      </div>
+      <div style="display: flex; gap: 0.8rem;">
+        <a href="attendance.html" class="btn btn-accent">
+          <span>📷</span>
+          <span>فتح ماسح الكارنيه</span>
+        </a>
+        <a href="reports.html" class="btn btn-secondary">
+          <span>📄</span>
+          <span>استخراج التقارير</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats Summary Cards -->
+    <div class="stats-grid">
+      <div class="stat-card total">
+        <div class="stat-info">
+          <span>إجمالي الطلاب المقيدين</span>
+          <div class="stat-number" id="dash-total-students">0</div>
+          <span class="stat-badge" style="background: var(--primary-light); color: var(--primary);">قاعدة البيانات</span>
+        </div>
+        <div class="stat-icon">👥</div>
+      </div>
+
+      <div class="stat-card present">
+        <div class="stat-info">
+          <span>حضور اليوم الفعلي</span>
+          <div class="stat-number" id="dash-present-today">0</div>
+          <span class="stat-badge" style="background: var(--success-light); color: var(--success);">تم مسح الكارنيه</span>
+        </div>
+        <div class="stat-icon">✅</div>
+      </div>
+
+      <div class="stat-card rate">
+        <div class="stat-info">
+          <span>نسبة الحضور اليومية</span>
+          <div class="stat-number" id="dash-attendance-rate">0%</div>
+          <span class="stat-badge" style="background: var(--accent-light); color: var(--accent-gold);">المعدل العام</span>
+        </div>
+        <div class="stat-icon">📈</div>
+      </div>
+
+      <div class="stat-card absent">
+        <div class="stat-info">
+          <span>الغياب المتوقع اليوم</span>
+          <div class="stat-number" id="dash-absent-today">0</div>
+          <span class="stat-badge" style="background: var(--danger-light); color: var(--danger);">متابعة افتقاد</span>
+        </div>
+        <div class="stat-icon">⚠️</div>
+      </div>
+    </div>
+
+    <!-- Main Content Split: Weekly Attendance Chart & Live Feed -->
+    <div class="dash-content-layout">
+      <!-- Analytics Chart Box -->
+      <div class="glass-panel" style="padding: 1.8rem; display: flex; flex-direction: column;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary);">
+            📊 مؤشر الحضور عبر أيام الأسبوع السبعة
+          </h3>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">تحديث لحظي تلقائي</span>
+        </div>
+        <div style="flex: 1; min-height: 320px; position: relative;">
+          <canvas id="attendanceChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Real-Time Live Feed -->
+      <div class="live-feed-card">
+        <div class="live-feed-header">
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <span style="font-size: 1.2rem;">⚡</span>
+            <strong style="font-size: 1.05rem;">البث المباشر للحضور</strong>
+          </div>
+          <div class="live-badge">
+            <span class="live-dot"></span>
+            <span>مباشر (Live)</span>
+          </div>
+        </div>
+        <div class="feed-items-list" id="dashboard-live-feed">
+          <!-- Feed items dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/security.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/activity.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let chartInstance = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDashboardStats();
+      renderChart();
+      loadLiveFeed();
+
+      window.addEventListener('abs-attendance-recorded', () => {
+        loadDashboardStats();
+        loadLiveFeed();
+        updateChartData();
+      });
+    });
+
+    function loadDashboardStats() {
+      const students = DB.getStudents();
+      const today = Utils.formatDate();
+      const todayRecords = DB.getAttendance().filter(a => a.date === today);
+
+      const total = students.length;
+      const present = todayRecords.length;
+      const absent = Math.max(0, total - present);
+      const rate = total > 0 ? Math.round((present / total) * 100) : 0;
+
+      document.getElementById('dash-total-students').textContent = total;
+      document.getElementById('dash-present-today').textContent = present;
+      document.getElementById('dash-absent-today').textContent = absent;
+      document.getElementById('dash-attendance-rate').textContent = rate + '%';
+    }
+
+    function loadLiveFeed() {
+      const feedEl = document.getElementById('dashboard-live-feed');
+      if (!feedEl) return;
+
+      const records = DB.getAttendance().slice(0, 15);
+      if (records.length === 0) {
+        feedEl.innerHTML = '<div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);"><div style="font-size: 2.2rem; margin-bottom: 0.5rem;">⏱️</div><p>لا توجد عمليات حضور مسجلة اليوم حتى الآن.</p><span style="font-size: 0.8rem;">سيبدأ البث فور مسح أول كارنيه.</span></div>';
+        return;
+      }
+
+      feedEl.innerHTML = records.map(r => '<div class="feed-item"><div class="feed-student-meta"><div class="feed-avatar">✓</div><div class="feed-info"><strong>' + Utils.sanitize(r.studentName) + '</strong><span>الكود: ' + r.studentCode + ' • ' + Utils.sanitize(r.period) + '</span></div></div><div class="feed-timestamp"><span>⏱️</span><span>' + Utils.formatTime(r.timestamp) + '</span></div></div>').join('');
+    }
+
+    function renderChart() {
+      const ctx = document.getElementById('attendanceChart');
+      if (!ctx) return;
+
+      const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+      const allAttendance = DB.getAttendance();
+      const counts = days.map(d => allAttendance.filter(a => a.dayName === d).length);
+
+      chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: days,
+          datasets: [{
+            label: 'عدد الطلاب الحاضرين',
+            data: counts,
+            backgroundColor: 'rgba(30, 58, 138, 0.75)',
+            borderColor: '#1e3a8a',
+            borderWidth: 2,
+            borderRadius: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+        }
+      });
+    }
+
+    function updateChartData() {
+      if (!chartInstance) return;
+      const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+      const allAttendance = DB.getAttendance();
+      chartInstance.data.datasets[0].data = days.map(d => allAttendance.filter(a => a.dayName === d).length);
+      chartInstance.update();
+    }
+  </script>
+</body>
+</html>

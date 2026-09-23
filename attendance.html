@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل حضور الخميس والجمعة بالباركود | كنيسة أبي سيفين</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <style>
+    .scanner-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 900px) {
+      .scanner-grid { grid-template-columns: 1fr; }
+    }
+    .scanner-viewport-box {
+      position: relative;
+      background: #000;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      border: 3px solid var(--accent-gold);
+    }
+    #qr-video-region { width: 100%; height: 100%; }
+    .scanner-reticle {
+      position: absolute;
+      width: 250px;
+      height: 160px;
+      border: 2px dashed rgba(245, 158, 11, 0.8);
+      border-radius: 12px;
+      pointer-events: none;
+      box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.45);
+    }
+    .scanner-flash-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.85);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+      z-index: 10;
+    }
+    .scanner-flash-overlay.active { opacity: 1; }
+    .autocomplete-wrapper { position: relative; }
+    .autocomplete-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xl);
+      z-index: 50;
+      max-height: 240px;
+      overflow-y: auto;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+  <div class="nav-brand">
+    <div class="brand-icon">
+      <img src="icons/icon-192.svg" alt="شعار أبي سيفين">
+    </div>
+    <div class="brand-info">
+      <h1>كنيسة أبي سيفين</h1>
+      <span>إعداد خدام ومدارس الأحد (خميس وجمعة)</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="dashboard.html" class="nav-link "><span>📊</span><span>لوحة التحكم</span></a></li>
+    <li><a href="attendance.html" class="nav-link active"><span>📷</span><span>تسجيل الحضور</span></a></li>
+    <li><a href="students.html" class="nav-link "><span>👥</span><span>دليل المخدومين والباركود</span></a></li>
+    <li><a href="reports.html" class="nav-link "><span>📄</span><span>التقارير و Word</span></a></li>
+    <li><a href="settings.html" class="nav-link "><span>⚙️</span><span>الإعدادات</span></a></li>
+  </ul>
+  <div class="nav-actions">
+    <button id="theme-toggle-btn" class="btn-icon" title="تبديل الوضع الليلي / النهاري"><span id="theme-toggle-icon">🌙</span></button>
+    <div class="user-badge"><div class="user-avatar">✝️</div><span id="current-user-name">أمين الخدمة</span></div>
+    <button class="btn-icon" title="تسجيل الخروج" onclick="Auth.logout()" style="color: var(--danger);"><span>🚪</span></button>
+  </div>
+</header>
+<div id="offline-banner" class="offline-banner"></div>
+
+  <main class="main-wrapper">
+    <!-- Header with Specialized Day & Period Controls -->
+    <div class="dash-header">
+      <div class="dash-title-group">
+        <h2>
+          <span>📷</span>
+          <span>تسجيل حضور اجتماعات (الخميس والجمعة) بالباركود</span>
+        </h2>
+        <p>الخميس: تسبحة، محاضرة، نوتة روحية | الجمعة: قداس، محاضرة</p>
+      </div>
+
+      <div style="display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap;">
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-muted); display: block; font-weight:bold;">اليوم المقرر:</label>
+          <select id="attendance-day-select" class="form-select" style="padding: 0.5rem 0.9rem; font-weight: bold; border: 2px solid var(--primary);">
+            <option value="الخميس" selected>الخميس</option>
+            <option value="الجمعة">الجمعة</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-muted); display: block; font-weight:bold;">فترة الحضور المحددة:</label>
+          <select id="attendance-period-select" class="form-select" style="padding: 0.5rem 0.9rem; font-weight: bold; border: 2px solid var(--accent-gold);">
+            <!-- Populated dynamically based on Thursday or Friday -->
+          </select>
+        </div>
+
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-muted); display: block; font-weight:bold;">المرحلة الدراسية:</label>
+          <select id="attendance-stage-filter" class="form-select" style="padding: 0.5rem 0.9rem; font-weight: bold;">
+            <option value="">جميع المراحل الأربعة</option>
+            <option value="ابتدائي (المرحلة الابتدائية بالكامل)">ابتدائي (المرحلة الابتدائية بالكامل)</option>
+            <option value="أولى إعداد خدام">أولى إعداد خدام</option>
+            <option value="تانية إعداد خدام">تانية إعداد خدام</option>
+            <option value="تالتة إعداد خدام">تالتة إعداد خدام</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scanner Split Layout -->
+    <div class="scanner-grid">
+      <!-- Camera Viewport Card -->
+      <div class="glass-panel" style="padding: 1.5rem; display: flex; flex-direction: column;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">
+            عدسة ماسح الباركود والكارنيه
+          </h3>
+          <span id="scanner-live-status" style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted);">⚪ الكاميرا متوقفة</span>
+        </div>
+
+        <div class="scanner-viewport-box">
+          <div id="qr-video-region"></div>
+          <div class="scanner-reticle"></div>
+          <div id="scanner-flash" class="scanner-flash-overlay"></div>
+        </div>
+
+        <div style="display: flex; gap: 0.8rem; margin-top: 1.2rem;">
+          <button id="btn-toggle-scanner" class="btn btn-primary" style="flex: 1;" onclick="toggleCameraScanner()">
+            <span>▶️ تشغيل الكاميرا والماسح</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Fast Manual Search / Autocomplete & Recent Scanned Student Card -->
+      <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+        <div class="glass-panel" style="padding: 1.5rem;">
+          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--text-primary);">
+            🔍 تسجيل حضور يدوي سريع (بالاسم أو الباركود)
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            أدخل اسم المخدوم أو امسح الباركود باستخدام قارئ الباركود اليدوي المتصل بالجهاز:
+          </p>
+          <div class="autocomplete-wrapper">
+            <input type="text" id="manual-student-input" class="form-input" placeholder="اكتب اسم الطالب أو امسح الباركود هنا ثم اضغط Enter..." autocomplete="off">
+            <div id="manual-autocomplete-list" class="autocomplete-dropdown"></div>
+          </div>
+        </div>
+
+        <div id="recent-scan-banner">
+          <div class="glass-panel" style="padding: 1.8rem; text-align: center; color: var(--text-muted);">
+            <div style="font-size: 2rem; margin-bottom: 0.4rem;">📟</div>
+            <strong>في انتظار مسح باركود المخدوم...</strong>
+            <p style="font-size: 0.85rem; margin-top: 0.3rem;">ستظهر بيانات الطالب وصورته والمرحلة وفترة الحضور فور المسح.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attendance Table -->
+    <div class="glass-panel" style="padding: 1.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--text-primary);">
+            كشف حضور المخدومين للفترة المحددة
+          </h3>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">
+            عدد الحاضرين في الفترة: <strong id="summary-attended-today" style="color: var(--success);">0</strong> | الغائبين: <strong id="summary-absent-today" style="color: var(--danger);">0</strong>
+          </span>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th style="width: 50px;">#</th>
+              <th>اسم المخدوم</th>
+              <th>رقم الباركود</th>
+              <th>المرحلة</th>
+              <th>حالة الحضور</th>
+              <th>الإجراء</th>
+            </tr>
+          </thead>
+          <tbody id="daily-attendance-body">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/security.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/activity.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/scanner.js"></script>
+  <script src="js/attendance.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let isCameraActive = false;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      AttendanceManager.init();
+      AttendanceScanner.init('qr-video-region', (scannedBarcode) => {
+        AttendanceManager.processAttendanceByBarcode(scannedBarcode, 'ماسح الكاميرا (باركود)');
+      });
+
+      // Support hardware USB/Bluetooth barcode guns typing into the input box
+      const manualInput = document.getElementById('manual-student-input');
+      if (manualInput) {
+        manualInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            const val = manualInput.value.trim();
+            if (val) {
+              AttendanceManager.processAttendanceByBarcode(val, 'قارئ باركود خارجي / يدوي');
+              manualInput.value = '';
+            }
+          }
+        });
+      }
+    });
+
+    async function toggleCameraScanner() {
+      const btn = document.getElementById('btn-toggle-scanner');
+      if (!isCameraActive) {
+        await AttendanceScanner.start();
+        if (AttendanceScanner.isScanning) {
+          isCameraActive = true;
+          btn.innerHTML = '<span>⏹️ إيقاف الكاميرا</span>';
+          btn.classList.replace('btn-primary', 'btn-secondary');
+        }
+      } else {
+        await AttendanceScanner.stop();
+        isCameraActive = false;
+        btn.innerHTML = '<span>▶️ تشغيل الكاميرا والماسح</span>';
+        btn.classList.replace('btn-secondary', 'btn-primary');
+      }
+    }
+  </script>
+</body>
+</html>

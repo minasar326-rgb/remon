@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ملف المخدوم وكارنيه الباركود | كنيسة أبي سيفين</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <!-- JsBarcode Library for generating crisp 1D Barcode (Code 128) -->
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+  <style>
+    .card-print-box {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      border: 3px solid var(--accent-gold);
+      border-radius: 18px;
+      padding: 1.8rem;
+      color: white;
+      max-width: 460px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+    }
+    .barcode-display-wrapper {
+      background: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+  <div class="nav-brand">
+    <div class="brand-icon">
+      <img src="icons/icon-192.svg" alt="شعار أبي سيفين">
+    </div>
+    <div class="brand-info">
+      <h1>كنيسة أبي سيفين</h1>
+      <span>إعداد خدام ومدارس الأحد (خميس وجمعة)</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="dashboard.html" class="nav-link "><span>📊</span><span>لوحة التحكم</span></a></li>
+    <li><a href="attendance.html" class="nav-link "><span>📷</span><span>تسجيل الحضور</span></a></li>
+    <li><a href="students.html" class="nav-link active"><span>👥</span><span>دليل المخدومين والباركود</span></a></li>
+    <li><a href="reports.html" class="nav-link "><span>📄</span><span>التقارير و Word</span></a></li>
+    <li><a href="settings.html" class="nav-link "><span>⚙️</span><span>الإعدادات</span></a></li>
+  </ul>
+  <div class="nav-actions">
+    <button id="theme-toggle-btn" class="btn-icon" title="تبديل الوضع الليلي / النهاري"><span id="theme-toggle-icon">🌙</span></button>
+    <div class="user-badge"><div class="user-avatar">✝️</div><span id="current-user-name">أمين الخدمة</span></div>
+    <button class="btn-icon" title="تسجيل الخروج" onclick="Auth.logout()" style="color: var(--danger);"><span>🚪</span></button>
+  </div>
+</header>
+<div id="offline-banner" class="offline-banner"></div>
+
+  <main class="main-wrapper">
+    <div class="dash-header">
+      <div class="dash-title-group">
+        <h2>
+          <span>👤</span>
+          <span id="profile-student-title">ملف المخدوم</span>
+        </h2>
+        <p>طباعة كارنيه الباركود الرسمي وتصدير تقرير Word فردي خاص بالطالب</p>
+      </div>
+      <div style="display: flex; gap: 0.8rem;">
+        <button class="btn btn-secondary" onclick="window.print()">
+          <span>🖨️</span>
+          <span>طباعة كارنيه الباركود</span>
+        </button>
+        <button id="btn-export-student-word" class="btn btn-primary">
+          <span>📄</span>
+          <span>تصدير تقرير Word فردي</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Student Smart Card with Real 1D Barcode -->
+    <div style="margin-bottom: 2.5rem;">
+      <div class="card-print-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 0.8rem; margin-bottom: 1.2rem;">
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <img src="icons/icon-192.svg" style="width: 38px; height: 38px;" alt="أبي سيفين">
+            <div>
+              <div style="font-weight: 800; font-size: 1rem;">كنيسة أبي سيفين</div>
+              <div style="font-size: 0.72rem; color: #fbbf24;">اجتماع إعداد الخدام ومدارس الأحد</div>
+            </div>
+          </div>
+          <span style="font-size: 1.4rem;">✝️</span>
+        </div>
+
+        <div style="text-align: center;">
+          <h3 id="card-student-name" style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.3rem;">اسم المخدوم</h3>
+          <div id="card-student-stage" style="font-size: 0.95rem; color: #fbbf24; font-weight: bold; margin-bottom: 0.2rem;">المرحلة</div>
+          <div id="card-student-group" style="font-size: 0.85rem; opacity: 0.85; margin-bottom: 0.8rem;">الفوج</div>
+          
+          <div class="barcode-display-wrapper">
+            <svg id="student-barcode-svg"></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attendance History for this Student -->
+    <div class="glass-panel" style="padding: 1.8rem;">
+      <h3 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 1.2rem; color: var(--text-primary);">
+        سجل حضور حصص الخميس والجمعة للطالب
+      </h3>
+      <div style="overflow-x: auto;">
+        <table class="matrix-table" style="text-align: right;">
+          <thead>
+            <tr>
+              <th style="width: 50px; text-align: center;">#</th>
+              <th>التاريخ</th>
+              <th>اليوم</th>
+              <th>فترة الحضور</th>
+              <th>طريقة التسجيل</th>
+              <th>المشرف المسجل</th>
+            </tr>
+          </thead>
+          <tbody id="student-history-body">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/security.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/activity.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const studentId = urlParams.get('id');
+
+      if (!studentId) {
+        window.location.replace('students.html');
+        return;
+      }
+
+      const student = DB.getStudentById(studentId);
+      if (!student) {
+        alert('المخدوم غير مسجل بالنظام!');
+        window.location.replace('students.html');
+        return;
+      }
+
+      document.getElementById('profile-student-title').textContent = student.name;
+      document.getElementById('card-student-name').textContent = student.name;
+      document.getElementById('card-student-stage').textContent = student.stage;
+      document.getElementById('card-student-group').textContent = student.group || 'عام';
+
+      // Generate 1D Barcode with JsBarcode
+      const barcodeValue = student.barcode || student.code || '100000';
+      JsBarcode('#student-barcode-svg', barcodeValue, {
+        format: 'CODE128',
+        lineColor: '#0f172a',
+        width: 2,
+        height: 55,
+        displayValue: true,
+        fontSize: 14,
+        font: 'monospace'
+      });
+
+      const records = DB.getAttendance().filter(a => a.studentId === student.id);
+      const historyBody = document.getElementById('student-history-body');
+      if (records.length === 0) {
+        historyBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">لا توجد سجلات حضور مسجلة لهذا المخدوم حتى الآن.</td></tr>';
+      } else {
+        historyBody.innerHTML = records.map((r, i) => `
+          <tr>
+            <td style="text-align: center;">${i + 1}</td>
+            <td><strong>${r.date}</strong></td>
+            <td><strong style="color: var(--primary);">${r.dayName}</strong></td>
+            <td><span class="stat-badge" style="background: var(--primary-light); color: var(--primary); font-weight:bold;">${r.period}</span></td>
+            <td>${r.method}</td>
+            <td>${r.supervisor}</td>
+          </tr>
+        `).join('');
+      }
+
+      document.getElementById('btn-export-student-word').onclick = () => {
+        ReportsManager.exportStudentWordReport(student.id);
+      };
+    });
+  </script>
+</body>
+</html>

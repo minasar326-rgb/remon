@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول | نظام حضور كنيسة أبي سيفين</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1.5rem;
+    }
+    .login-container {
+      max-width: 440px;
+      width: 100%;
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem 2.2rem;
+      box-shadow: var(--shadow-xl);
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .login-logo {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 1.2rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a8a, #0f172a);
+      border: 3px solid var(--accent-gold);
+      box-shadow: 0 0 25px rgba(217, 119, 6, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-logo img {
+      width: 55px;
+      height: 55px;
+    }
+    .login-subtitle {
+      color: var(--accent-gold);
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin-bottom: 0.4rem;
+    }
+    .login-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 1.8rem;
+    }
+    .security-notice {
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      color: var(--primary);
+      padding: 0.7rem;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-logo">
+      <img src="icons/icon-192.svg" alt="شعار كنيسة أبي سيفين">
+    </div>
+    <div class="login-subtitle">كنيسة الشهيد العظيم فيلوباتير مرقوريوس أبي سيفين</div>
+    <h2 class="login-title">تسجيل دخول المشرفين والخدام</h2>
+
+    <div class="security-notice">
+      <span>🛡️</span>
+      <span>نظام مؤمن: قفل تلقائي عند 5 محاولات خاطئة لمنع التخمين.</span>
+    </div>
+
+    <form id="login-form" onsubmit="handleLoginSubmit(event)">
+      <div class="form-group" style="text-align: right;">
+        <label class="form-label" for="username">اسم المستخدم:</label>
+        <input type="text" id="username" class="form-input" placeholder="اسم المستخدم (افتراضي: admin)" required autofocus>
+      </div>
+
+      <div class="form-group" style="text-align: right;">
+        <label class="form-label" for="password">كلمة المرور:</label>
+        <input type="password" id="password" class="form-input" placeholder="كلمة المرور (افتراضي: 123)" required>
+      </div>
+
+      <button type="submit" id="btn-login-submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem; padding: 0.85rem;">
+        <span>تسجيل الدخول</span>
+        <span>←</span>
+      </button>
+    </form>
+
+    <div style="margin-top: 2rem; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 1.2rem;">
+      اجتماعات ومدارس الأحد • إعداد الخدام
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/security.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/activity.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    if (Auth.isLoggedIn()) {
+      window.location.replace('dashboard.html');
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const u = document.getElementById('username').value;
+      const p = document.getElementById('password').value;
+
+      const res = Auth.login(u, p);
+      if (res.success) {
+        Utils.playBeep('success');
+        Utils.showToast('تم تسجيل الدخول بنجاح! جاري التوجيه...', 'success');
+        setTimeout(() => window.location.replace('dashboard.html'), 700);
+      } else {
+        Utils.playBeep('error');
+        Utils.showToast(res.error, 'error', 4500);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دليل المخدومين والباركود | كنيسة أبي سيفين</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <!-- Html5-Qrcode for instant barcode camera capture -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-brand">
+      <div class="brand-icon">
+        <img src="icons/icon-192.svg" alt="شعار أبي سيفين">
+      </div>
+      <div class="brand-info">
+        <h1>كنيسة أبي سيفين</h1>
+        <span>إعداد خدام ومدارس الأحد (خميس وجمعة)</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html" class="nav-link"><span>📊</span><span>لوحة التحكم</span></a></li>
+      <li><a href="attendance.html" class="nav-link"><span>📷</span><span>تسجيل الحضور</span></a></li>
+      <li><a href="students.html" class="nav-link active"><span>👥</span><span>دليل المخدومين والباركود</span></a></li>
+      <li><a href="reports.html" class="nav-link"><span>📄</span><span>التقارير و Word</span></a></li>
+      <li><a href="settings.html" class="nav-link"><span>⚙️</span><span>الإعدادات</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <button id="theme-toggle-btn" class="btn-icon" title="تبديل الوضع الليلي / النهاري"><span id="theme-toggle-icon">🌙</span></button>
+      <div class="user-badge"><div class="user-avatar">✝️</div><span id="current-user-name">أمين الخدمة</span></div>
+      <button class="btn-icon" title="تسجيل الخروج" onclick="Auth.logout()" style="color: var(--danger);"><span>🚪</span></button>
+    </div>
+  </header>
+  <div id="offline-banner" class="offline-banner"></div>
+
+  <main class="main-wrapper">
+    <div class="dash-header">
+      <div class="dash-title-group">
+        <h2>
+          <span>👥</span>
+          <span>دليل المخدومين وإدارة الباركود الذكي</span>
+        </h2>
+        <p>إضافة وتصوير باركود المخدوم بالكاميرا، واستخراج البيانات تلقائياً، وتصدير ملفات Word لكل طالب</p>
+      </div>
+
+      <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+        <button class="btn btn-accent" onclick="StudentsManager.exportAllStudentsIndividually()">
+          <span>📂</span>
+          <span>تصدير ملف Word لكل طالب على حدة</span>
+        </button>
+        <button class="btn btn-primary" onclick="StudentsManager.openAddModal()">
+          <span>➕</span>
+          <span>إضافة مخدوم وتصوير الباركود</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="glass-panel" style="padding: 1.2rem; margin-bottom: 1.8rem; display: flex; gap: 1.2rem; flex-wrap: wrap;">
+      <div style="flex: 2; min-width: 260px;">
+        <input type="text" id="students-search" class="form-input" placeholder="ابحث بالاسم، رقم الباركود، أو الهاتف...">
+      </div>
+      <div style="flex: 1; min-width: 220px;">
+        <select id="students-stage-filter" class="form-select">
+          <option value="">جميع المراحل الأربعة</option>
+          <option value="ابتدائي (المرحلة الابتدائية بالكامل)">ابتدائي (المرحلة الابتدائية بالكامل)</option>
+          <option value="أولى إعداد خدام">أولى إعداد خدام</option>
+          <option value="تانية إعداد خدام">تانية إعداد خدام</option>
+          <option value="تالتة إعداد خدام">تالتة إعداد خدام</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Students Table -->
+    <div class="glass-panel" style="padding: 1.5rem; overflow-x: auto;">
+      <table class="matrix-table" style="text-align: right;">
+        <thead>
+          <tr>
+            <th style="width: 50px; text-align: center;">#</th>
+            <th>الاسم الكامل</th>
+            <th>رقم الباركود المسجل</th>
+            <th>المرحلة المقيد بها</th>
+            <th>الفوج / المجموعة</th>
+            <th>رقم الهاتف</th>
+            <th style="text-align: center; width: 230px;">الإجراءات والتقارير</th>
+          </tr>
+        </thead>
+        <tbody id="students-table-body">
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Add/Edit Student Modal with Live Camera Barcode Capture -->
+  <div id="student-modal" class="modal-backdrop">
+    <div class="modal-box" style="max-width: 580px;">
+      <div class="modal-header">
+        <h3 id="student-modal-title" class="modal-title">بيانات المخدوم وتصوير الباركود</h3>
+        <button style="background:none; font-size:1.4rem; cursor:pointer;" onclick="StudentsManager.closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="modal-student-id">
+
+        <!-- Barcode Field with Camera Capture Button -->
+        <div class="form-group">
+          <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+            <span>رقم الباركود الذكي *</span>
+            <button type="button" class="btn btn-accent" style="padding: 0.25rem 0.7rem; font-size: 0.8rem;" onclick="StudentsManager.startBarcodeCapture()">
+              <span>📸 تصوير الباركود بالكاميرا</span>
+            </button>
+          </label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" id="modal-student-barcode" class="form-input" placeholder="اكتب أو صوّر الباركود..." style="font-family: monospace; font-weight: bold; font-size: 1.1rem; border: 2px solid var(--accent-gold);" required>
+          </div>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">
+            💡 عند تصوير الباركود سيتم التقاط الكود والاسم والبيانات تلقائياً وإضافتها.
+          </span>
+        </div>
+
+        <!-- Live Camera Viewfinder Box inside Modal -->
+        <div id="modal-scanner-area" style="display: none; margin-bottom: 1.2rem; background: #000; border-radius: 12px; overflow: hidden; border: 2px solid var(--accent-gold); text-align: center; padding: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; color: white; margin-bottom: 8px; font-size: 0.85rem;">
+            <span>📸 وجه العدسة نحو الباركود لقراءته تلقائياً</span>
+            <button type="button" style="background: none; color: white; cursor: pointer;" onclick="StudentsManager.stopBarcodeCapture()">إلغاء الكاميرا ✕</button>
+          </div>
+          <div id="modal-qr-reader" style="width: 100%; min-height: 200px;"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">الاسم رباعي أو ثلاثي *</label>
+          <input type="text" id="modal-student-name" class="form-input" placeholder="اسم المخدوم..." required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">المرحلة الدراسية *</label>
+          <select id="modal-student-stage" class="form-select">
+            <option value="ابتدائي (المرحلة الابتدائية بالكامل)">ابتدائي (المرحلة الابتدائية بالكامل)</option>
+            <option value="أولى إعداد خدام">أولى إعداد خدام</option>
+            <option value="تانية إعداد خدام">تانية إعداد خدام</option>
+            <option value="تالتة إعداد خدام">تالتة إعداد خدام</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">الفوج / المجموعة / الفصل</label>
+          <input type="text" id="modal-student-group" class="form-input" placeholder="مثال: فوج القديس مارمينا">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">رقم الهاتف للتواصل والافتقاد</label>
+          <input type="tel" id="modal-student-phone" class="form-input" placeholder="01xxxxxxxxx">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ملاحظات إضافية</label>
+          <textarea id="modal-student-notes" class="form-input" rows="2" placeholder="ملاحظات المشرف..."></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="StudentsManager.closeModal()">إلغاء</button>
+        <button class="btn btn-primary" onclick="StudentsManager.saveStudentFromModal()">حفظ المخدوم والباركود</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/security.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/activity.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/students.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      StudentsManager.init();
+    });
+  </script>
+</body>
+</html>

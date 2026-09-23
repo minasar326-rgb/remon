@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الإعدادات وسجل النشاط | كنيسة أبي سيفين</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <header class="navbar">
+  <div class="nav-brand">
+    <div class="brand-icon">
+      <img src="icons/icon-192.svg" alt="شعار أبي سيفين">
+    </div>
+    <div class="brand-info">
+      <h1>كنيسة أبي سيفين</h1>
+      <span>نظام الحضور والغياب بالكارنيه الذكي</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="dashboard.html" class="nav-link "><span>📊</span><span>لوحة التحكم</span></a></li>
+    <li><a href="attendance.html" class="nav-link "><span>📷</span><span>تسجيل الحضور</span></a></li>
+    <li><a href="students.html" class="nav-link "><span>👥</span><span>دليل الطلاب</span></a></li>
+    <li><a href="reports.html" class="nav-link "><span>📄</span><span>التقارير و Word</span></a></li>
+    <li><a href="settings.html" class="nav-link active"><span>⚙️</span><span>الإعدادات</span></a></li>
+  </ul>
+  <div class="nav-actions">
+    <button id="theme-toggle-btn" class="btn-icon" title="تبديل الوضع الليلي / النهاري"><span id="theme-toggle-icon">🌙</span></button>
+    <div class="user-badge"><div class="user-avatar">✝️</div><span id="current-user-name">أمين الخدمة</span></div>
+    <button class="btn-icon" title="تسجيل الخروج" onclick="Auth.logout()" style="color: var(--danger);"><span>🚪</span></button>
+  </div>
+</header>
+<div id="offline-banner" class="offline-banner"></div>
+
+  <main class="main-wrapper">
+    <div class="dash-header">
+      <div class="dash-title-group">
+        <h2>
+          <span>⚙️</span>
+          <span>إعدادات النظام، الأمان وسجل النشاط</span>
+        </h2>
+        <p>تخصيص بيانات الكنيسة، كلمات المرور، النسخ الاحتياطي، وسجل التدقيق الشامل</p>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; margin-bottom: 2rem;">
+      <div class="glass-panel" style="padding: 1.8rem;">
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1.2rem; color: var(--text-primary);">
+          بيانات الكنيسة والاجتماع
+        </h3>
+
+        <div class="form-group">
+          <label class="form-label">اسم الكنيسة الرسمي</label>
+          <input type="text" id="setting-church-name" class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">اسم الاجتماع أو الخدمة</label>
+          <input type="text" id="setting-service-name" class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">أمين الخدمة / المشرف المسئول</label>
+          <input type="text" id="setting-church-leader" class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">فترة تبريد مسح الكارنيه لمنع التكرار (بالثواني)</label>
+          <input type="number" id="setting-scan-cooldown" class="form-input" min="2" max="30">
+        </div>
+      </div>
+
+      <div class="glass-panel" style="padding: 1.8rem;">
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1.2rem; color: var(--text-primary);">
+          بيانات تسجيل الدخول والأمان
+        </h3>
+
+        <div class="form-group">
+          <label class="form-label">اسم مستخدم المشرف (Admin Username)</label>
+          <input type="text" id="setting-admin-username" class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">كلمة مرور المشرف (Master Password)</label>
+          <input type="password" id="setting-admin-password" class="form-input">
+        </div>
+
+        <div style="margin-top: 1.8rem;">
+          <button class="btn btn-primary" style="width: 100%;" onclick="SettingsManager.saveSettings()">
+            <span>💾</span>
+            <span>حفظ وتحديث الإعدادات</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Backup & Restore Operations -->
+    <div class="glass-panel" style="padding: 1.8rem; margin-bottom: 2rem;">
+      <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--text-primary);">
+        📦 النسخ الاحتياطي ونقل البيانات (Local Backup & Restore)
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.2rem;">
+        يمكنك تصدير قاعدة البيانات بالكامل (الطلاب، الحضور، الإعدادات) في ملف JSON وحفظها بأمان، أو استعادتها على أي جهاز آخر.
+      </p>
+
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <button class="btn btn-accent" onclick="SettingsManager.exportBackup()">
+          <span>📤</span>
+          <span>تصدير نسخة احتياطية كاملة (JSON)</span>
+        </button>
+
+        <label class="btn btn-secondary" style="cursor: pointer;">
+          <span>📥</span>
+          <span>استعادة نسخة احتياطية</span>
+          <input type="file" accept=".json" style="display: none;" onchange="SettingsManager.importBackup(event)">
+        </label>
+      </div>
+    </div>
+
+    <!-- Audit Logs Section -->
+    <div class="glass-panel" style="padding: 1.8rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary);">
+          🛡️ سجل النشاط والتدقيق الأمني (Audit Log)
+        </h3>
+        <button class="btn btn-secondary" style="font-size: 0.8rem; color: var(--danger);" onclick="SettingsManager.clearAllLogs()">
+          مسح السجل
+        </button>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="matrix-table" style="text-align: right;">
+          <thead>
+            <tr>
+              <th style="width: 50px; text-align: center;">#</th>
+              <th>العملية</th>
+              <th>التفاصيل</th>
+              <th>المشرف</th>
+              <th>الوقت والتاريخ</th>
+            </tr>
+          </thead>
+          <tbody id="audit-logs-body">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/security.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/activity.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      SettingsManager.init();
+    });
+  </script>
+</body>
+</html>
