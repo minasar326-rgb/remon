@@ -126,32 +126,20 @@ const DB = {
       this.notifyCloudStatus(true);
       const remoteStudents = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
 
-      if (snapshot.empty) {
-        // إذا كانت السحابة فارغة ولكن لدينا طلاب محلياً، نرفعهم للسحابة
-        const localStudents = this.getStudents();
-        if (localStudents.length > 0) {
-          console.log(`🚀 [Firebase Upload] رفع ${localStudents.length} مخدوم محلي إلى السحابة لأول مرة...`);
-          localStudents.forEach(st => {
-            const studentRef = doc(this.firestore, "students", st.id);
-            setDoc(studentRef, JSON.parse(JSON.stringify(st)), { merge: true }).catch(() => {});
-          });
-        }
-      } else {
-        // حفظ في الذاكرة المحلية وتحديث الواجهات
-        localStorage.setItem(this.STORAGE_KEYS.STUDENTS, JSON.stringify(remoteStudents));
-        console.log(`🔄 [Firebase Live Sync] تم مزامنة ${remoteStudents.length} مخدوم من السحابة في نفس اللحظة!`);
+      // حفظ ما في السحابة مباشرة في الذاكرة المحلية (حتى لو أصبحت فارغة بعد المسح)
+      localStorage.setItem(this.STORAGE_KEYS.STUDENTS, JSON.stringify(remoteStudents));
+      console.log(`🔄 [Firebase Live Sync] تم مزامنة ${remoteStudents.length} مخدوم من السحابة في نفس اللحظة!`);
 
-        window.dispatchEvent(new CustomEvent('abs-students-updated', { detail: remoteStudents }));
-        if (window.StudentsManager && typeof StudentsManager.renderStudentsList === 'function') {
-          StudentsManager.renderStudentsList();
-        }
-        if (window.AttendanceManager && typeof AttendanceManager.renderAttendanceTable === 'function') {
-          AttendanceManager.renderAttendanceTable();
-          AttendanceManager.updateHeaderSummary();
-        }
-        if (typeof loadDashboardStats === 'function') {
-          loadDashboardStats();
-        }
+      window.dispatchEvent(new CustomEvent('abs-students-updated', { detail: remoteStudents }));
+      if (window.StudentsManager && typeof StudentsManager.renderStudentsList === 'function') {
+        StudentsManager.renderStudentsList();
+      }
+      if (window.AttendanceManager && typeof AttendanceManager.renderAttendanceTable === 'function') {
+        AttendanceManager.renderAttendanceTable();
+        AttendanceManager.updateHeaderSummary();
+      }
+      if (typeof loadDashboardStats === 'function') {
+        loadDashboardStats();
       }
     }, (err) => {
       console.warn("⚠️ [Firebase Students Sync Warning]:", err.message);
@@ -164,32 +152,21 @@ const DB = {
       this.notifyCloudStatus(true);
       const remoteAttendance = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
 
-      if (snapshot.empty) {
-        const localAttendance = this.getAttendance();
-        if (localAttendance.length > 0) {
-          console.log(`🚀 [Firebase Upload] رفع ${localAttendance.length} سجل حضور محلي إلى السحابة لأول مرة...`);
-          localAttendance.forEach(rec => {
-            const recordRef = doc(this.firestore, "attendance", rec.id);
-            setDoc(recordRef, JSON.parse(JSON.stringify(rec)), { merge: true }).catch(() => {});
-          });
-        }
-      } else {
-        localStorage.setItem(this.STORAGE_KEYS.ATTENDANCE, JSON.stringify(remoteAttendance));
-        console.log(`🔄 [Firebase Live Sync] تم مزامنة ${remoteAttendance.length} عملية حضور وغياب لحظياً!`);
+      localStorage.setItem(this.STORAGE_KEYS.ATTENDANCE, JSON.stringify(remoteAttendance));
+      console.log(`🔄 [Firebase Live Sync] تم مزامنة ${remoteAttendance.length} عملية حضور وغياب لحظياً!`);
 
-        window.dispatchEvent(new CustomEvent('abs-attendance-updated', { detail: remoteAttendance }));
-        if (window.AttendanceManager && typeof AttendanceManager.renderAttendanceTable === 'function') {
-          AttendanceManager.renderAttendanceTable();
-          AttendanceManager.updateHeaderSummary();
-        }
-        if (typeof loadDashboardStats === 'function') {
-          loadDashboardStats();
-          if (typeof loadLiveFeed === 'function') loadLiveFeed();
-          if (typeof updateChartData === 'function') updateChartData();
-        }
-        if (window.ReportsManager && typeof ReportsManager.renderMatrixReport === 'function') {
-          ReportsManager.renderMatrixReport();
-        }
+      window.dispatchEvent(new CustomEvent('abs-attendance-updated', { detail: remoteAttendance }));
+      if (window.AttendanceManager && typeof AttendanceManager.renderAttendanceTable === 'function') {
+        AttendanceManager.renderAttendanceTable();
+        AttendanceManager.updateHeaderSummary();
+      }
+      if (typeof loadDashboardStats === 'function') {
+        loadDashboardStats();
+        if (typeof loadLiveFeed === 'function') loadLiveFeed();
+        if (typeof updateChartData === 'function') updateChartData();
+      }
+      if (window.ReportsManager && typeof ReportsManager.renderMatrixReport === 'function') {
+        ReportsManager.renderMatrixReport();
       }
     }, (err) => {
       console.warn("⚠️ [Firebase Attendance Sync Warning]:", err.message);
@@ -282,6 +259,15 @@ const DB = {
         const studentRef = doc(this.firestore, "students", id);
         deleteDoc(studentRef).catch(err => console.warn("Cloud delete student error:", err));
       } catch (e) {}
+    }
+
+    // إشعار فوري للواجهات في نفس المتصفح
+    window.dispatchEvent(new CustomEvent('abs-students-updated', { detail: students }));
+    if (window.StudentsManager && typeof StudentsManager.renderStudentsList === 'function') {
+      StudentsManager.renderStudentsList();
+    }
+    if (typeof loadDashboardStats === 'function') {
+      loadDashboardStats();
     }
   },
 
