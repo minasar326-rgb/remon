@@ -7,71 +7,60 @@
  */
 
 const ReportsManager = {
-  currentScope: 'all', // 'week', 'month', 'custom', 'all'
   startDate: '',
   endDate: '',
   currentStageFilter: '',
 
   init() {
     this.initControls();
+    this.updateActiveRangeBadge();
     this.renderMatrixReport();
   },
 
+  formatArabicFriendly(dateStr) {
+    if (!dateStr) return '';
+    try {
+      const parts = dateStr.split('-');
+      if (parts.length !== 3) return dateStr;
+      const y = parseInt(parts[0], 10);
+      const m = parseInt(parts[1], 10);
+      const d = parseInt(parts[2], 10);
+      const months = [
+        'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+        'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
+      ];
+      const monthName = months[m - 1] || m;
+      return `${d} ${monthName} ${y}`;
+    } catch (e) {
+      return dateStr;
+    }
+  },
+
   initControls() {
-    const scopeSelect = document.getElementById('report-scope-select');
     const stageSelect = document.getElementById('report-stage-select');
-    const customDateContainer = document.getElementById('custom-date-container');
     const startDateInput = document.getElementById('report-start-date');
     const endDateInput = document.getElementById('report-end-date');
     const applyBtn = document.getElementById('apply-custom-dates-btn');
 
-    // Default dates to 30 days ago and today
-    if (startDateInput && !startDateInput.value) {
-      const monthAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
-      startDateInput.value = monthAgo.toISOString().split('T')[0];
-    }
-    if (endDateInput && !endDateInput.value) {
-      endDateInput.value = new Date().toISOString().split('T')[0];
-    }
-
-    if (scopeSelect) {
-      scopeSelect.addEventListener('change', (e) => {
-        this.currentScope = e.target.value;
-        if (customDateContainer) {
-          customDateContainer.style.display = (this.currentScope === 'custom') ? 'flex' : 'none';
-        }
-        if (this.currentScope === 'custom') {
-          this.startDate = startDateInput ? startDateInput.value : '';
-          this.endDate = endDateInput ? endDateInput.value : '';
-        }
-        this.renderMatrixReport();
-      });
-    }
+    const handleDateChange = () => {
+      this.startDate = startDateInput ? startDateInput.value : '';
+      this.endDate = endDateInput ? endDateInput.value : '';
+      this.updateActiveRangeBadge();
+      this.renderMatrixReport();
+    };
 
     if (startDateInput) {
-      startDateInput.addEventListener('change', () => {
-        if (this.currentScope === 'custom') {
-          this.startDate = startDateInput.value;
-          this.renderMatrixReport();
-        }
-      });
+      startDateInput.addEventListener('change', handleDateChange);
     }
 
     if (endDateInput) {
-      endDateInput.addEventListener('change', () => {
-        if (this.currentScope === 'custom') {
-          this.endDate = endDateInput.value;
-          this.renderMatrixReport();
-        }
-      });
+      endDateInput.addEventListener('change', handleDateChange);
     }
 
     if (applyBtn) {
       applyBtn.addEventListener('click', () => {
-        if (startDateInput) this.startDate = startDateInput.value;
-        if (endDateInput) this.endDate = endDateInput.value;
-        this.renderMatrixReport();
-        Utils.showToast('تم تطبيق تصفية الفترة الزمنية بنجاح', 'info');
+        handleDateChange();
+        Utils.showToast(`تم تطبيق الفترة: ${this.getScopeLabel()}`, 'success');
       });
     }
 
@@ -83,18 +72,55 @@ const ReportsManager = {
     }
   },
 
-  // فلترة سجلات الحضور حسب النطاق الزمني (أسبوعي، شهري، مخصص بالتاريخ، كل الأوقات)
+  setQuickPreset(preset) {
+    const startDateInput = document.getElementById('report-start-date');
+    const endDateInput = document.getElementById('report-end-date');
+    const now = new Date();
+    const todayStr = now.toISOString().split('T')[0];
+
+    if (preset === 'all' || preset === 'clear') {
+      this.startDate = '';
+      this.endDate = '';
+      if (startDateInput) startDateInput.value = '';
+      if (endDateInput) endDateInput.value = '';
+    } else if (preset === 'week') {
+      const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+      this.startDate = weekAgo.toISOString().split('T')[0];
+      this.endDate = todayStr;
+      if (startDateInput) startDateInput.value = this.startDate;
+      if (endDateInput) endDateInput.value = this.endDate;
+    } else if (preset === 'month') {
+      const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+      this.startDate = monthAgo.toISOString().split('T')[0];
+      this.endDate = todayStr;
+      if (startDateInput) startDateInput.value = this.startDate;
+      if (endDateInput) endDateInput.value = this.endDate;
+    } else if (preset === 'this_month') {
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, '0');
+      this.startDate = `${y}-${m}-01`;
+      this.endDate = todayStr;
+      if (startDateInput) startDateInput.value = this.startDate;
+      if (endDateInput) endDateInput.value = this.endDate;
+    }
+
+    this.updateActiveRangeBadge();
+    this.renderMatrixReport();
+    Utils.showToast(`تم اختيار: ${this.getScopeLabel()}`, 'info');
+  },
+
+  updateActiveRangeBadge() {
+    const badge = document.getElementById('active-range-badge');
+    if (badge) {
+      badge.textContent = `الفترة الحالية: ${this.getScopeLabel()}`;
+    }
+  },
+
+  // فلترة سجلات الحضور حسب النطاق الزمني المحدد بحرية
   getFilteredRecords() {
     const all = DB.getAttendance();
-    const now = new Date();
 
-    if (this.currentScope === 'week') {
-      const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-      return all.filter(r => new Date(r.date) >= oneWeekAgo);
-    } else if (this.currentScope === 'month') {
-      const oneMonthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-      return all.filter(r => new Date(r.date) >= oneMonthAgo);
-    } else if (this.currentScope === 'custom') {
+    if (this.startDate || this.endDate) {
       return all.filter(r => {
         let match = true;
         if (this.startDate && r.date < this.startDate) match = false;
@@ -106,14 +132,12 @@ const ReportsManager = {
   },
 
   getScopeLabel() {
-    if (this.currentScope === 'week') return 'تقرير الأسبوع الحالي (آخر 7 أيام)';
-    if (this.currentScope === 'month') return 'تقرير الشهر الحالي (آخر 30 يوماً)';
-    if (this.currentScope === 'custom') {
-      const fromStr = this.startDate ? `من تاريخ ${this.startDate}` : '';
-      const toStr = this.endDate ? `إلى تاريخ ${this.endDate}` : '';
-      return `تقرير الفترة المحددة (${fromStr} ${toStr})`.trim();
+    if (this.startDate || this.endDate) {
+      const fromStr = this.startDate ? `من ${this.formatArabicFriendly(this.startDate)}` : '';
+      const toStr = this.endDate ? `إلى ${this.formatArabicFriendly(this.endDate)}` : '';
+      return `${fromStr} ${toStr}`.trim();
     }
-    return 'التقرير الشامل التراكمي (كل الأوقات)';
+    return 'كل الأوقات (السجل التراكمي الشامل)';
   },
 
   renderMatrixReport() {

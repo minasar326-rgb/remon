@@ -55,41 +55,73 @@
     </div>
 
     <!-- Filters Bar -->
-    <div class="glass-panel" style="padding: 1.2rem; margin-bottom: 1.5rem; display: flex; gap: 1.2rem; flex-wrap: wrap; align-items: flex-end;">
-      <div style="flex: 1; min-width: 220px;">
-        <label style="font-size: 0.85rem; font-weight: bold; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">النطاق الزمني للتقرير:</label>
-        <select id="report-scope-select" class="form-select" style="font-weight: bold; border: 2px solid var(--accent-gold);">
-          <option value="all" selected>كل الأوقات (السجل التراكمي الشامل)</option>
-          <option value="week">الأسبوع الحالي (آخر 7 أيام)</option>
-          <option value="month">الشهر الحالي (آخر 30 يوماً)</option>
-          <option value="custom">📅 تحديد فترة زمنية مخصصة بالتواريخ</option>
-        </select>
+    <div class="glass-panel" style="padding: 1.4rem; margin-bottom: 1.5rem; border: 2px solid var(--border-color); border-radius: 12px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.6rem;">
+        <h3 style="margin: 0; font-size: 1.15rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; font-weight: 800;">
+          <span>📅</span><span>اختيار الفترة الزمنية للتقارير (من تاريخ ... إلى تاريخ ...)</span>
+        </h3>
+        <span id="active-range-badge" class="badge" style="background: rgba(30, 58, 138, 0.12); color: var(--primary); font-weight: 800; font-size: 0.9rem; padding: 0.45rem 0.9rem; border-radius: 8px; border: 1px solid rgba(30, 58, 138, 0.2);">
+          الفترة الحالية: كل الأوقات (السجل الشامل)
+        </span>
       </div>
 
-      <!-- Custom Date Range Inputs -->
-      <div id="custom-date-container" style="display: none; gap: 0.8rem; align-items: flex-end; flex-wrap: wrap;">
-        <div>
-          <label style="font-size: 0.85rem; font-weight: bold; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">من تاريخ:</label>
-          <input type="date" id="report-start-date" class="form-input" style="padding: 0.45rem 0.8rem; font-weight: bold;">
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
+        <!-- من تاريخ -->
+        <div style="flex: 1; min-width: 175px;">
+          <label style="font-size: 0.9rem; font-weight: 800; color: var(--text-primary); display: block; margin-bottom: 0.4rem;">
+            📅 من يوم / تاريخ (البداية):
+          </label>
+          <input type="date" id="report-start-date" class="form-input" style="width: 100%; padding: 0.6rem 0.8rem; font-weight: bold; font-size: 1rem; border: 2px solid var(--border-color); border-radius: 8px;">
         </div>
-        <div>
-          <label style="font-size: 0.85rem; font-weight: bold; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">إلى تاريخ:</label>
-          <input type="date" id="report-end-date" class="form-input" style="padding: 0.45rem 0.8rem; font-weight: bold;">
+
+        <!-- إلى تاريخ -->
+        <div style="flex: 1; min-width: 175px;">
+          <label style="font-size: 0.9rem; font-weight: 800; color: var(--text-primary); display: block; margin-bottom: 0.4rem;">
+            📅 إلى يوم / تاريخ (النهاية):
+          </label>
+          <input type="date" id="report-end-date" class="form-input" style="width: 100%; padding: 0.6rem 0.8rem; font-weight: bold; font-size: 1rem; border: 2px solid var(--border-color); border-radius: 8px;">
         </div>
-        <button id="apply-custom-dates-btn" class="btn btn-secondary" style="padding: 0.5rem 1rem;">
-          <span>🔍</span><span>تطبيق الفترة</span>
+
+        <!-- تصفية المرحلة -->
+        <div style="flex: 1; min-width: 200px;">
+          <label style="font-size: 0.9rem; font-weight: 800; color: var(--text-primary); display: block; margin-bottom: 0.4rem;">
+            🏫 المرحلة الدراسية:
+          </label>
+          <select id="report-stage-select" class="form-select" style="width: 100%; padding: 0.6rem 0.8rem; font-size: 0.95rem; font-weight: bold; border: 2px solid var(--border-color); border-radius: 8px;">
+            <option value="">جميع المراحل الأربعة</option>
+            <option value="ابتدائي (المرحلة الابتدائية بالكامل)">ابتدائي (المرحلة الابتدائية بالكامل)</option>
+            <option value="أولى إعداد خدام">أولى إعداد خدام</option>
+            <option value="تانية إعداد خدام">تانية إعداد خدام</option>
+            <option value="تالتة إعداد خدام">تالتة إعداد خدام</option>
+          </select>
+        </div>
+
+        <!-- أزرار الإجراء -->
+        <div style="display: flex; gap: 0.5rem;">
+          <button id="apply-custom-dates-btn" class="btn btn-primary" style="padding: 0.65rem 1.3rem; font-weight: bold;">
+            <span>🔍</span><span>تطبيق الفترة</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Preset Buttons -->
+      <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; border-top: 1px dashed var(--border-color); padding-top: 0.8rem;">
+        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: bold;">خيارات سريعة جاهزة:</span>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="ReportsManager.setQuickPreset('all')" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">
+          🌐 كل الأوقات (تراكمي)
         </button>
-      </div>
-
-      <div style="flex: 1; min-width: 220px;">
-        <label style="font-size: 0.85rem; font-weight: bold; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">تصفية حسب المرحلة:</label>
-        <select id="report-stage-select" class="form-select">
-          <option value="">جميع المراحل الأربعة</option>
-          <option value="ابتدائي (المرحلة الابتدائية بالكامل)">ابتدائي (المرحلة الابتدائية بالكامل)</option>
-          <option value="أولى إعداد خدام">أولى إعداد خدام</option>
-          <option value="تانية إعداد خدام">تانية إعداد خدام</option>
-          <option value="تالتة إعداد خدام">تالتة إعداد خدام</option>
-        </select>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="ReportsManager.setQuickPreset('week')" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">
+          📅 آخر 7 أيام
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="ReportsManager.setQuickPreset('month')" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">
+          🗓️ آخر 30 يوماً
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="ReportsManager.setQuickPreset('this_month')" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">
+          📆 من 1 بالشهر الحالي حتى اليوم
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="ReportsManager.setQuickPreset('clear')" style="padding: 0.35rem 0.75rem; font-size: 0.85rem; color: var(--danger);">
+          🔄 مسح التحديد
+        </button>
       </div>
     </div>
 
