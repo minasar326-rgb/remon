@@ -7,7 +7,9 @@
  */
 
 const ReportsManager = {
-  currentScope: 'all', // 'week', 'month', 'all'
+  currentScope: 'all', // 'week', 'month', 'custom', 'all'
+  startDate: '',
+  endDate: '',
   currentStageFilter: '',
 
   init() {
@@ -18,11 +20,58 @@ const ReportsManager = {
   initControls() {
     const scopeSelect = document.getElementById('report-scope-select');
     const stageSelect = document.getElementById('report-stage-select');
+    const customDateContainer = document.getElementById('custom-date-container');
+    const startDateInput = document.getElementById('report-start-date');
+    const endDateInput = document.getElementById('report-end-date');
+    const applyBtn = document.getElementById('apply-custom-dates-btn');
+
+    // Default dates to 30 days ago and today
+    if (startDateInput && !startDateInput.value) {
+      const monthAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+      startDateInput.value = monthAgo.toISOString().split('T')[0];
+    }
+    if (endDateInput && !endDateInput.value) {
+      endDateInput.value = new Date().toISOString().split('T')[0];
+    }
 
     if (scopeSelect) {
       scopeSelect.addEventListener('change', (e) => {
         this.currentScope = e.target.value;
+        if (customDateContainer) {
+          customDateContainer.style.display = (this.currentScope === 'custom') ? 'flex' : 'none';
+        }
+        if (this.currentScope === 'custom') {
+          this.startDate = startDateInput ? startDateInput.value : '';
+          this.endDate = endDateInput ? endDateInput.value : '';
+        }
         this.renderMatrixReport();
+      });
+    }
+
+    if (startDateInput) {
+      startDateInput.addEventListener('change', () => {
+        if (this.currentScope === 'custom') {
+          this.startDate = startDateInput.value;
+          this.renderMatrixReport();
+        }
+      });
+    }
+
+    if (endDateInput) {
+      endDateInput.addEventListener('change', () => {
+        if (this.currentScope === 'custom') {
+          this.endDate = endDateInput.value;
+          this.renderMatrixReport();
+        }
+      });
+    }
+
+    if (applyBtn) {
+      applyBtn.addEventListener('click', () => {
+        if (startDateInput) this.startDate = startDateInput.value;
+        if (endDateInput) this.endDate = endDateInput.value;
+        this.renderMatrixReport();
+        Utils.showToast('تم تطبيق تصفية الفترة الزمنية بنجاح', 'info');
       });
     }
 
@@ -34,7 +83,7 @@ const ReportsManager = {
     }
   },
 
-  // فلترة سجلات الحضور حسب النطاق الزمني (أسبوعي، شهري، كل الأوقات)
+  // فلترة سجلات الحضور حسب النطاق الزمني (أسبوعي، شهري، مخصص بالتاريخ، كل الأوقات)
   getFilteredRecords() {
     const all = DB.getAttendance();
     const now = new Date();
@@ -45,13 +94,25 @@ const ReportsManager = {
     } else if (this.currentScope === 'month') {
       const oneMonthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
       return all.filter(r => new Date(r.date) >= oneMonthAgo);
+    } else if (this.currentScope === 'custom') {
+      return all.filter(r => {
+        let match = true;
+        if (this.startDate && r.date < this.startDate) match = false;
+        if (this.endDate && r.date > this.endDate) match = false;
+        return match;
+      });
     }
     return all;
   },
 
   getScopeLabel() {
-    if (this.currentScope === 'week') return 'تقرير الأسبوع الحالي';
-    if (this.currentScope === 'month') return 'تقرير الشهر الحالي (30 يوم)';
+    if (this.currentScope === 'week') return 'تقرير الأسبوع الحالي (آخر 7 أيام)';
+    if (this.currentScope === 'month') return 'تقرير الشهر الحالي (آخر 30 يوماً)';
+    if (this.currentScope === 'custom') {
+      const fromStr = this.startDate ? `من تاريخ ${this.startDate}` : '';
+      const toStr = this.endDate ? `إلى تاريخ ${this.endDate}` : '';
+      return `تقرير الفترة المحددة (${fromStr} ${toStr})`.trim();
+    }
     return 'التقرير الشامل التراكمي (كل الأوقات)';
   },
 
@@ -275,9 +336,10 @@ const ReportsManager = {
 
     const blob = new Blob(['\ufeff' + docHtml], { type: 'application/msword;charset=utf-8' });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `تقرير_حضور_شامل_ومفصل_كنيسة_أبي_سيفين_${this.currentScope}_${Utils.formatDate()}.doc`;
+    const scopeTag = this.currentScope === 'custom'
+      ? `فترة_${this.startDate || 'البداية'}_إلى_${this.endDate || 'النهاية'}`
+      : this.currentScope;
+    link.download = `تقرير_حضور_شامل_ومفصل_كنيسة_أبي_سيفين_${scopeTag}_${Utils.formatDate()}.doc`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

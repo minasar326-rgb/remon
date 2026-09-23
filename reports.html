@@ -55,18 +55,34 @@
     </div>
 
     <!-- Filters Bar -->
-    <div class="glass-panel" style="padding: 1.2rem; margin-bottom: 1.5rem; display: flex; gap: 1.2rem; flex-wrap: wrap; align-items: center;">
-      <div style="flex: 1; min-width: 200px;">
-        <label style="font-size: 0.85rem; font-weight: bold; color: var(--text-muted); display: block;">النطاق الزمني للتقرير:</label>
+    <div class="glass-panel" style="padding: 1.2rem; margin-bottom: 1.5rem; display: flex; gap: 1.2rem; flex-wrap: wrap; align-items: flex-end;">
+      <div style="flex: 1; min-width: 220px;">
+        <label style="font-size: 0.85rem; font-weight: bold; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">النطاق الزمني للتقرير:</label>
         <select id="report-scope-select" class="form-select" style="font-weight: bold; border: 2px solid var(--accent-gold);">
           <option value="all" selected>كل الأوقات (السجل التراكمي الشامل)</option>
           <option value="week">الأسبوع الحالي (آخر 7 أيام)</option>
           <option value="month">الشهر الحالي (آخر 30 يوماً)</option>
+          <option value="custom">📅 تحديد فترة زمنية مخصصة بالتواريخ</option>
         </select>
       </div>
 
+      <!-- Custom Date Range Inputs -->
+      <div id="custom-date-container" style="display: none; gap: 0.8rem; align-items: flex-end; flex-wrap: wrap;">
+        <div>
+          <label style="font-size: 0.85rem; font-weight: bold; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">من تاريخ:</label>
+          <input type="date" id="report-start-date" class="form-input" style="padding: 0.45rem 0.8rem; font-weight: bold;">
+        </div>
+        <div>
+          <label style="font-size: 0.85rem; font-weight: bold; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">إلى تاريخ:</label>
+          <input type="date" id="report-end-date" class="form-input" style="padding: 0.45rem 0.8rem; font-weight: bold;">
+        </div>
+        <button id="apply-custom-dates-btn" class="btn btn-secondary" style="padding: 0.5rem 1rem;">
+          <span>🔍</span><span>تطبيق الفترة</span>
+        </button>
+      </div>
+
       <div style="flex: 1; min-width: 220px;">
-        <label style="font-size: 0.85rem; font-weight: bold; color: var(--text-muted); display: block;">تصفية حسب المرحلة:</label>
+        <label style="font-size: 0.85rem; font-weight: bold; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">تصفية حسب المرحلة:</label>
         <select id="report-stage-select" class="form-select">
           <option value="">جميع المراحل الأربعة</option>
           <option value="ابتدائي (المرحلة الابتدائية بالكامل)">ابتدائي (المرحلة الابتدائية بالكامل)</option>
