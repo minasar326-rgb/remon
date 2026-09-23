@@ -213,6 +213,12 @@ const ReportsManager = {
     if (this.currentStageFilter) {
       students = students.filter(s => s.stage === this.currentStageFilter);
     }
+
+    if (students.length === 0) {
+      Utils.showToast('لا يوجد مخدومين مسجلين لاستخراج التقرير الشامل! يرجى إضافة مخدومين أولاً.', 'warning');
+      return;
+    }
+
     const records = this.getFilteredRecords();
     const scopeTitle = this.getScopeLabel();
     const exportDateStr = new Date().toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
@@ -250,7 +256,7 @@ const ReportsManager = {
       const sRecords = records.filter(r => r.studentId === s.id);
       let sessionRows = '';
       if (sRecords.length === 0) {
-        sessionRows = '<tr><td colspan="5" style="text-align:center; padding:10px; color:#64748b;">لم يسجل حضور في هذه الفترة.</td></tr>';
+        sessionRows = '<tr><td colspan="5" style="text-align:center; padding:10px; color:#64748b;">لم يسجل حضور في هذه الفترة المحددة.</td></tr>';
       } else {
         sRecords.forEach((sr, i) => {
           sessionRows += `
@@ -360,9 +366,11 @@ const ReportsManager = {
 
     const blob = new Blob(['\ufeff' + docHtml], { type: 'application/msword;charset=utf-8' });
     const url = URL.createObjectURL(blob);
-    const scopeTag = this.currentScope === 'custom'
+    const link = document.createElement('a');
+    link.href = url;
+    const scopeTag = (this.startDate || this.endDate)
       ? `فترة_${this.startDate || 'البداية'}_إلى_${this.endDate || 'النهاية'}`
-      : this.currentScope;
+      : 'شامل';
     link.download = `تقرير_حضور_شامل_ومفصل_كنيسة_أبي_سيفين_${scopeTag}_${Utils.formatDate()}.doc`;
     document.body.appendChild(link);
     link.click();
