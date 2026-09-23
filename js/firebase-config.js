@@ -141,6 +141,9 @@ const DB = {
       if (typeof loadDashboardStats === 'function') {
         loadDashboardStats();
       }
+      if (window.ReportsManager && typeof ReportsManager.renderMatrixReport === 'function') {
+        ReportsManager.renderMatrixReport();
+      }
     }, (err) => {
       console.warn("⚠️ [Firebase Students Sync Warning]:", err.message);
       this.notifyCloudStatus(false, err.message);

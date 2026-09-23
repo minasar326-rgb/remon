@@ -1,4 +1,4 @@
-const CACHE_NAME = 'abu-sefeen-cache-v2';
+const CACHE_NAME = 'abu-sefeen-cache-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
