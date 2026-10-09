@@ -330,13 +330,21 @@ const EvaluationsManager = {
       `;
     }
 
-    const normalizeStage = (st) => (st || '').trim().replace(/\s+/g, ' ');
-    const activeStageNorm = normalizeStage(this.currentStage);
+    // مطابقة ذكية ودقيقة للمرحلة لضمان عدم فقدان أي طالب
+    const matchStage = (studentStage, targetStage) => {
+      if (!studentStage || !targetStage) return false;
+      const clean = str => str.replace(/[\s\u00A0\uFEFF]+/g, ' ').replace(/[^\u0600-\u06FF\w\s]/g, '').trim();
+      const s = clean(studentStage);
+      const t = clean(targetStage);
+      if (s === t) return true;
+      if ((t.includes('ابتدائي') || t.includes('ابتدائيه')) && (s.includes('ابتدائي') || s.includes('ابتدائيه'))) return true;
+      if ((t.includes('اولى') || t.includes('أولى')) && (s.includes('اولى') || s.includes('أولى'))) return true;
+      if ((t.includes('تانية') || t.includes('ثانية') || t.includes('تانيه')) && (s.includes('تانية') || s.includes('ثانية') || s.includes('تانيه'))) return true;
+      if ((t.includes('تالتة') || t.includes('ثالثة') || t.includes('تالته')) && (s.includes('تالتة') || s.includes('ثالثة') || s.includes('تالته'))) return true;
+      return false;
+    };
 
-    let students = DB.getStudents().filter(s => {
-      const sStageNorm = normalizeStage(s.stage);
-      return sStageNorm === activeStageNorm || s.stage === this.currentStage;
-    });
+    let students = DB.getStudents().filter(s => matchStage(s.stage, this.currentStage));
 
     // تطبيق فلتر البحث
     if (this.studentSearchTerm) {
