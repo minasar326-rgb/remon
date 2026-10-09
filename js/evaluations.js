@@ -305,17 +305,30 @@ const EvaluationsManager = {
 
     const gradesList = DB.getGradesByAssessment(this.activeAssessmentId);
 
-    // دمج الدرجة مع الطالب للفرز
+    // حساب الدرجات التراكمية للمادة ككل (المجموع الكلي: كام من كام)
+    const allSubjectAssessments = DB.getAssessmentsBySubject(this.activeSubjectId);
+    const subjectTotalMaxScore = allSubjectAssessments.reduce((sum, a) => sum + (Number(a.maxScore) || 0), 0);
+    const allSubjectGrades = DB.getGradesBySubject(this.activeSubjectId);
+
+    // دمج الدرجة مع الطالب للفرز وحساب إجمالي المادة لكل طالب
     let studentRows = students.map(s => {
       const gRecord = gradesList.find(g => g.studentId === s.id);
       const hasGrade = gRecord !== undefined && gRecord.score !== null;
       const score = hasGrade ? gRecord.score : null;
+
+      // مجموع المادة لهذا الطالب
+      const studentGradesInSubject = allSubjectGrades.filter(g => g.studentId === s.id && g.score !== null && g.score !== undefined);
+      const totalSubjectEarned = studentGradesInSubject.reduce((sum, g) => sum + (Number(g.score) || 0), 0);
+      const hasAnyGradesInSubject = studentGradesInSubject.length > 0;
+
       return {
         student: s,
         gradeRecord: gRecord,
         hasGrade: hasGrade,
         score: score,
-        notes: gRecord ? gRecord.notes : ''
+        notes: gRecord ? gRecord.notes : '',
+        totalSubjectEarned: totalSubjectEarned,
+        hasAnyGradesInSubject: hasAnyGradesInSubject
       };
     });
 
@@ -353,6 +366,27 @@ const EvaluationsManager = {
         ? `<span class="stat-badge" style="background: var(--warning-light); color: var(--warning); font-weight:800;">ناجح (${percent}%)</span>`
         : `<span class="stat-badge" style="background: var(--danger-light); color: var(--danger); font-weight:800;">ضعيف (${percent}%)</span>`;
 
+      // نسبة إجمالي المادة كام من كام
+      const subjectPercent = subjectTotalMaxScore > 0 ? Math.round((r.totalSubjectEarned / subjectTotalMaxScore) * 100) : 0;
+      const totalSubjectBadge = subjectTotalMaxScore === 0
+        ? `<span style="color:var(--text-muted); font-size:0.85rem;">-</span>`
+        : !r.hasAnyGradesInSubject
+        ? `<span style="font-weight:700; color:var(--text-muted); font-size:0.9rem;">0 من ${subjectTotalMaxScore}</span>`
+        : `
+          <div style="display:flex; flex-direction:column; align-items:center; gap:0.15rem;">
+            <strong style="color:var(--primary); font-size:1.05rem; font-weight:800;">
+              ${r.totalSubjectEarned} <span style="font-size:0.85rem; font-weight:normal; color:var(--text-muted);">من</span> ${subjectTotalMaxScore}
+            </strong>
+            <span class="badge" style="
+              font-size:0.75rem; font-weight:800; padding:0.1rem 0.45rem; border-radius:12px;
+              background:${subjectPercent >= 85 ? 'var(--success-light)' : subjectPercent >= 50 ? 'var(--primary-light)' : 'var(--danger-light)'};
+              color:${subjectPercent >= 85 ? 'var(--success)' : subjectPercent >= 50 ? 'var(--primary)' : 'var(--danger)'};
+            ">
+              ${subjectPercent}%
+            </span>
+          </div>
+        `;
+
       return `
         <tr data-student-id="${s.id}">
           <td style="text-align: center;">${idx + 1}</td>
@@ -371,6 +405,9 @@ const EvaluationsManager = {
             </div>
           </td>
           <td style="text-align: center;" id="status-cell-${s.id}">${statusBadge}</td>
+          <td style="text-align: center; background: rgba(30, 58, 138, 0.03);" id="subject-total-cell-${s.id}">
+            ${totalSubjectBadge}
+          </td>
           <td>
             <input type="text" class="form-input note-input" data-student-id="${s.id}" value="${Utils.sanitize(r.notes)}" placeholder="ملاحظات اختيارية..." style="padding: 0.35rem 0.6rem; font-size: 0.85rem;" onchange="EvaluationsManager.onNoteChange('${s.id}', this.value)">
           </td>
