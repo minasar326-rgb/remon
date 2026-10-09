@@ -68,6 +68,9 @@ const StudentsManager = {
         <td>${Utils.sanitize(s.phone || '—')}</td>
         <td style="text-align: center;">
           <div style="display: flex; gap: 0.4rem; justify-content: center; flex-wrap: wrap;">
+            <a href="evaluations.html?studentId=${s.id}" class="btn btn-accent" style="padding: 0.35rem 0.65rem; font-size: 0.78rem; text-decoration: none;" title="رصد وتعديل جميع درجات الطالب في كل المواد والأجزاء">
+              📝 درجاته
+            </a>
             <button class="btn btn-primary" style="padding: 0.35rem 0.65rem; font-size: 0.78rem;" onclick="ReportsManager.exportStudentWordReport('${s.id}')" title="تصدير Word للطالب">
               📥 Word
             </button>

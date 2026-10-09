@@ -64,10 +64,25 @@ const EvaluationsManager = {
       this.currentStage = stageWithStudents;
     }
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetStudentId = urlParams.get('studentId');
+    if (targetStudentId) {
+      const student = DB.getStudentById(targetStudentId);
+      if (student && student.stage) {
+        this.currentStage = student.stage;
+      }
+    }
+
     this.initEventListeners();
     this.renderStagesSelector();
     this.renderSubjectsList();
     this.renderGradesSheet();
+
+    if (targetStudentId) {
+      setTimeout(() => {
+        this.openStudentGradesModal(targetStudentId);
+      }, 200);
+    }
   },
 
   initEventListeners() {
@@ -508,10 +523,11 @@ const EvaluationsManager = {
       return `
         <tr data-student-id="${s.id}">
           <td style="text-align: center;">${idx + 1}</td>
-          <td style="font-weight: 700; color: var(--text-primary);">
-            <a href="student.html?id=${s.id}" style="color: inherit; text-decoration: underline;">
-              ${Utils.sanitize(s.name)}
-            </a>
+          <td style="font-weight: 800; cursor: pointer;" onclick="EvaluationsManager.openStudentGradesModal('${s.id}')" title="اضغط لفتح واجهة رصد وتعديل جميع درجات ${Utils.sanitize(s.name)} في كل المواد والأجزاء">
+            <span style="display: inline-flex; align-items: center; gap: 0.4rem; color: var(--primary); font-size: 0.98rem; text-decoration: underline;">
+              <span>👤</span>
+              <span>${Utils.sanitize(s.name)}</span>
+            </span>
           </td>
           <td style="text-align: center;"><strong style="font-family: monospace; background: var(--bg-tertiary); padding: 0.15rem 0.5rem; border-radius: 4px;">📟 ${s.barcode || s.code}</strong></td>
           <td style="width: 140px; text-align: center;">${gradeInputCell}</td>
@@ -521,8 +537,8 @@ const EvaluationsManager = {
           </td>
           <td>${noteInputCell}</td>
           <td style="text-align: center;">
-            <button class="btn btn-secondary btn-sm" onclick="EvaluationsManager.openStudentGradesModal('${s.id}')" title="إدخال وتعديل وعرض جميع درجات هذا المخدوم في المواد والدروس" style="padding: 0.35rem 0.75rem; font-size: 0.82rem; font-weight: 800; background: var(--bg-tertiary); color: var(--primary); border: 2px solid var(--primary); border-radius: 6px;">
-              📝 رصد وكشف درجاته
+            <button type="button" class="btn btn-primary btn-sm" onclick="EvaluationsManager.openStudentGradesModal('${s.id}')" title="فتح واجهة رصد وتعديل جميع درجات هذا المخدوم في المواد والأجزاء" style="padding: 0.4rem 0.85rem; font-size: 0.85rem; font-weight: 800; border-radius: 6px;">
+              📝 رصد درجاته
             </button>
           </td>
           <td style="text-align: center;">
@@ -1246,87 +1262,148 @@ const EvaluationsManager = {
       const grades = DB.getGradesBySubject(sub.id).filter(g => g.studentId === student.id);
       const subMax = assessments.reduce((sum, a) => sum + (Number(a.maxScore) || 0), 0);
       let subEarned = 0;
-      let hasAny = false;
+      let subHasAny = false;
 
       grandTotalMax += subMax;
 
-      const lessonsRows = assessments.map((a, idx) => {
-        const g = grades.find(gr => gr.assessmentItemId === a.id);
-        const score = g && g.score !== null ? g.score : null;
-        if (score !== null) {
-          subEarned += score;
-          hasAny = true;
-          grandTotalEarned += score;
-        }
+      // تجميع دروس المادة حسب الجزء
+      const partsMap = {};
+      assessments.forEach(item => {
+        const pName = item.partName || 'الجزء العام / الأول';
+        if (!partsMap[pName]) partsMap[pName] = [];
+        partsMap[pName].push(item);
+      });
+      const partNames = Object.keys(partsMap);
 
-        const scoreVal = score !== null ? score : '';
-        const noteVal = g ? (g.notes || '') : '';
+      const partsHtml = partNames.map(pName => {
+        const partLessons = partsMap[pName];
+        let partEarned = 0;
+        let partMax = 0;
+        let partHasAny = false;
+
+        const lessonsRows = partLessons.map((a, idx) => {
+          const g = grades.find(gr => gr.assessmentItemId === a.id);
+          const score = g && g.score !== null ? g.score : null;
+          const aMax = Number(a.maxScore) || 10;
+          partMax += aMax;
+
+          if (score !== null) {
+            subEarned += score;
+            partEarned += score;
+            subHasAny = true;
+            partHasAny = true;
+            grandTotalEarned += score;
+          }
+
+          const scoreVal = score !== null ? score : '';
+          const noteVal = g ? (g.notes || '') : '';
+          const percent = score !== null && aMax > 0 ? Math.round((score / aMax) * 100) : null;
+          const statusBadge = score === null
+            ? `<span class="stat-badge" style="background: var(--bg-tertiary); color: var(--text-muted); font-size:0.75rem;">لم ترصد بعد</span>`
+            : percent >= 85
+            ? `<span class="stat-badge" style="background: var(--success-light); color: var(--success); font-weight:800; font-size:0.75rem;">ممتاز (${percent}%)</span>`
+            : percent >= 70
+            ? `<span class="stat-badge" style="background: var(--primary-light); color: var(--primary); font-weight:800; font-size:0.75rem;">جيد جداً (${percent}%)</span>`
+            : percent >= 50
+            ? `<span class="stat-badge" style="background: var(--warning-light); color: var(--warning); font-weight:800; font-size:0.75rem;">ناجح (${percent}%)</span>`
+            : `<span class="stat-badge" style="background: var(--danger-light); color: var(--danger); font-weight:800; font-size:0.75rem;">ضعيف (${percent}%)</span>`;
+
+          return `
+            <tr style="border-bottom: 1px solid var(--border-color);">
+              <td style="padding: 0.5rem 0.6rem; text-align: center; width: 35px;">${idx + 1}</td>
+              <td style="padding: 0.5rem 0.6rem; font-weight: 700; color: var(--text-primary); font-size: 0.95rem;">
+                ${Utils.sanitize(a.title)}
+              </td>
+              <td style="padding: 0.5rem 0.6rem; text-align: center; width: 140px;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
+                  <input type="number" step="0.5" min="0" max="${aMax}" value="${scoreVal}" class="form-input modal-grade-input" data-student-id="${student.id}" data-assessment-id="${a.id}" data-max-score="${aMax}" placeholder="من ${aMax}" style="
+                    width: 78px; text-align: center; font-weight: 800; font-size: 1rem; border: 2px solid ${score !== null ? 'var(--primary)' : 'var(--border-color)'}; padding: 0.35rem 0.4rem; background: var(--bg-primary);
+                  " onchange="EvaluationsManager.saveModalSingleGrade('${student.id}', '${a.id}', this.value, ${aMax})">
+                  <span style="font-size: 0.82rem; color: var(--text-muted); font-weight: bold;">/ ${aMax}</span>
+                </div>
+              </td>
+              <td style="padding: 0.5rem 0.6rem; text-align: center; width: 115px;">
+                ${statusBadge}
+              </td>
+              <td style="padding: 0.5rem 0.6rem;">
+                <input type="text" class="form-input modal-note-input" data-student-id="${student.id}" data-assessment-id="${a.id}" value="${Utils.sanitize(noteVal)}" placeholder="ملاحظات اختيارية..." style="padding: 0.35rem 0.6rem; font-size: 0.85rem; width: 100%;" onchange="EvaluationsManager.saveModalSingleNote('${student.id}', '${a.id}', this.value)">
+              </td>
+              <td style="padding: 0.5rem 0.6rem; text-align: center; width: 75px;">
+                <button type="button" class="btn btn-sm btn-primary" onclick="EvaluationsManager.saveModalRow('${student.id}', '${a.id}', ${aMax})" title="حفظ هذا الدرس" style="padding: 0.3rem 0.65rem; font-size: 0.8rem; font-weight: bold;">
+                  💾 حفظ
+                </button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        const partPercent = partMax > 0 && partHasAny ? Math.round((partEarned / partMax) * 100) : 0;
 
         return `
-          <tr style="border-bottom: 1px solid var(--border-color);">
-            <td style="padding: 0.5rem 0.6rem; text-align: center;">${idx + 1}</td>
-            <td style="padding: 0.5rem 0.6rem;">${Utils.sanitize(a.partName || 'الجزء الأول')}</td>
-            <td style="padding: 0.5rem 0.6rem; font-weight: 700; color: var(--text-primary);">${Utils.sanitize(a.title)}</td>
-            <td style="padding: 0.5rem 0.6rem; text-align: center;">
-              <div style="display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
-                <input type="number" step="0.5" min="0" max="${a.maxScore}" value="${scoreVal}" class="form-input modal-grade-input" data-student-id="${student.id}" data-assessment-id="${a.id}" data-max-score="${a.maxScore}" placeholder="من ${a.maxScore}" style="
-                  width: 80px; text-align: center; font-weight: 800; font-size: 1rem; border: 2px solid ${score !== null ? 'var(--primary)' : 'var(--border-color)'}; padding: 0.35rem 0.4rem; background: var(--bg-primary);
-                " onchange="EvaluationsManager.saveModalSingleGrade('${student.id}', '${a.id}', this.value, ${a.maxScore})">
-                <span style="font-size: 0.82rem; color: var(--text-muted); font-weight: bold;">/ ${a.maxScore}</span>
-              </div>
-            </td>
-            <td style="padding: 0.5rem 0.6rem;">
-              <input type="text" class="form-input modal-note-input" data-student-id="${student.id}" data-assessment-id="${a.id}" value="${Utils.sanitize(noteVal)}" placeholder="ملاحظات اختيارية..." style="padding: 0.35rem 0.6rem; font-size: 0.85rem;" onchange="EvaluationsManager.saveModalSingleNote('${student.id}', '${a.id}', this.value)">
-            </td>
-            <td style="padding: 0.5rem 0.6rem; text-align: center;">
-              <button type="button" class="btn btn-sm btn-primary" onclick="EvaluationsManager.saveModalRow('${student.id}', '${a.id}', ${a.maxScore})" title="حفظ درجة هذا الدرس" style="padding: 0.3rem 0.65rem; font-size: 0.8rem; font-weight: bold;">
-                💾 حفظ
-              </button>
-            </td>
-          </tr>
-        `;
-      }).join('');
-
-      const percent = subMax > 0 && hasAny ? Math.round((subEarned / subMax) * 100) : 0;
-
-      return `
-        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
-          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 0.6rem;">
-            <strong style="color: var(--primary); font-size: 1.05rem;">📖 ${Utils.sanitize(sub.name)}</strong>
-            <div style="display: flex; gap: 0.8rem; align-items: center;">
-              <span style="font-weight: 800; font-size: 0.95rem;">المجموع: ${hasAny ? subEarned : 0} من ${subMax}</span>
-              <span class="badge" style="background: ${percent >= 50 ? 'var(--success-light)' : 'var(--danger-light)'}; color: ${percent >= 50 ? 'var(--success)' : 'var(--danger)'};">
-                ${hasAny ? percent + '%' : 'غير مسجل'}
+          <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 0.9rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; padding-bottom: 0.4rem; border-bottom: 1px dashed var(--border-color); flex-wrap: wrap; gap: 0.5rem;">
+              <span style="font-weight: 800; color: var(--primary); font-size: 0.98rem; display: flex; align-items: center; gap: 0.4rem;">
+                <span>🗂️</span><span>الجزء: ${Utils.sanitize(pName)}</span>
+              </span>
+              <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: bold;">
+                مجموع الجزء: <strong style="color: var(--primary); font-size: 0.95rem;">${partHasAny ? partEarned : 0} من ${partMax}</strong> (${partHasAny ? partPercent + '%' : 'غير مسجل'})
               </span>
             </div>
-          </div>
 
-          ${assessments.length === 0 ? `
-            <div style="padding: 1.2rem; text-align: center; color: var(--text-muted); font-size: 0.88rem; background: var(--bg-secondary); border-radius: 6px;">
-              لا توجد دروس أو عناصر تقييم بعد داخل هذه المادة (${Utils.sanitize(sub.name)}).
-              <div style="margin-top: 0.6rem;">
-                <button type="button" class="btn btn-primary btn-sm" onclick="EvaluationsManager.closeStudentGradesModal(); EvaluationsManager.activeSubjectId='${sub.id}'; EvaluationsManager.openAddLessonModal();">
-                  ➕ إضافة درس جديد في هذه المادة
-                </button>
-              </div>
-            </div>
-          ` : `
             <div style="overflow-x: auto;">
-              <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem;">
                 <thead>
-                  <tr style="background: var(--bg-secondary); border-bottom: 2px solid var(--border-color);">
-                    <th style="padding: 0.5rem; text-align: center; width: 35px;">#</th>
-                    <th style="padding: 0.5rem;">الجزء</th>
-                    <th style="padding: 0.5rem;">الدرس / عنصر التقييم</th>
-                    <th style="padding: 0.5rem; text-align: center; width: 140px;">درجة الطالب</th>
-                    <th style="padding: 0.5rem;">الملاحظات</th>
-                    <th style="padding: 0.5rem; text-align: center; width: 75px;">إجراء</th>
+                  <tr style="background: var(--bg-tertiary); border-bottom: 2px solid var(--border-color);">
+                    <th style="padding: 0.45rem; text-align: center; width: 35px;">#</th>
+                    <th style="padding: 0.45rem;">الدرس / عنصر التقييم</th>
+                    <th style="padding: 0.45rem; text-align: center; width: 140px;">درجة الطالب</th>
+                    <th style="padding: 0.45rem; text-align: center; width: 115px;">التقدير</th>
+                    <th style="padding: 0.45rem;">الملاحظات</th>
+                    <th style="padding: 0.45rem; text-align: center; width: 75px;">إجراء</th>
                   </tr>
                 </thead>
                 <tbody>
                   ${lessonsRows}
                 </tbody>
               </table>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const subPercent = subMax > 0 && subHasAny ? Math.round((subEarned / subMax) * 100) : 0;
+
+      return `
+        <div style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 10px; padding: 1.2rem; margin-bottom: 1.2rem; box-shadow: var(--shadow-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 0.7rem; margin-bottom: 0.9rem; flex-wrap: wrap; gap: 0.6rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="font-size: 1.2rem;">📖</span>
+              <strong style="color: var(--primary); font-size: 1.15rem; font-weight: 800;">${Utils.sanitize(sub.name)}</strong>
+              ${sub.academicYear ? `<span style="font-size: 0.8rem; color: var(--text-muted);">(${Utils.sanitize(sub.academicYear)})</span>` : ''}
+            </div>
+            <div style="display: flex; gap: 0.8rem; align-items: center;">
+              <span style="font-weight: 800; font-size: 1rem;">مجموع المادة: <strong style="color: var(--primary);">${subHasAny ? subEarned : 0} من ${subMax}</strong></span>
+              <span class="badge" style="background: ${subPercent >= 50 ? 'var(--success-light)' : 'var(--danger-light)'}; color: ${subPercent >= 50 ? 'var(--success)' : 'var(--danger)'}; font-weight: 800; font-size: 0.88rem; padding: 0.25rem 0.6rem;">
+                ${subHasAny ? subPercent + '%' : 'غير مسجل'}
+              </span>
+            </div>
+          </div>
+
+          ${assessments.length === 0 ? `
+            <div style="padding: 1.5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; background: var(--bg-secondary); border-radius: 8px; border: 1px dashed var(--border-color);">
+              <p style="margin-bottom: 0.6rem; font-weight: bold;">لا توجد دروس أو عناصر تقييم بعد داخل هذه المادة (${Utils.sanitize(sub.name)}).</p>
+              <button type="button" class="btn btn-primary btn-sm" onclick="EvaluationsManager.closeStudentGradesModal(); EvaluationsManager.activeSubjectId='${sub.id}'; EvaluationsManager.openAddLessonModal();">
+                <span>➕</span><span>إضافة درس جديد في هذه المادة</span>
+              </button>
+            </div>
+          ` : `
+            <div>
+              ${partsHtml}
+              <div style="display: flex; justify-content: flex-end; margin-top: 0.6rem;">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="EvaluationsManager.closeStudentGradesModal(); EvaluationsManager.activeSubjectId='${sub.id}'; EvaluationsManager.openAddLessonModal();" style="font-size: 0.82rem; padding: 0.35rem 0.75rem;">
+                  <span>➕</span><span>إضافة درس / عنصر تقييم جديد في "${Utils.sanitize(sub.name)}"</span>
+                </button>
+              </div>
             </div>
           `}
         </div>
@@ -1336,19 +1413,27 @@ const EvaluationsManager = {
     const grandPercent = grandTotalMax > 0 ? Math.round((grandTotalEarned / grandTotalMax) * 100) : 0;
 
     contentEl.innerHTML = `
-      <div style="background: rgba(30, 58, 138, 0.08); border: 2px solid var(--primary); border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
+      <!-- Overall Student Summary Card -->
+      <div style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.08) 0%, rgba(217, 119, 6, 0.08) 100%); border: 2px solid var(--primary); border-radius: 12px; padding: 1.2rem 1.5rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <div>
-          <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">المجموع العام للطالب في جميع المواد:</span>
-          <strong style="font-size: 1.3rem; color: var(--primary); font-weight: 900;">${grandTotalEarned} <span style="font-size: 0.95rem; font-weight: normal;">من</span> ${grandTotalMax}</strong>
+          <span style="font-size: 0.88rem; color: var(--text-muted); display: block; font-weight: bold;">المجموع العام للطالب في جميع المواد والدروس:</span>
+          <div style="font-size: 1.6rem; color: var(--primary); font-weight: 900; margin-top: 0.2rem;">
+            ${grandTotalEarned} <span style="font-size: 1rem; font-weight: normal; color: var(--text-muted);">من</span> ${grandTotalMax}
+          </div>
         </div>
-        <div>
-          <span class="badge" style="font-size: 0.95rem; padding: 0.3rem 0.8rem; font-weight: 800; background: ${grandPercent >= 50 ? 'var(--success)' : 'var(--danger)'}; color: #fff;">
-            النسبة العامة: ${grandPercent}%
+        
+        <div style="display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;">
+          <span class="badge" style="font-size: 1.1rem; padding: 0.45rem 1rem; font-weight: 900; background: ${grandPercent >= 85 ? 'var(--success)' : grandPercent >= 50 ? 'var(--primary)' : 'var(--danger)'}; color: #fff; border-radius: 20px;">
+            النسبة العامة: ${grandPercent}% ${grandPercent >= 85 ? '🌟 ممتاز' : grandPercent >= 50 ? '✓ ناجح' : ''}
           </span>
+          <button type="button" class="btn btn-primary" onclick="EvaluationsManager.saveAllModalStudentGrades('${student.id}')" style="font-weight: 800; padding: 0.45rem 1rem;">
+            <span>💾</span><span>حفظ جميع درجات الطالب</span>
+          </button>
         </div>
       </div>
 
-      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <!-- Subjects & Parts List -->
+      <div style="display: flex; flex-direction: column; gap: 0.8rem;">
         ${subjectsHtml}
       </div>
     `;
@@ -1356,6 +1441,11 @@ const EvaluationsManager = {
     const saveAllBtn = document.getElementById('btn-modal-save-all-student');
     if (saveAllBtn) {
       saveAllBtn.onclick = () => this.saveAllModalStudentGrades(studentId);
+    }
+
+    const exportWordBtn = document.getElementById('btn-modal-export-word');
+    if (exportWordBtn) {
+      exportWordBtn.onclick = () => this.exportSingleStudentReport(studentId);
     }
 
     modal.classList.add('open');
