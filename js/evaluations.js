@@ -461,8 +461,13 @@ const EvaluationsManager = {
             <input type="text" class="form-input note-input" data-student-id="${s.id}" value="${Utils.sanitize(r.notes)}" placeholder="ملاحظات اختيارية..." style="padding: 0.35rem 0.6rem; font-size: 0.85rem;" onchange="EvaluationsManager.onNoteChange('${s.id}', this.value)">
           </td>
           <td style="text-align: center;">
-            <button class="btn btn-secondary btn-sm" onclick="EvaluationsManager.exportSingleStudentReport('${s.id}')" title="تصدير تقرير Word شامل لهذا الطالب" style="padding: 0.25rem 0.6rem; font-size: 0.78rem;">
-              📄 تقرير الطالب
+            <button class="btn btn-secondary btn-sm" onclick="EvaluationsManager.openStudentGradesModal('${s.id}')" title="عرض جميع درجات هذا المخدوم في جميع المواد من هنا مباشرة" style="padding: 0.3rem 0.65rem; font-size: 0.8rem; font-weight: bold; background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color);">
+              📋 كشف درجاته
+            </button>
+          </td>
+          <td style="text-align: center;">
+            <button class="btn btn-secondary btn-sm" onclick="EvaluationsManager.exportSingleStudentReport('${s.id}')" title="تصدير تقرير Word شامل لهذا الطالب" style="padding: 0.3rem 0.65rem; font-size: 0.8rem;">
+              📄 وورد
             </button>
           </td>
         </tr>
@@ -1034,6 +1039,139 @@ const EvaluationsManager = {
     const filename = `تقرير_شامل_مرحلة_${this.currentStage.replace(/\s+/g, '_')}_${Utils.formatDate()}.doc`;
     Utils.downloadWordDocument(docHtml, filename);
     Utils.showToast(`تم تصدير التقرير الشامل لمرحلة "${this.currentStage}" بنجاح!`, 'success');
+  },
+
+  // ==========================================
+  // 7. نافذة عرض درجات مخدوم معين من قسم التقييمات
+  // ==========================================
+  openStudentGradesModal(studentId) {
+    const student = DB.getStudentById(studentId);
+    if (!student) return;
+
+    const modal = document.getElementById('eval-student-grades-modal');
+    const nameEl = document.getElementById('modal-student-name');
+    const subinfoEl = document.getElementById('modal-student-subinfo');
+    const contentEl = document.getElementById('modal-student-grades-content');
+
+    if (!modal || !contentEl) return;
+
+    nameEl.textContent = `سجل درجات: ${student.name}`;
+    subinfoEl.textContent = `المرحلة: ${student.stage} | الباركود / الكود: ${student.barcode || student.code || 'بدون'}`;
+
+    const subjects = DB.getSubjects(true).filter(s => s.stage === student.stage);
+
+    if (subjects.length === 0) {
+      contentEl.innerHTML = `
+        <div style="padding: 2rem; text-align: center; color: var(--text-muted);">
+          لا توجد مواد مضافة لمرحلة هذا المخدوم (${student.stage}) حتى الآن.
+        </div>
+      `;
+      modal.style.display = 'flex';
+      return;
+    }
+
+    let grandTotalEarned = 0;
+    let grandTotalMax = 0;
+
+    const subjectsHtml = subjects.map(sub => {
+      const assessments = DB.getAssessmentsBySubject(sub.id);
+      const grades = DB.getGradesBySubject(sub.id).filter(g => g.studentId === student.id);
+      const subMax = assessments.reduce((sum, a) => sum + (Number(a.maxScore) || 0), 0);
+      let subEarned = 0;
+      let hasAny = false;
+
+      grandTotalMax += subMax;
+
+      const lessonsRows = assessments.map((a, idx) => {
+        const g = grades.find(gr => gr.assessmentItemId === a.id);
+        const score = g && g.score !== null ? g.score : null;
+        if (score !== null) {
+          subEarned += score;
+          hasAny = true;
+          grandTotalEarned += score;
+        }
+
+        return `
+          <tr style="border-bottom: 1px solid var(--border-color);">
+            <td style="padding: 0.4rem 0.6rem; text-align: center;">${idx + 1}</td>
+            <td style="padding: 0.4rem 0.6rem;">${Utils.sanitize(a.partName || 'الجزء الأول')}</td>
+            <td style="padding: 0.4rem 0.6rem; font-weight: 600;">${Utils.sanitize(a.title)}</td>
+            <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: bold; color: ${score !== null ? 'var(--primary)' : 'var(--text-muted)'};">
+              ${score !== null ? score : 'لم ترصد بعد'}
+            </td>
+            <td style="padding: 0.4rem 0.6rem; text-align: center;">${a.maxScore}</td>
+            <td style="padding: 0.4rem 0.6rem; font-size: 0.82rem; color: var(--text-muted);">${g ? Utils.sanitize(g.notes) : '-'}</td>
+          </tr>
+        `;
+      }).join('');
+
+      const percent = subMax > 0 && hasAny ? Math.round((subEarned / subMax) * 100) : 0;
+
+      return `
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 0.6rem;">
+            <strong style="color: var(--primary); font-size: 1.05rem;">📖 ${Utils.sanitize(sub.name)}</strong>
+            <div style="display: flex; gap: 0.8rem; align-items: center;">
+              <span style="font-weight: 800; font-size: 0.95rem;">المجموع: ${hasAny ? subEarned : 0} من ${subMax}</span>
+              <span class="badge" style="background: ${percent >= 50 ? 'var(--success-light)' : 'var(--danger-light)'}; color: ${percent >= 50 ? 'var(--success)' : 'var(--danger)'};">
+                ${hasAny ? percent + '%' : 'غير مسجل'}
+              </span>
+            </div>
+          </div>
+
+          ${assessments.length === 0 ? `
+            <div style="padding: 0.8rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+              لا توجد دروس أو عناصر تقييم مضافة داخل هذه المادة.
+            </div>
+          ` : `
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                <thead>
+                  <tr style="background: var(--bg-secondary); border-bottom: 2px solid var(--border-color);">
+                    <th style="padding: 0.4rem; text-align: center; width: 35px;">#</th>
+                    <th style="padding: 0.4rem;">الجزء</th>
+                    <th style="padding: 0.4rem;">الدرس / عنصر التقييم</th>
+                    <th style="padding: 0.4rem; text-align: center;">الدرجة</th>
+                    <th style="padding: 0.4rem; text-align: center;">العظمى</th>
+                    <th style="padding: 0.4rem;">الملاحظات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${lessonsRows}
+                </tbody>
+              </table>
+            </div>
+          `}
+        </div>
+      `;
+    }).join('');
+
+    const grandPercent = grandTotalMax > 0 ? Math.round((grandTotalEarned / grandTotalMax) * 100) : 0;
+
+    contentEl.innerHTML = `
+      <div style="background: rgba(30, 58, 138, 0.08); border: 2px solid var(--primary); border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
+        <div>
+          <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">المجموع العام في جميع المواد:</span>
+          <strong style="font-size: 1.3rem; color: var(--primary); font-weight: 900;">${grandTotalEarned} <span style="font-size: 0.95rem; font-weight: normal;">من</span> ${grandTotalMax}</strong>
+        </div>
+        <div>
+          <span class="badge" style="font-size: 0.95rem; padding: 0.3rem 0.8rem; font-weight: 800; background: ${grandPercent >= 50 ? 'var(--success)' : 'var(--danger)'}; color: #fff;">
+            النسبة العامة: ${grandPercent}%
+          </span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        ${subjectsHtml}
+      </div>
+    `;
+
+    modal.style.display = 'flex';
+  },
+
+  closeStudentGradesModal() {
+    const modal = document.getElementById('eval-student-grades-modal');
+    if (modal) modal.style.display = 'none';
   }
 };
 

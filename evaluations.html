@@ -149,7 +149,8 @@
                   <th style="text-align: center;">الحالة والنسبة</th>
                   <th style="text-align: center; background: rgba(30, 58, 138, 0.08); color: var(--primary);">مجموع المادة (كام من كام)</th>
                   <th>ملاحظات المشرف</th>
-                  <th style="text-align: center;">تقرير شامل</th>
+                  <th style="text-align: center;">سجل درجات الطالب</th>
+                  <th style="text-align: center;">تقرير Word</th>
                 </tr>
               </thead>
               <tbody id="eval-grades-table-body">
@@ -160,6 +161,31 @@
 
       </div>
 
+    </div>
+
+    <!-- Student Grades Summary Modal (عرض جميع درجات الطالب من داخل قسم التقييمات) -->
+    <div id="eval-student-grades-modal" class="modal-backdrop" style="display: none;">
+      <div class="glass-panel modal-card" style="max-width: 720px; width: 95%; max-height: 90vh; overflow-y: auto; padding: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.2rem;">
+          <div>
+            <h3 id="modal-student-name" style="font-size: 1.3rem; font-weight: 800; color: var(--primary); margin: 0 0 0.2rem 0;">
+              سجل درجات المخدوم
+            </h3>
+            <span id="modal-student-subinfo" style="font-size: 0.88rem; color: var(--text-muted);"></span>
+          </div>
+          <button class="btn-icon" onclick="EvaluationsManager.closeStudentGradesModal()" style="font-size: 1.2rem;">✕</button>
+        </div>
+
+        <div id="modal-student-grades-content">
+          <!-- Dynamic student grades content -->
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.8rem; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <button class="btn btn-secondary" onclick="EvaluationsManager.closeStudentGradesModal()">
+            إغلاق النافذة
+          </button>
+        </div>
+      </div>
     </div>
   </main>
 
