@@ -67,7 +67,10 @@ function initServiceWorker() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./service-worker.js')
-        .then(reg => console.log('Service Worker registered:', reg.scope))
+        .then(reg => {
+          console.log('Service Worker registered:', reg.scope);
+          reg.update().catch(() => {});
+        })
         .catch(err => console.log('Service Worker failed:', err));
     });
   }

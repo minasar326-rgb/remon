@@ -1,4 +1,4 @@
-const CACHE_NAME = 'abu-sefeen-cache-v12';
+const CACHE_NAME = 'abu-sefeen-cache-v13';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -34,7 +34,7 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[SW] Caching fresh assets v12');
+      console.log('[SW] Caching fresh assets v13');
       return cache.addAll(ASSETS_TO_CACHE).catch(err => console.log('SW cache error:', err));
     })
   );
@@ -63,18 +63,9 @@ self.addEventListener('fetch', (event) => {
 
   const url = event.request.url;
 
-  // Ignore non-http/https schemes (e.g. chrome-extension://, moz-extension://)
-  if (!url.startsWith('http://') && !url.startsWith('https://')) return;
-
-  // Ignore external cloud databases and CDNs from hard caching
-  if (
-    url.includes('firebase') ||
-    url.includes('googleapis') ||
-    url.includes('gstatic') ||
-    url.includes('firestore')
-  ) {
-    return;
-  }
+  // Strict check: Only intercept and cache same-origin assets
+  // All browser extensions (chrome-extension://), CDNs, and external requests bypass SW cache
+  if (!url.startsWith(self.location.origin)) return;
 
   event.respondWith(
     fetch(event.request)
