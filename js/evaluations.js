@@ -546,22 +546,53 @@ const EvaluationsManager = {
 
   // 4. نوافذ إدارة المواد (إضافة، تعديل، أرشفة)
   openAddSubjectModal() {
-    const name = prompt('أدخل اسم المادة الدراسية الجديدة (مثال: الكتاب المقدس، العقيدة، المحفوظات):');
-    if (!name || !name.trim()) return;
+    const modal = document.getElementById('eval-add-subject-modal');
+    const stageInput = document.getElementById('modal-sub-stage');
+    const nameInput = document.getElementById('modal-sub-name');
+    const yearInput = document.getElementById('modal-sub-year');
+    const descInput = document.getElementById('modal-sub-desc');
 
-    const academicYear = prompt('أدخل السنة أو الدورة الدراسية (مثال: 2026 أو 2026-2027):', String(new Date().getFullYear())) || String(new Date().getFullYear());
-    const desc = prompt('أدخل وصفاً للمادة أو ملاحظات (اختياري):') || '';
+    if (!modal) return;
+    if (stageInput) stageInput.value = this.currentStage;
+    if (nameInput) nameInput.value = '';
+    if (yearInput) yearInput.value = String(new Date().getFullYear());
+    if (descInput) descInput.value = '';
+
+    modal.style.display = 'flex';
+    setTimeout(() => { if (nameInput) nameInput.focus(); }, 100);
+  },
+
+  closeAddSubjectModal() {
+    const modal = document.getElementById('eval-add-subject-modal');
+    if (modal) modal.style.display = 'none';
+  },
+
+  submitAddSubject(e) {
+    e.preventDefault();
+    const nameInput = document.getElementById('modal-sub-name');
+    const yearInput = document.getElementById('modal-sub-year');
+    const descInput = document.getElementById('modal-sub-desc');
+
+    const name = nameInput ? nameInput.value.trim() : '';
+    if (!name) {
+      alert('يرجى إدخال اسم المادة الدراسية');
+      return;
+    }
+
+    const academicYear = yearInput ? yearInput.value.trim() : String(new Date().getFullYear());
+    const desc = descInput ? descInput.value.trim() : '';
 
     const newSub = DB.saveSubject({
-      name: name.trim(),
+      name: name,
       stage: this.currentStage,
-      academicYear: academicYear.trim(),
-      description: desc.trim(),
+      academicYear: academicYear || String(new Date().getFullYear()),
+      description: desc,
       status: 'active'
     });
 
     Activity.log('إضافة مادة جديدة', `تمت إضافة مادة جديدة (${newSub.name}) لمرحلة (${this.currentStage}).`);
     Utils.showToast(`تمت إضافة مادة "${newSub.name}" بنجاح!`, 'success');
+    this.closeAddSubjectModal();
     this.activeSubjectId = newSub.id;
     this.renderSubjectsList();
   },
@@ -629,30 +660,61 @@ const EvaluationsManager = {
   // 5. نوافذ إدارة الأجزاء والدروس
   openAddLessonModal() {
     if (!this.activeSubjectId) {
-      alert('يرجى اختيار مادة أولاً لإضافة الدروس داخلها.');
+      alert('يرجى اختيار مادة أولاً أو إضافتها للبدء.');
+      this.openAddSubjectModal();
       return;
     }
 
     const currentSubject = DB.getSubjectById(this.activeSubjectId);
+    const modal = document.getElementById('eval-add-lesson-modal');
+    const subNameInput = document.getElementById('modal-lesson-subject-name');
+    const partInput = document.getElementById('modal-lesson-part');
+    const titleInput = document.getElementById('modal-lesson-title');
+    const maxScoreInput = document.getElementById('modal-lesson-maxscore');
 
-    const partName = prompt('أدخل اسم الجزء (مثال: سفر التكوين، المحور الأول، الترم الأول):', this.activePartName || 'الجزء الأول');
-    if (!partName || !partName.trim()) return;
+    if (!modal) return;
+    if (subNameInput) subNameInput.value = currentSubject ? currentSubject.name : '';
+    if (partInput) partInput.value = this.activePartName || 'الجزء الأول';
+    if (titleInput) titleInput.value = '';
+    if (maxScoreInput) maxScoreInput.value = '10';
 
-    const lessonTitle = prompt('أدخل اسم الدرس أو عنصر التقييم (مثال: الخليقة، آدم وحواء، امتحان شهر أكتوبر):');
-    if (!lessonTitle || !lessonTitle.trim()) return;
+    modal.style.display = 'flex';
+    setTimeout(() => { if (titleInput) titleInput.focus(); }, 100);
+  },
 
-    const maxScoreStr = prompt('أدخل الدرجة العظمى لهذا التقييم (مثال: 10 أو 20 أو 100):', '10');
-    const maxScore = Number(maxScoreStr) || 10;
+  closeAddLessonModal() {
+    const modal = document.getElementById('eval-add-lesson-modal');
+    if (modal) modal.style.display = 'none';
+  },
+
+  submitAddLesson(e) {
+    e.preventDefault();
+    if (!this.activeSubjectId) return;
+
+    const currentSubject = DB.getSubjectById(this.activeSubjectId);
+    const partInput = document.getElementById('modal-lesson-part');
+    const titleInput = document.getElementById('modal-lesson-title');
+    const maxScoreInput = document.getElementById('modal-lesson-maxscore');
+
+    const partName = partInput ? partInput.value.trim() : '';
+    const title = titleInput ? titleInput.value.trim() : '';
+    const maxScore = Number(maxScoreInput ? maxScoreInput.value : 10) || 10;
+
+    if (!partName || !title) {
+      alert('يرجى ملء جميع الحقول المطلوبة');
+      return;
+    }
 
     const newLesson = DB.saveAssessment({
       subjectId: this.activeSubjectId,
-      partName: partName.trim(),
-      title: lessonTitle.trim(),
+      partName: partName,
+      title: title,
       maxScore: maxScore
     });
 
     Activity.log('إضافة درس تقييم', `تمت إضافة درس (${newLesson.title}) في مادة (${currentSubject ? currentSubject.name : ''}).`);
     Utils.showToast(`تمت إضافة درس "${newLesson.title}" بنجاح!`, 'success');
+    this.closeAddLessonModal();
     this.activeAssessmentId = newLesson.id;
     this.activePartName = newLesson.partName;
     this.renderLessonNavigation();

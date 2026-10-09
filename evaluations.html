@@ -187,6 +187,109 @@
         </div>
       </div>
     </div>
+
+    <!-- Add Subject Modal (إضافة مادة جديدة بنافذة منبثقة واضحة) -->
+    <div id="eval-add-subject-modal" class="modal-backdrop" style="display: none;">
+      <div class="glass-panel modal-card" style="max-width: 520px; width: 95%; padding: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 0.8rem; margin-bottom: 1.2rem;">
+          <h3 style="margin: 0; font-size: 1.2rem; font-weight: 800; color: var(--primary);">
+            ➕ إضافة مادة دراسية جديدة
+          </h3>
+          <button class="btn-icon" onclick="EvaluationsManager.closeAddSubjectModal()" style="font-size: 1.2rem;">✕</button>
+        </div>
+
+        <form id="form-add-subject" onsubmit="EvaluationsManager.submitAddSubject(event)">
+          <div style="margin-bottom: 1rem;">
+            <label style="font-weight: bold; display: block; margin-bottom: 0.4rem; font-size: 0.9rem;">
+              المرحلة المحددة:
+            </label>
+            <input type="text" id="modal-sub-stage" class="form-input" style="width: 100%; background: var(--bg-tertiary); font-weight: bold;" readonly>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="font-weight: bold; display: block; margin-bottom: 0.4rem; font-size: 0.9rem;">
+              اسم المادة الدراسية: <span style="color: var(--danger);">*</span>
+            </label>
+            <input type="text" id="modal-sub-name" class="form-input" placeholder="مثال: الكتاب المقدس، العقيدة، تاريخ الكنيسة..." style="width: 100%;" required autofocus>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="font-weight: bold; display: block; margin-bottom: 0.4rem; font-size: 0.9rem;">
+              السنة الدراسية / الدورة:
+            </label>
+            <input type="text" id="modal-sub-year" class="form-input" placeholder="2026" style="width: 100%;">
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="font-weight: bold; display: block; margin-bottom: 0.4rem; font-size: 0.9rem;">
+              وصف المادة أو ملاحظات (اختياري):
+            </label>
+            <textarea id="modal-sub-desc" class="form-input" rows="2" placeholder="ملاحظات توضيحية..." style="width: 100%;"></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 0.8rem;">
+            <button type="button" class="btn btn-secondary" onclick="EvaluationsManager.closeAddSubjectModal()">
+              إلغاء
+            </button>
+            <button type="submit" class="btn btn-primary" style="font-weight: 800;">
+              <span>💾</span><span>حفظ وإضافة المادة</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Lesson Modal (إضافة جزء ودرس تقييم بنافذة منبثقة واضحة) -->
+    <div id="eval-add-lesson-modal" class="modal-backdrop" style="display: none;">
+      <div class="glass-panel modal-card" style="max-width: 520px; width: 95%; padding: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 0.8rem; margin-bottom: 1.2rem;">
+          <h3 style="margin: 0; font-size: 1.2rem; font-weight: 800; color: var(--primary);">
+            ➕ إضافة درس / عنصر تقييم
+          </h3>
+          <button class="btn-icon" onclick="EvaluationsManager.closeAddLessonModal()" style="font-size: 1.2rem;">✕</button>
+        </div>
+
+        <form id="form-add-lesson" onsubmit="EvaluationsManager.submitAddLesson(event)">
+          <div style="margin-bottom: 1rem;">
+            <label style="font-weight: bold; display: block; margin-bottom: 0.4rem; font-size: 0.9rem;">
+              المادة الدراسية:
+            </label>
+            <input type="text" id="modal-lesson-subject-name" class="form-input" style="width: 100%; background: var(--bg-tertiary); font-weight: bold;" readonly>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="font-weight: bold; display: block; margin-bottom: 0.4rem; font-size: 0.9rem;">
+              اسم الجزء داخل المادة: <span style="color: var(--danger);">*</span>
+            </label>
+            <input type="text" id="modal-lesson-part" class="form-input" placeholder="مثال: سفر التكوين، المحور الأول، الترم الأول..." style="width: 100%;" required>
+            <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 0.2rem;">يمكنك كتابة نفس اسم الجزء لتجميع دروس تحته أو اسم جزء جديد.</span>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="font-weight: bold; display: block; margin-bottom: 0.4rem; font-size: 0.9rem;">
+              اسم الدرس / عنصر التقييم: <span style="color: var(--danger);">*</span>
+            </label>
+            <input type="text" id="modal-lesson-title" class="form-input" placeholder="مثال: الخليقة، امتحان شهر أكتوبر، المحفوظات..." style="width: 100%;" required autofocus>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="font-weight: bold; display: block; margin-bottom: 0.4rem; font-size: 0.9rem;">
+              الدرجة العظمى لهذا التقييم: <span style="color: var(--danger);">*</span>
+            </label>
+            <input type="number" id="modal-lesson-maxscore" class="form-input" min="1" max="1000" value="10" style="width: 100%; font-weight: bold;" required>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 0.8rem;">
+            <button type="button" class="btn btn-secondary" onclick="EvaluationsManager.closeAddLessonModal()">
+              إلغاء
+            </button>
+            <button type="submit" class="btn btn-primary" style="font-weight: 800;">
+              <span>💾</span><span>حفظ وإضافة الدرس</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </main>
 
   <script src="js/utils.js"></script>
