@@ -98,6 +98,19 @@ const EvaluationsManager = {
       });
     }
 
+    // إغلاق النوافذ المنبثقة عند النقر خارج الصندوق (على الخلفية المعتمة)
+    ['eval-add-subject-modal', 'eval-add-lesson-modal', 'eval-student-grades-modal'].forEach(id => {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('open');
+            modal.style.display = 'none';
+          }
+        });
+      }
+    });
+
     window.addEventListener('abs-students-updated', () => {
       // إعادة تقييم المرحلة الافتراضية إذا كانت الحالية بلا طلاب
       const allStudents = DB.getStudents();
@@ -605,13 +618,17 @@ const EvaluationsManager = {
     if (yearInput) yearInput.value = String(new Date().getFullYear());
     if (descInput) descInput.value = '';
 
+    modal.classList.add('open');
     modal.style.display = 'flex';
     setTimeout(() => { if (nameInput) nameInput.focus(); }, 100);
   },
 
   closeAddSubjectModal() {
     const modal = document.getElementById('eval-add-subject-modal');
-    if (modal) modal.style.display = 'none';
+    if (modal) {
+      modal.classList.remove('open');
+      modal.style.display = 'none';
+    }
   },
 
   submitAddSubject(e) {
@@ -725,13 +742,17 @@ const EvaluationsManager = {
     if (titleInput) titleInput.value = '';
     if (maxScoreInput) maxScoreInput.value = '10';
 
+    modal.classList.add('open');
     modal.style.display = 'flex';
     setTimeout(() => { if (titleInput) titleInput.focus(); }, 100);
   },
 
   closeAddLessonModal() {
     const modal = document.getElementById('eval-add-lesson-modal');
-    if (modal) modal.style.display = 'none';
+    if (modal) {
+      modal.classList.remove('open');
+      modal.style.display = 'none';
+    }
   },
 
   submitAddLesson(e) {
@@ -1175,6 +1196,7 @@ const EvaluationsManager = {
           لا توجد مواد مضافة لمرحلة هذا المخدوم (${student.stage}) حتى الآن.
         </div>
       `;
+      modal.classList.add('open');
       modal.style.display = 'flex';
       return;
     }
@@ -1275,12 +1297,16 @@ const EvaluationsManager = {
       </div>
     `;
 
+    modal.classList.add('open');
     modal.style.display = 'flex';
   },
 
   closeStudentGradesModal() {
     const modal = document.getElementById('eval-student-grades-modal');
-    if (modal) modal.style.display = 'none';
+    if (modal) {
+      modal.classList.remove('open');
+      modal.style.display = 'none';
+    }
   }
 };
 
