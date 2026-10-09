@@ -111,8 +111,30 @@ const AttendanceManager = {
   },
 
   // تسجيل الحضور بالباركود أو كود الكارنيه
-  processAttendanceByBarcode(barcodeOrCode, method = 'ماسح الباركود (كاميرا)') {
+  processAttendanceByBarcode(barcodeOrCode, method = 'ماسح الباركود (كاميرا)', allowBypass = false) {
     if (!barcodeOrCode) return;
+
+    // 1. التحقق من مواعيد تسجيل الحضور من الإعدادات بتوقيت القاهرة
+    if (!allowBypass) {
+      const scheduleCheck = DB.isAttendanceAllowedNow();
+      if (!scheduleCheck.allowed) {
+        Utils.playBeep('error');
+        const currentUser = window.Auth && Auth.getCurrentUser();
+        const isAdmin = currentUser && currentUser.role === 'admin';
+        
+        if (isAdmin) {
+          if (confirm(`⚠️ تنبيه المواعيد:\n${scheduleCheck.message}\n\nهل ترغب كمسؤول رئيسي في تجاوز الموعد المسموح به وتسجيل الحضور استثنائياً؟`)) {
+            Activity.log('استثناء مواعيد الحضور', `قام المسؤول (${currentUser.name}) بتجاوز الموعد المحدد وتسجيل حضور استثنائي.`);
+            return this.processAttendanceByBarcode(barcodeOrCode, method + ' (استثناء مسؤول)', true);
+          }
+        } else {
+          Utils.showToast(scheduleCheck.message, 'error', 6000);
+          return;
+        }
+        return;
+      }
+    }
+
     const student = DB.getStudentByCodeOrBarcode(barcodeOrCode);
 
     if (!student) {
@@ -161,6 +183,40 @@ const AttendanceManager = {
     window.dispatchEvent(new CustomEvent('abs-attendance-recorded', { detail: record }));
   },
 
+  // تسجيل / إلغاء الاعتراف الشهري
+  toggleConfession(studentId, isChecked) {
+    const student = DB.getStudentById(studentId);
+    if (!student) return;
+
+    const { month, year, monthKey } = DB.getCurrentMonthYear();
+    const existing = DB.getStudentConfessionForMonth(studentId, monthKey);
+
+    if (isChecked) {
+      if (existing) {
+        Utils.showToast(`الطالب: ${student.name} مسجل اعترافه بالفعل لشهر ${month}/${year}`, 'info');
+        return;
+      }
+      const res = DB.recordConfession(studentId);
+      if (res.success) {
+        Activity.log('تسجيل اعتراف شهري', `تم تسجيل اعتراف الطالب: ${student.name} لشهر ${month}/${year}.`);
+        Utils.playBeep('success');
+        Utils.showToast(`تم تسجيل اعتراف الطالب: ${student.name} لشهر ${month}/${year} بنجاح ✓`, 'success');
+      }
+    } else {
+      if (existing) {
+        if (confirm(`هل أنت متأكد من إلغاء تسجيل اعتراف الطالب (${student.name}) لشهر ${month}/${year}؟`)) {
+          DB.removeConfession(existing.id);
+          Activity.log('إلغاء اعتراف شهري', `تم إلغاء اعتراف الطالب: ${student.name} لشهر ${month}/${year}.`);
+          Utils.showToast(`تم إلغاء تسجيل الاعتراف للطالب: ${student.name}`, 'info');
+        } else {
+          this.renderAttendanceTable();
+          return;
+        }
+      }
+    }
+    this.renderAttendanceTable();
+  },
+
   highlightRecentAttendedCard(student, isDuplicate = false) {
     const banner = document.getElementById('recent-scan-banner');
     if (!banner) return;
@@ -198,11 +254,15 @@ const AttendanceManager = {
     }
 
     const todayDate = Utils.formatDate();
+    const { month, year, monthKey } = DB.getCurrentMonthYear();
+
     const attendanceRecords = DB.getAttendance().filter(a => 
       a.dayName === this.currentDay && 
       a.period === this.currentPeriod &&
       a.date === todayDate
     );
+
+    const confessionsList = DB.getConfessions().filter(c => c.monthKey === monthKey);
 
     if (students.length === 0) {
       tbody.innerHTML = '<tr><td colspan="7" style="padding: 2rem; text-align: center; color: var(--text-muted);">لا يوجد طلاب مسجلون في هذه المرحلة.</td></tr>';
@@ -212,6 +272,8 @@ const AttendanceManager = {
     tbody.innerHTML = students.map((s, idx) => {
       const record = attendanceRecords.find(a => a.studentId === s.id);
       const isPresent = !!record;
+      const confessionRecord = confessionsList.find(c => c.studentId === s.id);
+      const hasConfessed = !!confessionRecord;
 
       return `
         <tr>
@@ -230,8 +292,16 @@ const AttendanceManager = {
             }
           </td>
           <td style="text-align:center;">
+            <label style="display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; padding: 0.35rem 0.7rem; border-radius: 8px; border: 2px solid ${hasConfessed ? 'var(--success)' : 'var(--border-color)'}; background: ${hasConfessed ? 'rgba(16, 185, 129, 0.1)' : 'var(--bg-card)'};">
+              <input type="checkbox" ${hasConfessed ? 'checked' : ''} onchange="AttendanceManager.toggleConfession('${s.id}', this.checked)" style="width: 1.15rem; height: 1.15rem; cursor: pointer; accent-color: var(--success);">
+              <span style="font-size: 0.85rem; font-weight: 800; color: ${hasConfessed ? 'var(--success)' : 'var(--text-muted)'};">
+                ${hasConfessed ? `اعترف (${confessionRecord.confessionDate})` : 'لم يعترف بعد'}
+              </span>
+            </label>
+          </td>
+          <td style="text-align:center;">
             ${isPresent 
-              ? `<button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; color: var(--danger);" onclick="AttendanceManager.removeAttendance('${record.id}')">إلغاء</button>` 
+              ? `<button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; color: var(--danger);" onclick="AttendanceManager.removeAttendance('${record.id}')">إلغاء الحضور</button>` 
               : `<button class="btn btn-primary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="AttendanceManager.processAttendanceByBarcode('${s.barcode || s.code}', 'تسجيل مباشر من الكشف')">تسجيل حضور</button>`
             }
           </td>

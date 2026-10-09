@@ -1,4 +1,4 @@
-const CACHE_NAME = 'abu-sefeen-cache-v4';
+const CACHE_NAME = 'abu-sefeen-cache-v5';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -7,6 +7,7 @@ const ASSETS_TO_CACHE = [
   './attendance.html',
   './students.html',
   './student.html',
+  './evaluations.html',
   './reports.html',
   './settings.html',
   './css/style.css',
@@ -20,6 +21,8 @@ const ASSETS_TO_CACHE = [
   './js/students.js',
   './js/attendance.js',
   './js/scanner.js',
+  './js/confessions.js',
+  './js/evaluations.js',
   './js/reports.js',
   './js/settings.js',
   './js/app.js',

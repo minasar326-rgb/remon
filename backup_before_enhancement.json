@@ -1,0 +1,6855 @@
+{
+  "timestamp": "2026-10-09T21:20:29.933Z",
+  "counts": {
+    "students": 68,
+    "attendance": 100,
+    "settings": 1
+  },
+  "students": [
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-092v505ns-mumqj8g6",
+      "fields": {
+        "group": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "بيشوي نبيل عبد الملاك"
+        },
+        "code": {
+          "stringValue": "بيشوي نبيل عبد الملاك  -  سنة ثانية"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790689903496"
+        },
+        "id": {
+          "stringValue": "id-092v505ns-mumqj8g6"
+        },
+        "updatedAt": {
+          "integerValue": "1790689903494"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "بيشوي نبيل عبد الملاك  -  سنة ثانية"
+        }
+      },
+      "createTime": "2026-09-29T13:51:45.662470Z",
+      "updateTime": "2026-09-29T13:51:45.662470Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-172qau68t-mumqol7i",
+      "fields": {
+        "notes": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790690153310"
+        },
+        "createdAt": {
+          "integerValue": "1790690153311"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-172qau68t-mumqol7i"
+        },
+        "name": {
+          "stringValue": "مارينا اسحق"
+        },
+        "code": {
+          "stringValue": "مارينا اسحق  -  سنة ثانية"
+        },
+        "barcode": {
+          "stringValue": "مارينا اسحق  -  سنة ثانية"
+        }
+      },
+      "createTime": "2026-09-29T13:55:54.821102Z",
+      "updateTime": "2026-09-29T13:55:54.821102Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-1ewpi6dny-mui3j9ld",
+      "fields": {
+        "name": {
+          "stringValue": "جومانه رمسيس اسحق"
+        },
+        "code": {
+          "stringValue": "جومانه رمسيس اسحق  - سنة اولي"
+        },
+        "createdAt": {
+          "integerValue": "1790409409105"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790409409105"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "جومانه رمسيس اسحق  - سنة اولي"
+        },
+        "id": {
+          "stringValue": "id-1ewpi6dny-mui3j9ld"
+        },
+        "notes": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T07:56:49.708644Z",
+      "updateTime": "2026-09-26T07:56:49.708644Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-1xlcwdt3w-mui3gonn",
+      "fields": {
+        "notes": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "ماريا شريف جمال  - سنه اولي"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "ماريا شريف جمال"
+        },
+        "updatedAt": {
+          "integerValue": "1790409288659"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "code": {
+          "stringValue": "ماريا شريف جمال  - سنه اولي"
+        },
+        "id": {
+          "stringValue": "id-1xlcwdt3w-mui3gonn"
+        },
+        "createdAt": {
+          "integerValue": "1790409288659"
+        }
+      },
+      "createTime": "2026-09-26T07:54:49.277293Z",
+      "updateTime": "2026-09-26T07:54:49.277293Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-29stnsciu-mumqm9n5",
+      "fields": {
+        "createdAt": {
+          "integerValue": "1790690045009"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790690045009"
+        },
+        "id": {
+          "stringValue": "id-29stnsciu-mumqm9n5"
+        },
+        "barcode": {
+          "stringValue": "مريم ناصف  -  سنة ثانية"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "مريم ناصف"
+        },
+        "code": {
+          "stringValue": "مريم ناصف  -  سنة ثانية"
+        },
+        "group": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-29T13:54:06.516935Z",
+      "updateTime": "2026-09-29T13:54:06.516935Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-36u73fset-mupry48p",
+      "fields": {
+        "group": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790873676025"
+        },
+        "barcode": {
+          "stringValue": "أنجليوس إبراهيم لوندي  - سنة ثالثة"
+        },
+        "code": {
+          "stringValue": "أنجليوس إبراهيم لوندي  - سنة ثالثة"
+        },
+        "updatedAt": {
+          "integerValue": "1790873676025"
+        },
+        "name": {
+          "stringValue": "أنجليوس إبراهيم لوندي"
+        },
+        "id": {
+          "stringValue": "id-36u73fset-mupry48p"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-10-01T16:54:38.112388Z",
+      "updateTime": "2026-10-01T16:54:38.112388Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-3ijuteur6-mupvz8dw",
+      "fields": {
+        "name": {
+          "stringValue": "مينا روماني مجدي"
+        },
+        "code": {
+          "stringValue": "مينا روماني مجدي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790880446516"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790880446516"
+        },
+        "barcode": {
+          "stringValue": "مينا روماني مجدي"
+        },
+        "id": {
+          "stringValue": "id-3ijuteur6-mupvz8dw"
+        }
+      },
+      "createTime": "2026-10-01T18:47:30.823414Z",
+      "updateTime": "2026-10-01T18:47:30.823414Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-3qevvwwkj-mui3shkv",
+      "fields": {
+        "id": {
+          "stringValue": "id-3qevvwwkj-mui3shkv"
+        },
+        "barcode": {
+          "stringValue": "مريم مينا رشدي   - سنه اولي"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "code": {
+          "stringValue": "مريم مينا رشدي   - سنه اولي"
+        },
+        "name": {
+          "stringValue": "مريم مينا رشدي"
+        },
+        "updatedAt": {
+          "integerValue": "1790409839359"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790409839359"
+        },
+        "notes": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T08:04:00.371997Z",
+      "updateTime": "2026-09-26T08:04:00.371997Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-3wbv3s4um-mumqoyav",
+      "fields": {
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-3wbv3s4um-mumqoyav"
+        },
+        "code": {
+          "stringValue": "نانسي نبيل  -  سنة ثانية"
+        },
+        "barcode": {
+          "stringValue": "نانسي نبيل  -  سنة ثانية"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790690170279"
+        },
+        "name": {
+          "stringValue": "نانسي نبيل"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790690170279"
+        }
+      },
+      "createTime": "2026-09-29T13:56:11.710494Z",
+      "updateTime": "2026-09-29T13:56:11.710494Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-4niz1cm03-muprwe9x",
+      "fields": {
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "ايريني عبده هارون  - سنة ثالثة"
+        },
+        "id": {
+          "stringValue": "id-4niz1cm03-muprwe9x"
+        },
+        "updatedAt": {
+          "integerValue": "1790873595717"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "ايريني عبده هارون  - سنة ثالثة"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790873595717"
+        },
+        "name": {
+          "stringValue": "ايريني عبده هارون"
+        }
+      },
+      "createTime": "2026-10-01T16:53:18.385590Z",
+      "updateTime": "2026-10-01T16:53:18.385590Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-65wgdajak-mui3gg6n",
+      "fields": {
+        "id": {
+          "stringValue": "id-65wgdajak-mui3gg6n"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "سيلفيا عماد رأفت  - سنه اولي"
+        },
+        "code": {
+          "stringValue": "سيلفيا عماد رأفت  - سنه اولي"
+        },
+        "updatedAt": {
+          "integerValue": "1790409277679"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "سيلفيا عماد رأفت"
+        },
+        "createdAt": {
+          "integerValue": "1790409277679"
+        },
+        "group": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T07:54:38.230739Z",
+      "updateTime": "2026-09-26T07:54:38.230739Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-6jactaz1q-mumqckzf",
+      "fields": {
+        "group": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "اناسيمون مجدي  -  سنة ثانية"
+        },
+        "id": {
+          "stringValue": "id-6jactaz1q-mumqckzf"
+        },
+        "name": {
+          "stringValue": "اناسيمون مجدي"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790689593148"
+        },
+        "barcode": {
+          "stringValue": "اناسيمون مجدي  -  سنة ثانية"
+        },
+        "updatedAt": {
+          "integerValue": "1790689593147"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        }
+      },
+      "createTime": "2026-09-29T13:46:35.388825Z",
+      "updateTime": "2026-09-29T13:46:35.388825Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-6xzqzzsdy-mui3qx1n",
+      "fields": {
+        "id": {
+          "stringValue": "id-6xzqzzsdy-mui3qx1n"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "updatedAt": {
+          "integerValue": "1790409766091"
+        },
+        "createdAt": {
+          "integerValue": "1790409766091"
+        },
+        "code": {
+          "stringValue": "ماريا جرجس منير   - سنه اولي"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "ماريا جرجس منير"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "ماريا جرجس منير   - سنه اولي"
+        }
+      },
+      "createTime": "2026-09-26T08:02:46.681639Z",
+      "updateTime": "2026-09-26T08:02:46.681639Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-78gr1c4vr-mui3hsfq",
+      "fields": {
+        "id": {
+          "stringValue": "id-78gr1c4vr-mui3hsfq"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790409340214"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790409340214"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "كرستين يوسف سمير  - سنه اولي"
+        },
+        "code": {
+          "stringValue": "كرستين يوسف سمير  - سنه اولي"
+        },
+        "name": {
+          "stringValue": "كرستين يوسف سمير"
+        }
+      },
+      "createTime": "2026-09-26T07:55:40.748220Z",
+      "updateTime": "2026-09-26T07:55:40.748220Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-817pvcjwq-muprxm8b",
+      "fields": {
+        "notes": {
+          "stringValue": ""
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790873652683"
+        },
+        "id": {
+          "stringValue": "id-817pvcjwq-muprxm8b"
+        },
+        "name": {
+          "stringValue": "ماريا ايمن نادي"
+        },
+        "barcode": {
+          "stringValue": "ماريا ايمن نادي  - سنة ثالثة"
+        },
+        "code": {
+          "stringValue": "ماريا ايمن نادي  - سنة ثالثة"
+        },
+        "updatedAt": {
+          "integerValue": "1790873652683"
+        }
+      },
+      "createTime": "2026-10-01T16:54:14.635180Z",
+      "updateTime": "2026-10-01T16:54:14.635180Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-86c2cis9u-muprzijl",
+      "fields": {
+        "group": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-86c2cis9u-muprzijl"
+        },
+        "code": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثالثة"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثالثة"
+        },
+        "name": {
+          "stringValue": "مارتينا ابراهيم صالح"
+        },
+        "updatedAt": {
+          "integerValue": "1790873741217"
+        },
+        "createdAt": {
+          "integerValue": "1790873741217"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        }
+      },
+      "createTime": "2026-10-01T16:55:43.537148Z",
+      "updateTime": "2026-10-01T16:55:43.537148Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-8pk02zqol-mui3t0la",
+      "fields": {
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-8pk02zqol-mui3t0la"
+        },
+        "createdAt": {
+          "integerValue": "1790409863998"
+        },
+        "barcode": {
+          "stringValue": "جومانه مايكل سمير  - سنة اولي"
+        },
+        "name": {
+          "stringValue": "جومانه مايكل سمير"
+        },
+        "updatedAt": {
+          "integerValue": "1790409863998"
+        },
+        "code": {
+          "stringValue": "جومانه مايكل سمير  - سنة اولي"
+        },
+        "group": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T08:04:24.550834Z",
+      "updateTime": "2026-09-26T08:04:24.550834Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-8x5rsohyg-mui3m0il",
+      "fields": {
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "فيلوباتير عجايبي هارون - سنة اولي"
+        },
+        "updatedAt": {
+          "integerValue": "1790409537309"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "فيلوباتير عجايبي هارون"
+        },
+        "createdAt": {
+          "integerValue": "1790409537309"
+        },
+        "id": {
+          "stringValue": "id-8x5rsohyg-mui3m0il"
+        },
+        "code": {
+          "stringValue": "فيلوباتير عجايبي هارون - سنة اولي"
+        },
+        "group": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T07:58:58.666161Z",
+      "updateTime": "2026-09-26T07:58:58.666161Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-9bmj4dalm-muprwlma",
+      "fields": {
+        "notes": {
+          "stringValue": ""
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790873605234"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-9bmj4dalm-muprwlma"
+        },
+        "createdAt": {
+          "integerValue": "1790873605234"
+        },
+        "name": {
+          "stringValue": "ابانوب سمير مسعود"
+        },
+        "barcode": {
+          "stringValue": "ابانوب سمير مسعود  - سنة ثالثة"
+        },
+        "code": {
+          "stringValue": "ابانوب سمير مسعود  - سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-01T16:53:37.558765Z",
+      "updateTime": "2026-10-01T16:53:37.558765Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-9r2xcoxls-mui3oivu",
+      "fields": {
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790409654426"
+        },
+        "barcode": {
+          "stringValue": "جومانه أشرف نبيل  - سنة اولي"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790409654426"
+        },
+        "name": {
+          "stringValue": "جومانه أشرف نبيل"
+        },
+        "id": {
+          "stringValue": "id-9r2xcoxls-mui3oivu"
+        },
+        "code": {
+          "stringValue": "جومانه أشرف نبيل  - سنة اولي"
+        },
+        "group": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T08:00:55.083096Z",
+      "updateTime": "2026-09-26T08:00:55.083096Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-a2ylb54p4-mumqlors",
+      "fields": {
+        "group": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "مينا رضا جورج"
+        },
+        "code": {
+          "stringValue": "مينا رضا جورج  -  سنة ثانية"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "مينا رضا جورج  -  سنة ثانية"
+        },
+        "createdAt": {
+          "integerValue": "1790690017960"
+        },
+        "id": {
+          "stringValue": "id-a2ylb54p4-mumqlors"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790690017960"
+        }
+      },
+      "createTime": "2026-09-29T13:53:39.430976Z",
+      "updateTime": "2026-09-29T13:53:39.430976Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-adye5mca8-muprysqv",
+      "fields": {
+        "group": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-adye5mca8-muprysqv"
+        },
+        "code": {
+          "stringValue": "مريم جميل مكرم  - سنة ثالثة"
+        },
+        "name": {
+          "stringValue": "مريم جميل مكرم"
+        },
+        "barcode": {
+          "stringValue": "مريم جميل مكرم  - سنة ثالثة"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790873707783"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790873707783"
+        }
+      },
+      "createTime": "2026-10-01T16:55:09.956994Z",
+      "updateTime": "2026-10-01T16:55:09.956994Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-afp8hmy3q-mui3k8zl",
+      "fields": {
+        "id": {
+          "stringValue": "id-afp8hmy3q-mui3k8zl"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "انطونيوس ايمن نادي  - سنة اولي"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "انطونيوس ايمن نادي  - سنة اولي"
+        },
+        "createdAt": {
+          "integerValue": "1790409454977"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "انطونيوس ايمن نادي"
+        },
+        "updatedAt": {
+          "integerValue": "1790409454977"
+        }
+      },
+      "createTime": "2026-09-26T07:57:35.521554Z",
+      "updateTime": "2026-09-26T07:57:35.521554Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-amya5lq20-muprwsz7",
+      "fields": {
+        "createdAt": {
+          "integerValue": "1790873614771"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790873614771"
+        },
+        "code": {
+          "stringValue": "مينا ملاك إبراهيم  - سنة ثالثة"
+        },
+        "id": {
+          "stringValue": "id-amya5lq20-muprwsz7"
+        },
+        "name": {
+          "stringValue": "مينا ملاك إبراهيم"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "مينا ملاك إبراهيم  - سنة ثالثة"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        }
+      },
+      "createTime": "2026-10-01T16:53:38.168580Z",
+      "updateTime": "2026-10-01T16:53:38.168580Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-bg6a81sro-mumqd47u",
+      "fields": {
+        "createdAt": {
+          "integerValue": "1790689618074"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "updatedAt": {
+          "integerValue": "1790689618074"
+        },
+        "barcode": {
+          "stringValue": "انجي هاني فتحي  -  سنة ثانية"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "انجي هاني فتحي"
+        },
+        "id": {
+          "stringValue": "id-bg6a81sro-mumqd47u"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "انجي هاني فتحي  -  سنة ثانية"
+        }
+      },
+      "createTime": "2026-09-29T13:46:59.503276Z",
+      "updateTime": "2026-09-29T13:46:59.503276Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-bzt00a3ac-mumqlecz",
+      "fields": {
+        "barcode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثانية"
+        },
+        "updatedAt": {
+          "integerValue": "1790690004467"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790690004467"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "مارتينا ابراهيم صالح"
+        },
+        "code": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثانية"
+        },
+        "id": {
+          "stringValue": "id-bzt00a3ac-mumqlecz"
+        },
+        "group": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-29T13:53:26.696355Z",
+      "updateTime": "2026-09-29T13:53:26.696355Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-cp8iyy2ya-muprycqq",
+      "fields": {
+        "id": {
+          "stringValue": "id-cp8iyy2ya-muprycqq"
+        },
+        "code": {
+          "stringValue": "نوڤير يونان سعد  - سنة ثالثة"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد ��دام"
+        },
+        "barcode": {
+          "stringValue": "نوڤير يونان سعد  - سنة ثالثة"
+        },
+        "name": {
+          "stringValue": "نوڤير يونان سعد"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790873687042"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790873687042"
+        }
+      },
+      "createTime": "2026-10-01T16:54:49.073086Z",
+      "updateTime": "2026-10-01T16:54:49.073086Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-d792cmh4b-mumqqd1t",
+      "fields": {
+        "notes": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "يوسف سعيد  -  سنة ثالثه"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790690236049"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "يوسف سعيد"
+        },
+        "updatedAt": {
+          "integerValue": "1790880569862"
+        },
+        "id": {
+          "stringValue": "id-d792cmh4b-mumqqd1t"
+        },
+        "code": {
+          "stringValue": "يوسف سعيد  -  سنة ثالثه"
+        }
+      },
+      "createTime": "2026-09-29T13:57:17.545604Z",
+      "updateTime": "2026-10-01T18:49:33.453908Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-dhy1ikv8f-mumqjk1o",
+      "fields": {
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790689918524"
+        },
+        "barcode": {
+          "stringValue": "أستيفن ميلاد عبيد  -  سنة ثانية"
+        },
+        "id": {
+          "stringValue": "id-dhy1ikv8f-mumqjk1o"
+        },
+        "createdAt": {
+          "integerValue": "1790689918524"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "أستيفن ميلاد عبيد  -  سنة ثانية"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "أستيفن ميلاد عبيد"
+        }
+      },
+      "createTime": "2026-09-29T13:52:00.031165Z",
+      "updateTime": "2026-09-29T13:52:00.031165Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-dwkrtx7tk-mui3jjjs",
+      "fields": {
+        "notes": {
+          "stringValue": ""
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790409422008"
+        },
+        "id": {
+          "stringValue": "id-dwkrtx7tk-mui3jjjs"
+        },
+        "createdAt": {
+          "integerValue": "1790409422008"
+        },
+        "name": {
+          "stringValue": "مهرائيل سمير مسعود"
+        },
+        "code": {
+          "stringValue": "مهرائيل سمير مسعود  - سنة اولي"
+        },
+        "barcode": {
+          "stringValue": "مهرائيل سمير مسعود  - سنة اولي"
+        }
+      },
+      "createTime": "2026-09-26T07:57:02.553289Z",
+      "updateTime": "2026-09-26T07:57:02.553289Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-e3hwjwe1a-mui3klya",
+      "fields": {
+        "updatedAt": {
+          "integerValue": "1790409471778"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "صموئيل بهاء نبيل"
+        },
+        "createdAt": {
+          "integerValue": "1790409471778"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "صموئيل بهاء نبيل - سنة اولي"
+        },
+        "barcode": {
+          "stringValue": "صموئيل بهاء نبيل - سنة اولي"
+        },
+        "id": {
+          "stringValue": "id-e3hwjwe1a-mui3klya"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T07:57:52.305364Z",
+      "updateTime": "2026-09-26T07:57:52.305364Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-f1vu03uux-mui37bgj",
+      "fields": {
+        "group": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790408851651"
+        },
+        "name": {
+          "stringValue": "ميرنا روماني يوسف"
+        },
+        "code": {
+          "stringValue": "ميرنا روماني يوسف  -  سنه اولي"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790408851651"
+        },
+        "barcode": {
+          "stringValue": "ميرنا روماني يوسف  -  سنه اولي"
+        },
+        "id": {
+          "stringValue": "id-f1vu03uux-mui37bgj"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T07:47:33.421496Z",
+      "updateTime": "2026-09-26T07:47:33.421496Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-gd6lxs2uf-mumqmo4c",
+      "fields": {
+        "barcode": {
+          "stringValue": "مريم صموئيل  -  سنة ثانية"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790690063772"
+        },
+        "createdAt": {
+          "integerValue": "1790690063772"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-gd6lxs2uf-mumqmo4c"
+        },
+        "name": {
+          "stringValue": "مريم صموئيل"
+        },
+        "code": {
+          "stringValue": "مريم صموئيل  -  سنة ثانية"
+        }
+      },
+      "createTime": "2026-09-29T13:54:25.211421Z",
+      "updateTime": "2026-09-29T13:54:25.211421Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-ij2ysjfn3-mui3qa1v",
+      "fields": {
+        "notes": {
+          "stringValue": ""
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790409736291"
+        },
+        "id": {
+          "stringValue": "id-ij2ysjfn3-mui3qa1v"
+        },
+        "name": {
+          "stringValue": "مريم امير لبيب"
+        },
+        "barcode": {
+          "stringValue": "مريم امير لبيب  - سنه اولي"
+        },
+        "code": {
+          "stringValue": "مريم امير لبيب  - سنه اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790409736291"
+        }
+      },
+      "createTime": "2026-09-26T08:02:16.880883Z",
+      "updateTime": "2026-09-26T08:02:16.880883Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-in5pq7bs4-mui3exy6",
+      "fields": {
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-in5pq7bs4-mui3exy6"
+        },
+        "createdAt": {
+          "integerValue": "1790409207392"
+        },
+        "barcode": {
+          "stringValue": "متياس القس باخوميوس  - سنه اولي"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790409207390"
+        },
+        "code": {
+          "stringValue": "متياس القس باخوميوس  - سنه اولي"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "متياس القس باخوميوس"
+        }
+      },
+      "createTime": "2026-09-26T07:53:28.590637Z",
+      "updateTime": "2026-09-26T07:53:28.590637Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-j25rgxbuw-mumqk0tw",
+      "fields": {
+        "code": {
+          "stringValue": "مهرائيل يوسف زكريا  -  سنة ثانية"
+        },
+        "name": {
+          "stringValue": "مهرائيل يوسف زكريا"
+        },
+        "id": {
+          "stringValue": "id-j25rgxbuw-mumqk0tw"
+        },
+        "barcode": {
+          "stringValue": "مهرائيل يوسف زكريا  -  سنة ثانية"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790689940276"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790689940276"
+        }
+      },
+      "createTime": "2026-09-29T13:52:21.744625Z",
+      "updateTime": "2026-09-29T13:52:21.744625Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-j4rmugkue-mumqo3qh",
+      "fields": {
+        "barcode": {
+          "stringValue": "ماري عجايبي  -  سنة ثانية"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-j4rmugkue-mumqo3qh"
+        },
+        "updatedAt": {
+          "integerValue": "1790690130665"
+        },
+        "createdAt": {
+          "integerValue": "1790690130665"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "ماري عجايبي  -  سنة ثانية"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "ماري عجايبي"
+        }
+      },
+      "createTime": "2026-09-29T13:55:32.190613Z",
+      "updateTime": "2026-09-29T13:55:32.190613Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-j7ivxyle1-mui3hdpo",
+      "fields": {
+        "group": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790409321132"
+        },
+        "id": {
+          "stringValue": "id-j7ivxyle1-mui3hdpo"
+        },
+        "code": {
+          "stringValue": "مريم جمال كمال  - سنه اولي"
+        },
+        "updatedAt": {
+          "integerValue": "1790409321132"
+        },
+        "name": {
+          "stringValue": "مريم جمال كمال"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "مريم جمال كمال  - سنه اولي"
+        }
+      },
+      "createTime": "2026-09-26T07:55:21.753369Z",
+      "updateTime": "2026-09-26T07:55:21.753369Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-j8ravsvfj-mui3s7gk",
+      "fields": {
+        "updatedAt": {
+          "integerValue": "1790409826244"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790409826244"
+        },
+        "barcode": {
+          "stringValue": "يوسف اسحق ارمانيوس   - سنه اولي"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "يوسف اسحق ارمانيوس"
+        },
+        "id": {
+          "stringValue": "id-j8ravsvfj-mui3s7gk"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "يوسف اسحق ارمانيوس   - سنه اولي"
+        }
+      },
+      "createTime": "2026-09-26T08:03:46.820803Z",
+      "updateTime": "2026-09-26T08:03:46.820803Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-jc510zrp7-muprtq5w",
+      "fields": {
+        "updatedAt": {
+          "integerValue": "1790873471156"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "دميانه ايمن ميلاد  - سنة ثالثة"
+        },
+        "createdAt": {
+          "integerValue": "1790873471156"
+        },
+        "name": {
+          "stringValue": "دميانه ايمن ميلاد"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "دمي��نه ايمن ميلاد  - سنة ثالثة"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-jc510zrp7-muprtq5w"
+        }
+      },
+      "createTime": "2026-10-01T16:51:14.700524Z",
+      "updateTime": "2026-10-01T16:51:14.700524Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-k9e25hfss-mui3frvs",
+      "fields": {
+        "id": {
+          "stringValue": "id-k9e25hfss-mui3frvs"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "code": {
+          "stringValue": "باسيليوس أيمن باسيلي  - سنه اولي"
+        },
+        "barcode": {
+          "stringValue": "باسيليوس أيمن باسيلي  - سنه اولي"
+        },
+        "name": {
+          "stringValue": "باسيليوس أيمن باسيلي"
+        },
+        "createdAt": {
+          "integerValue": "1790409246185"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790409246184"
+        },
+        "notes": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T07:54:06.846043Z",
+      "updateTime": "2026-09-26T07:54:06.846043Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-lc32npjqw-mui3q0fj",
+      "fields": {
+        "code": {
+          "stringValue": "ميرا ناصف سمير  - سنه اولي"
+        },
+        "id": {
+          "stringValue": "id-lc32npjqw-mui3q0fj"
+        },
+        "createdAt": {
+          "integerValue": "1790409723823"
+        },
+        "name": {
+          "stringValue": "ميرا ناصف سمير"
+        },
+        "barcode": {
+          "stringValue": "ميرا ناصف سمير  - سنه اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790409723823"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "notes": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T08:02:04.575703Z",
+      "updateTime": "2026-09-26T08:02:04.575703Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-lkc6lk0dp-mumqnajy",
+      "fields": {
+        "id": {
+          "stringValue": "id-lkc6lk0dp-mumqnajy"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "يوستينا روماني صفوت  -  سنة ثانية"
+        },
+        "name": {
+          "stringValue": "يوستينا روماني صفوت"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "يوستينا روماني صفوت  -  سنة ثانية"
+        },
+        "updatedAt": {
+          "integerValue": "1790690092846"
+        },
+        "createdAt": {
+          "integerValue": "1790690092846"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        }
+      },
+      "createTime": "2026-09-29T13:54:54.262093Z",
+      "updateTime": "2026-09-29T13:54:54.262093Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-lt2l75oz2-mui3ip3j",
+      "fields": {
+        "group": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "ديفيد اسحق سمير  - سنه اولي"
+        },
+        "id": {
+          "stringValue": "id-lt2l75oz2-mui3ip3j"
+        },
+        "code": {
+          "stringValue": "ديفيد اسحق سمير  - سنه اولي"
+        },
+        "name": {
+          "stringValue": "ديفيد اسحق سمير"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790409382543"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "createdAt": {
+          "integerValue": "1790409382543"
+        }
+      },
+      "createTime": "2026-09-26T07:56:23.164868Z",
+      "updateTime": "2026-09-26T07:56:23.164868Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-m5974t8gx-muprw5v2",
+      "fields": {
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "مريم نبيل غالي  - سنة ثالثة"
+        },
+        "createdAt": {
+          "integerValue": "1790873584815"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790873584814"
+        },
+        "name": {
+          "stringValue": "مريم نبيل غالي"
+        },
+        "id": {
+          "stringValue": "id-m5974t8gx-muprw5v2"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "مريم نبيل غالي  - سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-01T16:53:06.917716Z",
+      "updateTime": "2026-10-01T16:53:06.917716Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-m9s0z9gud-muprx3gj",
+      "fields": {
+        "barcode": {
+          "stringValue": "ماريا عطا  - سنة ثالثة"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790873628355"
+        },
+        "updatedAt": {
+          "integerValue": "1790873628355"
+        },
+        "id": {
+          "stringValue": "id-m9s0z9gud-muprx3gj"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "ماريا عطا"
+        },
+        "code": {
+          "stringValue": "ماريا عطا  - سنة ثالثة"
+        },
+        "group": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-10-01T16:53:50.258986Z",
+      "updateTime": "2026-10-01T16:53:50.258986Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-mee85rr41-mupru8t2",
+      "fields": {
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "مريم اشرف نبيل  - سنة ثالثة"
+        },
+        "id": {
+          "stringValue": "id-mee85rr41-mupru8t2"
+        },
+        "code": {
+          "stringValue": "مريم اشرف نبيل  - سنة ثالثة"
+        },
+        "name": {
+          "stringValue": "مريم اشرف نبيل"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790873495318"
+        },
+        "updatedAt": {
+          "integerValue": "1790873495318"
+        },
+        "notes": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-10-01T16:51:37.387924Z",
+      "updateTime": "2026-10-01T16:51:37.387924Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-mgly9glv8-muprxuir",
+      "fields": {
+        "id": {
+          "stringValue": "id-mgly9glv8-muprxuir"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "دميانه ميخائيل شوقي  - سنة ثالثة"
+        },
+        "code": {
+          "stringValue": "دميانه ميخائيل شوقي  - سنة ثالثة"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "دميانه ميخائيل شوقي"
+        },
+        "updatedAt": {
+          "integerValue": "1790873663427"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790873663427"
+        }
+      },
+      "createTime": "2026-10-01T16:54:25.485988Z",
+      "updateTime": "2026-10-01T16:54:25.485988Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-n7423qtpq-mui3mw6u",
+      "fields": {
+        "updatedAt": {
+          "integerValue": "1790409578358"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790409578358"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-n7423qtpq-mui3mw6u"
+        },
+        "name": {
+          "stringValue": "جرجس هاني"
+        },
+        "code": {
+          "stringValue": "جرجس هاني  - سنة اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "جرجس هاني  - سنة اولي"
+        }
+      },
+      "createTime": "2026-09-26T07:59:38.954175Z",
+      "updateTime": "2026-09-26T07:59:38.954175Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-nn82d7fbx-mui3ncpp",
+      "fields": {
+        "id": {
+          "stringValue": "id-nn82d7fbx-mui3ncpp"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "ميخائيل جميل مكرم  - سنة اولي"
+        },
+        "barcode": {
+          "stringValue": "ميخائيل جميل مكرم  - سنة اولي"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "ميخائيل جميل مكرم"
+        },
+        "updatedAt": {
+          "integerValue": "1790409599773"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790409599773"
+        }
+      },
+      "createTime": "2026-09-26T08:00:00.485901Z",
+      "updateTime": "2026-09-26T08:00:00.485901Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-np5tgj6m2-mui3sqbl",
+      "fields": {
+        "createdAt": {
+          "integerValue": "1790409850689"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "مينا عادل فرج  - سنه اولي"
+        },
+        "updatedAt": {
+          "integerValue": "1790409850689"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-np5tgj6m2-mui3sqbl"
+        },
+        "name": {
+          "stringValue": "مينا عادل فرج"
+        },
+        "code": {
+          "stringValue": "مينا عادل فرج  - سنه اولي"
+        }
+      },
+      "createTime": "2026-09-26T08:04:11.925661Z",
+      "updateTime": "2026-09-26T08:04:11.925661Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-ntlce2pqw-muprz10h",
+      "fields": {
+        "barcode": {
+          "stringValue": "يوسف جرجس صليب  - سنة ثالثة"
+        },
+        "updatedAt": {
+          "integerValue": "1790873718497"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-ntlce2pqw-muprz10h"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790873718497"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "يوسف جرجس صليب  - سنة ثالثة"
+        },
+        "name": {
+          "stringValue": "يوسف جرجس صليب"
+        }
+      },
+      "createTime": "2026-10-01T16:55:20.533179Z",
+      "updateTime": "2026-10-01T16:55:20.533179Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-opkh60veu-muprzah2",
+      "fields": {
+        "id": {
+          "stringValue": "id-opkh60veu-muprzah2"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "code": {
+          "stringValue": "كرياكوس نبيل وديع  -  سنة ثالثة"
+        },
+        "name": {
+          "stringValue": "كرياكوس نبيل وديع"
+        },
+        "createdAt": {
+          "integerValue": "1790873730758"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790873730758"
+        },
+        "barcode": {
+          "stringValue": "كرياكوس نبيل وديع  -  سنة ثالثة"
+        },
+        "notes": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-10-01T16:55:33.007560Z",
+      "updateTime": "2026-10-01T16:55:33.007560Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-pkwdc0909-mumqnke8",
+      "fields": {
+        "createdAt": {
+          "integerValue": "1790690105600"
+        },
+        "name": {
+          "stringValue": "ريموندا هاني سمير"
+        },
+        "code": {
+          "stringValue": "ريموندا هاني سمير  -  سنة ثانية"
+        },
+        "updatedAt": {
+          "integerValue": "1790690105600"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "ريموندا هاني سمير  -  سنة ثانية"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-pkwdc0909-mumqnke8"
+        },
+        "notes": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-29T13:55:07.056342Z",
+      "updateTime": "2026-09-29T13:55:07.056342Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-qgit03jye-mui3rfne",
+      "fields": {
+        "notes": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "يوستينا هاني فرج   - سنه اولي"
+        },
+        "id": {
+          "stringValue": "id-qgit03jye-mui3rfne"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "code": {
+          "stringValue": "يوستينا هاني فرج   - سنه اولي"
+        },
+        "createdAt": {
+          "integerValue": "1790409790202"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "name": {
+          "stringValue": "يوستينا هاني فرج"
+        },
+        "updatedAt": {
+          "integerValue": "1790409790202"
+        }
+      },
+      "createTime": "2026-09-26T08:03:10.739848Z",
+      "updateTime": "2026-09-26T08:03:10.739848Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-rqqos04yi-mui3qkj9",
+      "fields": {
+        "createdAt": {
+          "integerValue": "1790409749877"
+        },
+        "name": {
+          "stringValue": "مينا روماني"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790409749877"
+        },
+        "code": {
+          "stringValue": "مينا روماني   - سنه اولي"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-rqqos04yi-mui3qkj9"
+        },
+        "barcode": {
+          "stringValue": "مينا روماني   - سنه اولي"
+        },
+        "notes": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T08:02:30.469519Z",
+      "updateTime": "2026-09-26T08:02:30.469519Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-rw3zl0ks2-mumqpesc",
+      "fields": {
+        "code": {
+          "stringValue": "هاني ماهر  -  سنة ثانية"
+        },
+        "id": {
+          "stringValue": "id-rw3zl0ks2-mumqpesc"
+        },
+        "name": {
+          "stringValue": "هاني ماهر"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "هاني ماهر  -  سنة ثانية"
+        },
+        "createdAt": {
+          "integerValue": "1790690191644"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790690191644"
+        }
+      },
+      "createTime": "2026-09-29T13:56:33.137132Z",
+      "updateTime": "2026-09-29T13:56:33.137132Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-s618s1k7g-mui3ot3w",
+      "fields": {
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "بسنت اسحق جرجس  - سنه اولي"
+        },
+        "updatedAt": {
+          "integerValue": "1790409667676"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-s618s1k7g-mui3ot3w"
+        },
+        "createdAt": {
+          "integerValue": "1790409667676"
+        },
+        "name": {
+          "stringValue": "بسنت اسحق جرجس"
+        },
+        "code": {
+          "stringValue": "بسنت اسحق جرجس  - سنه اولي"
+        },
+        "group": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T08:01:08.211534Z",
+      "updateTime": "2026-09-26T08:01:08.211534Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-shhm4ukbz-mui4vpsb",
+      "fields": {
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "يوسف فارس  - سنة ثالثة"
+        },
+        "createdAt": {
+          "integerValue": "1790411669579"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-shhm4ukbz-mui4vpsb"
+        },
+        "updatedAt": {
+          "integerValue": "1790880738012"
+        },
+        "name": {
+          "stringValue": "يوسف فارس"
+        },
+        "code": {
+          "stringValue": "يوسف فارس  - سنة ثالثة"
+        },
+        "group": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T08:34:31.240553Z",
+      "updateTime": "2026-10-01T18:52:22.149347Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-smo5b0yny-mumqpntv",
+      "fields": {
+        "group": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "نورا عبد النور"
+        },
+        "updatedAt": {
+          "integerValue": "1790690203363"
+        },
+        "code": {
+          "stringValue": "نورا عبد النور  -  سنة ثانية"
+        },
+        "barcode": {
+          "stringValue": "نورا عبد النور  -  سنة ثانية"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790690203363"
+        },
+        "id": {
+          "stringValue": "id-smo5b0yny-mumqpntv"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        }
+      },
+      "createTime": "2026-09-29T13:56:44.782774Z",
+      "updateTime": "2026-09-29T13:56:44.782774Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-t53mivbuf-mui3ppvw",
+      "fields": {
+        "barcode": {
+          "stringValue": "جاكلين جرجس صلاح  - سنه اولي"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-t53mivbuf-mui3ppvw"
+        },
+        "code": {
+          "stringValue": "جاكلين جرجس صلاح  - سنه اولي"
+        },
+        "name": {
+          "stringValue": "جاكلين جرجس صلاح"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790409710156"
+        },
+        "updatedAt": {
+          "integerValue": "1790409710156"
+        },
+        "notes": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T08:01:50.779095Z",
+      "updateTime": "2026-09-26T08:01:50.779095Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-tqpdbsgkh-muprvm9h",
+      "fields": {
+        "group": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "ميرنا شريف جمال"
+        },
+        "code": {
+          "stringValue": "ميرنا شريف جمال  - سنة ثالثة"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790873559413"
+        },
+        "id": {
+          "stringValue": "id-tqpdbsgkh-muprvm9h"
+        },
+        "updatedAt": {
+          "integerValue": "1790873559413"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "ميرنا شريف جمال  - سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-01T16:52:41.410388Z",
+      "updateTime": "2026-10-01T16:52:41.410388Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-vr03ahz40-mumqq35b",
+      "fields": {
+        "name": {
+          "stringValue": "مريم جرجس"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790690223215"
+        },
+        "barcode": {
+          "stringValue": "مريم جرجس  -  سنة ثانية"
+        },
+        "code": {
+          "stringValue": "مريم جرجس  -  سنة ثانية"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790690223215"
+        },
+        "id": {
+          "stringValue": "id-vr03ahz40-mumqq35b"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-29T13:57:04.640977Z",
+      "updateTime": "2026-09-29T13:57:04.640977Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-x9qixjvpz-mui3fbxr",
+      "fields": {
+        "barcode": {
+          "stringValue": "ايلاريا مرزق غالي  - سنه اولي"
+        },
+        "createdAt": {
+          "integerValue": "1790409225519"
+        },
+        "name": {
+          "stringValue": "ايلاريا مرزق غالي"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إ��داد خدام"
+        },
+        "code": {
+          "stringValue": "ايلاريا مرزق غالي  - سنه اولي"
+        },
+        "updatedAt": {
+          "integerValue": "1790409225519"
+        },
+        "id": {
+          "stringValue": "id-x9qixjvpz-mui3fbxr"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "notes": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-26T07:53:46.077642Z",
+      "updateTime": "2026-09-26T07:53:46.077642Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-xa81mzz5w-mufxitiv",
+      "fields": {
+        "barcode": {
+          "stringValue": "مارتينا هاني عزيز  -  سنه اولي"
+        },
+        "updatedAt": {
+          "integerValue": "1790278378231"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "createdAt": {
+          "integerValue": "1790278378232"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-xa81mzz5w-mufxitiv"
+        },
+        "name": {
+          "stringValue": "مارتينا هاني عزيز"
+        },
+        "code": {
+          "stringValue": "مارتينا هاني عزيز  -  سنه اولي"
+        },
+        "group": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-09-24T19:32:59.073901Z",
+      "updateTime": "2026-09-24T19:32:59.073901Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-xohkmv8qt-mufxje0a",
+      "fields": {
+        "barcode": {
+          "stringValue": "مينا كيرلس نادي  -  سنه اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "name": {
+          "stringValue": "مينا كيرلس نادي"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "integerValue": "1790278404778"
+        },
+        "code": {
+          "stringValue": "مينا كيرلس نادي  -  سنه اولي"
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790278404778"
+        },
+        "id": {
+          "stringValue": "id-xohkmv8qt-mufxje0a"
+        }
+      },
+      "createTime": "2026-09-24T19:33:24.713096Z",
+      "updateTime": "2026-09-24T19:33:24.713096Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-xvvfuuaj2-mui3iydp",
+      "fields": {
+        "notes": {
+          "stringValue": ""
+        },
+        "group": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "ماهر فانا داود  - سنة اولي"
+        },
+        "name": {
+          "stringValue": "ماهر فانا داود"
+        },
+        "createdAt": {
+          "integerValue": "1790409394573"
+        },
+        "id": {
+          "stringValue": "id-xvvfuuaj2-mui3iydp"
+        },
+        "code": {
+          "stringValue": "ماهر فانا داود  - سنة اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "integerValue": "1790409394573"
+        }
+      },
+      "createTime": "2026-09-26T07:56:35.174089Z",
+      "updateTime": "2026-09-26T07:56:35.174089Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/students/id-zdsqzbt45-muprvdq7",
+      "fields": {
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "phone": {
+          "stringValue": ""
+        },
+        "id": {
+          "stringValue": "id-zdsqzbt45-muprvdq7"
+        },
+        "updatedAt": {
+          "integerValue": "1790873548351"
+        },
+        "notes": {
+          "stringValue": ""
+        },
+        "barcode": {
+          "stringValue": "أنجي رزق الله رسمي  - سنة ثالثة"
+        },
+        "code": {
+          "stringValue": "أنجي رزق الله رسمي  - سنة ثالثة"
+        },
+        "name": {
+          "stringValue": "أنجي رزق الله رسمي"
+        },
+        "createdAt": {
+          "integerValue": "1790873548351"
+        },
+        "group": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-10-01T16:52:30.441128Z",
+      "updateTime": "2026-10-01T16:52:30.441128Z"
+    }
+  ],
+  "attendance": [
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-04hupwd80-muzrn8wr",
+      "fields": {
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-9bmj4dalm-muprwlma"
+        },
+        "id": {
+          "stringValue": "id-04hupwd80-muzrn8wr"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "studentCode": {
+          "stringValue": "ابانوب سمير مسعود  - سنة ثالثة"
+        },
+        "barcode": {
+          "stringValue": "ابانوب سمير مسعود  - سنة ثالثة"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "timestamp": {
+          "integerValue": "1791477830619"
+        },
+        "studentName": {
+          "stringValue": "ابانوب سمير مسعود"
+        },
+        "date": {
+          "stringValue": "2026-10-08"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        }
+      },
+      "createTime": "2026-10-08T16:43:51.157472Z",
+      "updateTime": "2026-10-08T16:43:51.157472Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-0cc9werhr-muzrlm9y",
+      "fields": {
+        "id": {
+          "stringValue": "id-0cc9werhr-muzrlm9y"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "مينا رضا جورج  -  سنة ثانية"
+        },
+        "date": {
+          "stringValue": "2026-10-08"
+        },
+        "studentCode": {
+          "stringValue": "مينا رضا جورج  -  سنة ثانية"
+        },
+        "studentId": {
+          "stringValue": "id-a2ylb54p4-mumqlors"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "timestamp": {
+          "integerValue": "1791477754630"
+        },
+        "studentName": {
+          "stringValue": "مينا رضا جورج"
+        }
+      },
+      "createTime": "2026-10-08T16:42:37.126528Z",
+      "updateTime": "2026-10-08T16:42:37.126528Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-0gwtgats0-mupvqbp6",
+      "fields": {
+        "studentCode": {
+          "stringValue": "مريم اشرف نبيل  - سنة ثالثة"
+        },
+        "studentId": {
+          "stringValue": "id-mee85rr41-mupru8t2"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "studentName": {
+          "stringValue": "مريم اشرف نبيل"
+        },
+        "timestamp": {
+          "integerValue": "1790880030906"
+        },
+        "barcode": {
+          "stringValue": "مريم اشرف نبيل  - سنة ثالثة"
+        },
+        "id": {
+          "stringValue": "id-0gwtgats0-mupvqbp6"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        }
+      },
+      "createTime": "2026-10-01T18:40:33.108304Z",
+      "updateTime": "2026-10-01T18:40:33.108304Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-0m7lieuux-muqlqhlz",
+      "fields": {
+        "studentName": {
+          "stringValue": "ماريا ايمن نادي"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "timestamp": {
+          "integerValue": "1790923708583"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "id": {
+          "stringValue": "id-0m7lieuux-muqlqhlz"
+        },
+        "barcode": {
+          "stringValue": "ماريا ايمن نادي  - سنة ثالثة"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "studentCode": {
+          "stringValue": "ماريا ايمن نادي  - سنة ثالثة"
+        },
+        "studentId": {
+          "stringValue": "id-817pvcjwq-muprxm8b"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        }
+      },
+      "createTime": "2026-10-02T06:48:29.103298Z",
+      "updateTime": "2026-10-02T06:48:29.103298Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-0npj0zvir-mupvq3c8",
+      "fields": {
+        "studentName": {
+          "stringValue": "دميانه ايمن ميلاد"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "timestamp": {
+          "integerValue": "1790880020072"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "studentId": {
+          "stringValue": "id-jc510zrp7-muprtq5w"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "studentCode": {
+          "stringValue": "دميانه ايمن ميلاد  - سنة ثالثة"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "id": {
+          "stringValue": "id-0npj0zvir-mupvq3c8"
+        },
+        "barcode": {
+          "stringValue": "دميانه ايمن ميلاد  - سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-01T18:40:22.322826Z",
+      "updateTime": "2026-10-01T18:40:22.322826Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-0p20pqp1h-mv0kqkue",
+      "fields": {
+        "id": {
+          "stringValue": "id-0p20pqp1h-mv0kqkue"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "تسجيل يدوي (بحث سريع)"
+        },
+        "studentCode": {
+          "stringValue": "ايلاريا مرزق غالي  - سنه اولي"
+        },
+        "timestamp": {
+          "integerValue": "1791526694918"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "barcode": {
+          "stringValue": "ايلاريا مرزق غالي  - سنه اولي"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentName": {
+          "stringValue": "ايلاريا مرزق غالي"
+        },
+        "studentId": {
+          "stringValue": "id-x9qixjvpz-mui3fbxr"
+        }
+      },
+      "createTime": "2026-10-09T06:18:15.753462Z",
+      "updateTime": "2026-10-09T06:18:15.753462Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-0vwn22ffu-muqkafsu",
+      "fields": {
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "studentCode": {
+          "stringValue": "مريم جميل مكرم  - سنة ثالثة"
+        },
+        "studentId": {
+          "stringValue": "id-adye5mca8-muprysqv"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "timestamp": {
+          "integerValue": "1790921280126"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "id": {
+          "stringValue": "id-0vwn22ffu-muqkafsu"
+        },
+        "barcode": {
+          "stringValue": "مريم جميل مكرم  - سنة ثالثة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentName": {
+          "stringValue": "مريم جميل مكرم"
+        }
+      },
+      "createTime": "2026-10-02T06:08:10.298989Z",
+      "updateTime": "2026-10-02T06:08:10.298989Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-1dssgwmq3-muqlsffn",
+      "fields": {
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-mgly9glv8-muprxuir"
+        },
+        "studentCode": {
+          "stringValue": "دميانه ميخائيل شوقي  - سنة ثالثة"
+        },
+        "barcode": {
+          "stringValue": "دميانه ميخائيل شوقي  - سنة ثالثة"
+        },
+        "id": {
+          "stringValue": "id-1dssgwmq3-muqlsffn"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "studentName": {
+          "stringValue": "دميانه ميخائيل شوقي"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "timestamp": {
+          "integerValue": "1790923799075"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        }
+      },
+      "createTime": "2026-10-02T06:49:59.689298Z",
+      "updateTime": "2026-10-02T06:49:59.689298Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-1dwdhejmy-muqifg6i",
+      "fields": {
+        "studentCode": {
+          "stringValue": "مريم جمال كمال  - سنه اولي"
+        },
+        "timestamp": {
+          "integerValue": "1790918154666"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "studentName": {
+          "stringValue": "مريم جمال كمال"
+        },
+        "barcode": {
+          "stringValue": "مريم جمال كمال  - سنه اولي"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-j7ivxyle1-mui3hdpo"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-1dwdhejmy-muqifg6i"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        }
+      },
+      "createTime": "2026-10-02T05:15:55.449819Z",
+      "updateTime": "2026-10-02T05:15:55.449819Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-1j3f5wal7-mv0gpcat",
+      "fields": {
+        "studentName": {
+          "stringValue": "بيشوي نبيل عبد الملاك"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-092v505ns-mumqj8g6"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "barcode": {
+          "stringValue": "بيشوي نبيل عبد الملاك  -  سنة ثانية"
+        },
+        "studentCode": {
+          "stringValue": "بيشوي نبيل عبد الملاك  -  سنة ثانية"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "timestamp": {
+          "integerValue": "1791519918725"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-1j3f5wal7-mv0gpcat"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        }
+      },
+      "createTime": "2026-10-09T04:25:18.051473Z",
+      "updateTime": "2026-10-09T04:25:18.051473Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-1l54jdj4v-mv0lh22h",
+      "fields": {
+        "studentCode": {
+          "stringValue": "كرستين يوسف سمير  - سنه اولي"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-78gr1c4vr-mui3hsfq"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "id": {
+          "stringValue": "id-1l54jdj4v-mv0lh22h"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "barcode": {
+          "stringValue": "كرستين يوسف سمير  - سنه اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentName": {
+          "stringValue": "كرستين يوسف سمير"
+        },
+        "timestamp": {
+          "integerValue": "1791527930297"
+        }
+      },
+      "createTime": "2026-10-09T06:38:49.686947Z",
+      "updateTime": "2026-10-09T06:38:49.686947Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-1lxj1mv19-muzrboss",
+      "fields": {
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentCode": {
+          "stringValue": "يوسف اسحق ارمانيوس   - سنه اولي"
+        },
+        "timestamp": {
+          "integerValue": "1791477291340"
+        },
+        "date": {
+          "stringValue": "2026-10-08"
+        },
+        "id": {
+          "stringValue": "id-1lxj1mv19-muzrboss"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "studentId": {
+          "stringValue": "id-j8ravsvfj-mui3s7gk"
+        },
+        "barcode": {
+          "stringValue": "يوسف اسحق ارمانيوس   - سنه اولي"
+        },
+        "studentName": {
+          "stringValue": "يوسف اسحق ارمانيوس"
+        }
+      },
+      "createTime": "2026-10-08T16:34:51.833575Z",
+      "updateTime": "2026-10-08T16:34:51.833575Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-1ocyco608-mv0ihj36",
+      "fields": {
+        "id": {
+          "stringValue": "id-1ocyco608-mv0ihj36"
+        },
+        "studentId": {
+          "stringValue": "id-rw3zl0ks2-mumqpesc"
+        },
+        "studentName": {
+          "stringValue": "هاني ماهر"
+        },
+        "method": {
+          "stringValue": "تسجيل يدوي (بحث سريع)"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "timestamp": {
+          "integerValue": "1791522913506"
+        },
+        "barcode": {
+          "stringValue": "هاني ماهر  -  سنة ثانية"
+        },
+        "studentCode": {
+          "stringValue": "هاني ماهر  -  سنة ثانية"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        }
+      },
+      "createTime": "2026-10-09T05:15:24.606346Z",
+      "updateTime": "2026-10-09T05:15:24.606346Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-1tiqa749q-mv0mi00k",
+      "fields": {
+        "id": {
+          "stringValue": "id-1tiqa749q-mv0mi00k"
+        },
+        "barcode": {
+          "stringValue": "أستيفن ميلاد عبيد  -  سنة ثانية"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "تسجيل مباشر من الكشف"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "timestamp": {
+          "integerValue": "1791529653908"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentName": {
+          "stringValue": "أستيفن ميلاد عبيد"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "studentCode": {
+          "stringValue": "أستيفن ميلاد عبيد  -  سنة ثانية"
+        },
+        "studentId": {
+          "stringValue": "id-dhy1ikv8f-mumqjk1o"
+        }
+      },
+      "createTime": "2026-10-09T07:07:33.257682Z",
+      "updateTime": "2026-10-09T07:07:33.257682Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-23mb6f2y1-mv0l4zkw",
+      "fields": {
+        "id": {
+          "stringValue": "id-23mb6f2y1-mv0l4zkw"
+        },
+        "studentCode": {
+          "stringValue": "مريم اشرف نبيل  - سنة ثالثة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-mee85rr41-mupru8t2"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "timestamp": {
+          "integerValue": "1791527367200"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "studentName": {
+          "stringValue": "مريم اشرف نبيل"
+        },
+        "barcode": {
+          "stringValue": "مريم اشرف نبيل  - سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-09T06:29:27.422167Z",
+      "updateTime": "2026-10-09T06:29:27.422167Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-24j4ztedp-mv0liidv",
+      "fields": {
+        "studentCode": {
+          "stringValue": "نانسي نبيل  -  سنة ثانية"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "timestamp": {
+          "integerValue": "1791527998099"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "barcode": {
+          "stringValue": "نانسي نبيل  -  سنة ثانية"
+        },
+        "studentName": {
+          "stringValue": "نانسي نبيل"
+        },
+        "studentId": {
+          "stringValue": "id-3wbv3s4um-mumqoyav"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-24j4ztedp-mv0liidv"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        }
+      },
+      "createTime": "2026-10-09T06:39:57.704648Z",
+      "updateTime": "2026-10-09T06:39:57.704648Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-2di9aput1-mupwvt6f",
+      "fields": {
+        "timestamp": {
+          "integerValue": "1790881966455"
+        },
+        "id": {
+          "stringValue": "id-2di9aput1-mupwvt6f"
+        },
+        "studentCode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثانية"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "تسجيل مباشر من الكشف"
+        },
+        "studentId": {
+          "stringValue": "id-bzt00a3ac-mumqlecz"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "barcode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثانية"
+        },
+        "studentName": {
+          "stringValue": "مارتينا ابراهيم صالح"
+        }
+      },
+      "createTime": "2026-10-01T19:12:48.560272Z",
+      "updateTime": "2026-10-01T19:12:48.560272Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-2e1q4uz86-mv0lg6zv",
+      "fields": {
+        "id": {
+          "stringValue": "id-2e1q4uz86-mv0lg6zv"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "studentName": {
+          "stringValue": "مارتينا ابراهيم صالح"
+        },
+        "timestamp": {
+          "integerValue": "1791527890027"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "barcode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثالثة"
+        },
+        "studentId": {
+          "stringValue": "id-86c2cis9u-muprzijl"
+        },
+        "studentCode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-09T06:38:09.388114Z",
+      "updateTime": "2026-10-09T06:38:09.388114Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-2r8h7mfg5-mupvqheb",
+      "fields": {
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "studentCode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثالثة"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "timestamp": {
+          "integerValue": "1790880038291"
+        },
+        "barcode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثالثة"
+        },
+        "studentName": {
+          "stringValue": "مارتينا ابراهيم صالح"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-86c2cis9u-muprzijl"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "id": {
+          "stringValue": "id-2r8h7mfg5-mupvqheb"
+        }
+      },
+      "createTime": "2026-10-01T18:40:40.465292Z",
+      "updateTime": "2026-10-01T18:40:40.465292Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-2t0ldcrc7-mv0mb54d",
+      "fields": {
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "تسجيل يدوي (بحث سريع)"
+        },
+        "studentCode": {
+          "stringValue": "هاني ماهر  -  سنة ثانية"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "studentId": {
+          "stringValue": "id-rw3zl0ks2-mumqpesc"
+        },
+        "studentName": {
+          "stringValue": "هاني ماهر"
+        },
+        "barcode": {
+          "stringValue": "هاني ماهر  -  سنة ثانية"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "id": {
+          "stringValue": "id-2t0ldcrc7-mv0mb54d"
+        },
+        "timestamp": {
+          "integerValue": "1791529333933"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        }
+      },
+      "createTime": "2026-10-09T07:02:14.125339Z",
+      "updateTime": "2026-10-09T07:02:14.125339Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-323x6dilm-muzrch5e",
+      "fields": {
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "مريم جميل مكرم  - سنة ثالثة"
+        },
+        "date": {
+          "stringValue": "2026-10-08"
+        },
+        "studentId": {
+          "stringValue": "id-adye5mca8-muprysqv"
+        },
+        "id": {
+          "stringValue": "id-323x6dilm-muzrch5e"
+        },
+        "studentName": {
+          "stringValue": "مريم جميل مكرم"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "studentCode": {
+          "stringValue": "مريم جميل مكرم  - سنة ثالثة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "timestamp": {
+          "integerValue": "1791477328082"
+        }
+      },
+      "createTime": "2026-10-08T16:35:28.560719Z",
+      "updateTime": "2026-10-08T16:35:28.560719Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-32syi8ovx-mv0lfgut",
+      "fields": {
+        "timestamp": {
+          "integerValue": "1791527856149"
+        },
+        "studentCode": {
+          "stringValue": "يوستينا هاني فرج   - سنه اولي"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentId": {
+          "stringValue": "id-qgit03jye-mui3rfne"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-32syi8ovx-mv0lfgut"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "barcode": {
+          "stringValue": "يوستينا هاني فرج   - سنه اولي"
+        },
+        "studentName": {
+          "stringValue": "يوستينا هاني فرج"
+        }
+      },
+      "createTime": "2026-10-09T06:37:35.533795Z",
+      "updateTime": "2026-10-09T06:37:35.533795Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-39wxenygg-muqlrmv2",
+      "fields": {
+        "barcode": {
+          "stringValue": "مينا روماني   - سنه اولي"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-rqqos04yi-mui3qkj9"
+        },
+        "id": {
+          "stringValue": "id-39wxenygg-muqlrmv2"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "studentCode": {
+          "stringValue": "مينا روماني   - سنه اولي"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "timestamp": {
+          "integerValue": "1790923762046"
+        },
+        "studentName": {
+          "stringValue": "مينا روماني"
+        }
+      },
+      "createTime": "2026-10-02T06:49:22.590821Z",
+      "updateTime": "2026-10-02T06:49:22.590821Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-3eqbbokli-muzrc3bs",
+      "fields": {
+        "studentCode": {
+          "stringValue": "ريموندا هاني سمير  -  سنة ثانية"
+        },
+        "date": {
+          "stringValue": "2026-10-08"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "id": {
+          "stringValue": "id-3eqbbokli-muzrc3bs"
+        },
+        "timestamp": {
+          "integerValue": "1791477310168"
+        },
+        "barcode": {
+          "stringValue": "ريموندا هاني سمير  -  سنة ثانية"
+        },
+        "studentName": {
+          "stringValue": "ريموندا هاني سمير"
+        },
+        "studentId": {
+          "stringValue": "id-pkwdc0909-mumqnke8"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        }
+      },
+      "createTime": "2026-10-08T16:35:10.716121Z",
+      "updateTime": "2026-10-08T16:35:10.716121Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-3g7u777y4-mv0mhv75",
+      "fields": {
+        "barcode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثانية"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "studentId": {
+          "stringValue": "id-bzt00a3ac-mumqlecz"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "تسجيل مباشر من الكشف"
+        },
+        "studentName": {
+          "stringValue": "مارتينا ابراهيم صال��"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-3g7u777y4-mv0mhv75"
+        },
+        "timestamp": {
+          "integerValue": "1791529647665"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentCode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثانية"
+        }
+      },
+      "createTime": "2026-10-09T07:07:28.675497Z",
+      "updateTime": "2026-10-09T07:07:28.675497Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-3hobmnqd3-mupvt47k",
+      "fields": {
+        "barcode": {
+          "stringValue": "بسنت اسحق جرجس  - سنه اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentId": {
+          "stringValue": "id-s618s1k7g-mui3ot3w"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركو��)"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "studentCode": {
+          "stringValue": "بسنت اسحق جرجس  - سنه اولي"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "timestamp": {
+          "integerValue": "1790880161168"
+        },
+        "studentName": {
+          "stringValue": "بسنت اسحق جرجس"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "id": {
+          "stringValue": "id-3hobmnqd3-mupvt47k"
+        }
+      },
+      "createTime": "2026-10-01T18:42:43.472499Z",
+      "updateTime": "2026-10-01T18:42:43.472499Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-3vsoqvu4k-mufxk58e",
+      "fields": {
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentCode": {
+          "stringValue": "مارتينا هاني عزيز  -  سنه اولي"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "date": {
+          "stringValue": "2026-09-24"
+        },
+        "barcode": {
+          "stringValue": "مارتينا هاني عزيز  -  سنه اولي"
+        },
+        "studentId": {
+          "stringValue": "id-xa81mzz5w-mufxitiv"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "studentName": {
+          "stringValue": "مارتينا هاني عزيز"
+        },
+        "timestamp": {
+          "integerValue": "1790278440062"
+        },
+        "id": {
+          "stringValue": "id-3vsoqvu4k-mufxk58e"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        }
+      },
+      "createTime": "2026-09-24T19:34:00.973439Z",
+      "updateTime": "2026-09-24T19:34:00.973439Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-41wos496u-muzt9lw0",
+      "fields": {
+        "studentId": {
+          "stringValue": "id-j4rmugkue-mumqo3qh"
+        },
+        "date": {
+          "stringValue": "2026-10-08"
+        },
+        "studentName": {
+          "stringValue": "ماري عجايبي"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "تسجيل يدوي (بحث سريع)"
+        },
+        "id": {
+          "stringValue": "id-41wos496u-muzt9lw0"
+        },
+        "timestamp": {
+          "integerValue": "1791480553488"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "ماري عجايبي  -  سنة ثانية"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "studentCode": {
+          "stringValue": "ماري عجايبي  -  سنة ثانية"
+        }
+      },
+      "createTime": "2026-10-08T19:39:13.699301Z",
+      "updateTime": "2026-10-08T19:39:13.699301Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-49sw5mp82-muzrfniw",
+      "fields": {
+        "timestamp": {
+          "integerValue": "1791477476312"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentName": {
+          "stringValue": "مينا روماني مجدي"
+        },
+        "id": {
+          "stringValue": "id-49sw5mp82-muzrfniw"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "تسجيل يدوي (بحث سريع)"
+        },
+        "studentId": {
+          "stringValue": "id-3ijuteur6-mupvz8dw"
+        },
+        "studentCode": {
+          "stringValue": "مينا روماني مجدي"
+        },
+        "date": {
+          "stringValue": "2026-10-08"
+        },
+        "barcode": {
+          "stringValue": "مينا روماني مجدي"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        }
+      },
+      "createTime": "2026-10-08T16:37:58.887421Z",
+      "updateTime": "2026-10-08T16:37:58.887421Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-4f9z2ad0k-mv0lfq3x",
+      "fields": {
+        "id": {
+          "stringValue": "id-4f9z2ad0k-mv0lfq3x"
+        },
+        "studentName": {
+          "stringValue": "ميخائيل جميل مكرم"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "timestamp": {
+          "integerValue": "1791527868141"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "studentCode": {
+          "stringValue": "ميخائيل جميل مكرم  - سنة اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentId": {
+          "stringValue": "id-nn82d7fbx-mui3ncpp"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "barcode": {
+          "stringValue": "ميخائيل جميل مكرم  - سنة اولي"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        }
+      },
+      "createTime": "2026-10-09T06:37:48.002418Z",
+      "updateTime": "2026-10-09T06:37:48.002418Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-4g4vgx5o0-muqif6a9",
+      "fields": {
+        "studentName": {
+          "stringValue": "دميانه ميخائيل شوقي"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-4g4vgx5o0-muqif6a9"
+        },
+        "barcode": {
+          "stringValue": "دميانه ميخائيل شوقي  - سنة ثالثة"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "timestamp": {
+          "integerValue": "1790918141841"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "studentCode": {
+          "stringValue": "دميانه ميخائيل شوقي  - سنة ثالثة"
+        },
+        "studentId": {
+          "stringValue": "id-mgly9glv8-muprxuir"
+        }
+      },
+      "createTime": "2026-10-02T05:15:43.088509Z",
+      "updateTime": "2026-10-02T05:15:43.088509Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-4metdvph5-mupvr42h",
+      "fields": {
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "studentName": {
+          "stringValue": "مينا روماني"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-rqqos04yi-mui3qkj9"
+        },
+        "id": {
+          "stringValue": "id-4metdvph5-mupvr42h"
+        },
+        "barcode": {
+          "stringValue": "مينا روماني   - سنه اولي"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "studentCode": {
+          "stringValue": "مينا روماني   - سنه اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "timestamp": {
+          "integerValue": "1790880067673"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        }
+      },
+      "createTime": "2026-10-01T18:41:13.987733Z",
+      "updateTime": "2026-10-01T18:41:13.987733Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-4rg4dmexa-mv0hpito",
+      "fields": {
+        "studentName": {
+          "stringValue": "مريم جمال كمال"
+        },
+        "studentId": {
+          "stringValue": "id-j7ivxyle1-mui3hdpo"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentCode": {
+          "stringValue": "مريم جمال كمال  - سنه اولي"
+        },
+        "barcode": {
+          "stringValue": "مريم جمال كمال  - سنه اولي"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "timestamp": {
+          "integerValue": "1791521606796"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-4rg4dmexa-mv0hpito"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        }
+      },
+      "createTime": "2026-10-09T04:53:27.474768Z",
+      "updateTime": "2026-10-09T04:53:27.474768Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-4uyssrba0-mupwctmw",
+      "fields": {
+        "timestamp": {
+          "integerValue": "1790881080584"
+        },
+        "studentCode": {
+          "stringValue": "ريموندا هاني سمير  -  سنة ثانية"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "barcode": {
+          "stringValue": "ريموندا هاني سمير  -  سنة ثانية"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "studentId": {
+          "stringValue": "id-pkwdc0909-mumqnke8"
+        },
+        "studentName": {
+          "stringValue": "ريموندا هاني سمير"
+        },
+        "id": {
+          "stringValue": "id-4uyssrba0-mupwctmw"
+        }
+      },
+      "createTime": "2026-10-01T18:58:02.624735Z",
+      "updateTime": "2026-10-01T18:58:02.624735Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-4vfd5u694-muqlsm0b",
+      "fields": {
+        "studentId": {
+          "stringValue": "id-f1vu03uux-mui37bgj"
+        },
+        "studentCode": {
+          "stringValue": "ميرنا روماني يوسف  -  سنه اولي"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "barcode": {
+          "stringValue": "ميرنا روماني يوسف  -  سنه اولي"
+        },
+        "id": {
+          "stringValue": "id-4vfd5u694-muqlsm0b"
+        },
+        "timestamp": {
+          "integerValue": "1790923807595"
+        },
+        "studentName": {
+          "stringValue": "ميرنا روماني يوسف"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        }
+      },
+      "createTime": "2026-10-02T06:50:08.252509Z",
+      "updateTime": "2026-10-02T06:50:08.252509Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-4x0t5nhg1-mv0godz2",
+      "fields": {
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "id": {
+          "stringValue": "id-4x0t5nhg1-mv0godz2"
+        },
+        "studentName": {
+          "stringValue": "مريم امير لبيب"
+        },
+        "barcode": {
+          "stringValue": "مريم امير لبيب  - سنه اولي"
+        },
+        "studentId": {
+          "stringValue": "id-ij2ysjfn3-mui3qa1v"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentCode": {
+          "stringValue": "مريم امير لبيب  - سنه اولي"
+        },
+        "timestamp": {
+          "integerValue": "1791519874238"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        }
+      },
+      "createTime": "2026-10-09T04:24:34.524710Z",
+      "updateTime": "2026-10-09T04:24:34.524710Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-5077qywcf-mupvshi0",
+      "fields": {
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "timestamp": {
+          "integerValue": "1790880131736"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "barcode": {
+          "stringValue": "مريم ناصف  -  سنة ثانية"
+        },
+        "studentName": {
+          "stringValue": "مريم ناصف"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "id": {
+          "stringValue": "id-5077qywcf-mupvshi0"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-29stnsciu-mumqm9n5"
+        },
+        "studentCode": {
+          "stringValue": "مريم ناصف  -  سنة ثانية"
+        }
+      },
+      "createTime": "2026-10-01T18:42:14.101823Z",
+      "updateTime": "2026-10-01T18:42:14.101823Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-545v9jjyh-muqlshw8",
+      "fields": {
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-545v9jjyh-muqlshw8"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "timestamp": {
+          "integerValue": "1790923802264"
+        },
+        "studentCode": {
+          "stringValue": "اناسيمون مجدي  -  سنة ثانية"
+        },
+        "barcode": {
+          "stringValue": "اناسيمون مجدي  -  سنة ثانية"
+        },
+        "studentId": {
+          "stringValue": "id-6jactaz1q-mumqckzf"
+        },
+        "studentName": {
+          "stringValue": "اناسيمون مجدي"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        }
+      },
+      "createTime": "2026-10-02T06:50:02.793625Z",
+      "updateTime": "2026-10-02T06:50:02.793625Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-55q6i7r1b-mv0mxjz0",
+      "fields": {
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "method": {
+          "stringValue": "تسجيل مباشر من الكشف"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "id": {
+          "stringValue": "id-55q6i7r1b-mv0mxjz0"
+        },
+        "studentId": {
+          "stringValue": "id-bzt00a3ac-mumqlecz"
+        },
+        "studentCode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثانية"
+        },
+        "barcode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثانية"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "timestamp": {
+          "integerValue": "1791530379612"
+        },
+        "studentName": {
+          "stringValue": "مارتينا ابراهيم صالح"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        }
+      },
+      "createTime": "2026-10-09T07:19:39.930045Z",
+      "updateTime": "2026-10-09T07:19:39.930045Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-567fxo7nm-muqlr3zm",
+      "fields": {
+        "studentName": {
+          "stringValue": "كرستين يوسف سمير"
+        },
+        "barcode": {
+          "stringValue": "كرستين يوسف سمير  - سنه اولي"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentId": {
+          "stringValue": "id-78gr1c4vr-mui3hsfq"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "id": {
+          "stringValue": "id-567fxo7nm-muqlr3zm"
+        },
+        "studentCode": {
+          "stringValue": "كرستين يوسف سمير  - سنه اولي"
+        },
+        "timestamp": {
+          "integerValue": "1790923737586"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        }
+      },
+      "createTime": "2026-10-02T06:48:58.157582Z",
+      "updateTime": "2026-10-02T06:48:58.157582Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-56jbg0qxl-mupwhqbz",
+      "fields": {
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentId": {
+          "stringValue": "id-8pk02zqol-mui3t0la"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "studentCode": {
+          "stringValue": "جومانه مايكل سمير  - سنة اولي"
+        },
+        "id": {
+          "stringValue": "id-56jbg0qxl-mupwhqbz"
+        },
+        "barcode": {
+          "stringValue": "جومانه مايكل سمير  - سنة او��ي"
+        },
+        "timestamp": {
+          "integerValue": "1790881309583"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "studentName": {
+          "stringValue": "جومانه مايكل سمير"
+        }
+      },
+      "createTime": "2026-10-01T19:01:54.397801Z",
+      "updateTime": "2026-10-01T19:01:54.397801Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-58hqse95o-muqlqsod",
+      "fields": {
+        "barcode": {
+          "stringValue": "مريم اشرف نبيل  - سنة ثالثة"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "timestamp": {
+          "integerValue": "1790923722925"
+        },
+        "studentCode": {
+          "stringValue": "مريم اشرف نبيل  - سنة ثالثة"
+        },
+        "id": {
+          "stringValue": "id-58hqse95o-muqlqsod"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "studentName": {
+          "stringValue": "مريم اشرف نبيل"
+        },
+        "studentId": {
+          "stringValue": "id-mee85rr41-mupru8t2"
+        }
+      },
+      "createTime": "2026-10-02T06:48:43.519768Z",
+      "updateTime": "2026-10-02T06:48:43.519768Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-5dv4jxyxv-mv0lgx91",
+      "fields": {
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "studentId": {
+          "stringValue": "id-m9s0z9gud-muprx3gj"
+        },
+        "studentName": {
+          "stringValue": "ماريا عطا"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "id": {
+          "stringValue": "id-5dv4jxyxv-mv0lgx91"
+        },
+        "timestamp": {
+          "integerValue": "1791527924053"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "barcode": {
+          "stringValue": "ماريا عطا  - سنة ثالثة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentCode": {
+          "stringValue": "ماريا عطا  - سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-09T06:38:43.408867Z",
+      "updateTime": "2026-10-09T06:38:43.408867Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-5lsrjxhpy-muqhza1q",
+      "fields": {
+        "id": {
+          "stringValue": "id-5lsrjxhpy-muqhza1q"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "timestamp": {
+          "integerValue": "1790917400222"
+        },
+        "studentCode": {
+          "stringValue": "يوسف اسحق ارمانيوس   - سنه اولي"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "barcode": {
+          "stringValue": "يوسف اسحق ارمانيوس   - سنه اولي"
+        },
+        "studentId": {
+          "stringValue": "id-j8ravsvfj-mui3s7gk"
+        },
+        "studentName": {
+          "stringValue": "يوسف اسحق ارمانيو��"
+        }
+      },
+      "createTime": "2026-10-02T05:03:20.755156Z",
+      "updateTime": "2026-10-02T05:03:20.755156Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-5ltv5tkzv-mupw9uzo",
+      "fields": {
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentCode": {
+          "stringValue": "مينا رضا جورج  -  سنة ثانية"
+        },
+        "timestamp": {
+          "integerValue": "1790880942372"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-5ltv5tkzv-mupw9uzo"
+        },
+        "studentName": {
+          "stringValue": "مينا رضا جورج"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "barcode": {
+          "stringValue": "مينا رضا جورج  -  سنة ثانية"
+        },
+        "studentId": {
+          "stringValue": "id-a2ylb54p4-mumqlors"
+        }
+      },
+      "createTime": "2026-10-01T18:55:45.926289Z",
+      "updateTime": "2026-10-01T18:55:45.926289Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-5m2b4f4jm-muqlrq8a",
+      "fields": {
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentId": {
+          "stringValue": "id-nn82d7fbx-mui3ncpp"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "id": {
+          "stringValue": "id-5m2b4f4jm-muqlrq8a"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "studentName": {
+          "stringValue": "ميخائيل جميل مكرم"
+        },
+        "barcode": {
+          "stringValue": "ميخائيل جميل مكرم  - سنة اولي"
+        },
+        "timestamp": {
+          "integerValue": "1790923766410"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "studentCode": {
+          "stringValue": "ميخائيل جميل مكرم  - سنة اولي"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        }
+      },
+      "createTime": "2026-10-02T06:49:27.027594Z",
+      "updateTime": "2026-10-02T06:49:27.027594Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-5qd4e292j-mupvr8nv",
+      "fields": {
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "timestamp": {
+          "integerValue": "1790880073627"
+        },
+        "studentName": {
+          "stringValue": "ريموندا هاني سمير"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "id": {
+          "stringValue": "id-5qd4e292j-mupvr8nv"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "barcode": {
+          "stringValue": "ريموندا هاني سمير  -  سنة ثانية"
+        },
+        "studentCode": {
+          "stringValue": "ريموندا هاني سمير  -  سنة ثانية"
+        },
+        "studentId": {
+          "stringValue": "id-pkwdc0909-mumqnke8"
+        }
+      },
+      "createTime": "2026-10-01T18:41:15.840825Z",
+      "updateTime": "2026-10-01T18:41:15.840825Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-5wff26l53-mupwck7y",
+      "fields": {
+        "studentId": {
+          "stringValue": "id-rqqos04yi-mui3qkj9"
+        },
+        "studentName": {
+          "stringValue": "مينا روماني"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "timestamp": {
+          "integerValue": "1790881068382"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentCode": {
+          "stringValue": "مينا روماني   - سنه اولي"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "barcode": {
+          "stringValue": "مينا روماني   - سنه اولي"
+        },
+        "id": {
+          "stringValue": "id-5wff26l53-mupwck7y"
+        }
+      },
+      "createTime": "2026-10-01T18:57:50.437460Z",
+      "updateTime": "2026-10-01T18:57:50.437460Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-5wkubek4r-muzrm3cd",
+      "fields": {
+        "timestamp": {
+          "integerValue": "1791477776749"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "date": {
+          "stringValue": "2026-10-08"
+        },
+        "studentCode": {
+          "stringValue": "دميانه ايمن ميلاد  - سنة ثالثة"
+        },
+        "barcode": {
+          "stringValue": "دميانه ايمن ميلاد  - سنة ثالثة"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "studentId": {
+          "stringValue": "id-jc510zrp7-muprtq5w"
+        },
+        "studentName": {
+          "stringValue": "دميانه ايمن ميلاد"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "id": {
+          "stringValue": "id-5wkubek4r-muzrm3cd"
+        }
+      },
+      "createTime": "2026-10-08T16:42:57.298524Z",
+      "updateTime": "2026-10-08T16:42:57.298524Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-6cdh4yh3k-mv0lip2x",
+      "fields": {
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentCode": {
+          "stringValue": "اناسيمون مجدي  -  سنة ثانية"
+        },
+        "studentId": {
+          "stringValue": "id-6jactaz1q-mumqckzf"
+        },
+        "barcode": {
+          "stringValue": "اناسيمون مجدي  -  سنة ثانية"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "id": {
+          "stringValue": "id-6cdh4yh3k-mv0lip2x"
+        },
+        "timestamp": {
+          "integerValue": "1791528006777"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "studentName": {
+          "stringValue": "اناسيمون مجدي"
+        }
+      },
+      "createTime": "2026-10-09T06:40:06.143626Z",
+      "updateTime": "2026-10-09T06:40:06.143626Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-6gqgasimi-mupwvxtl",
+      "fields": {
+        "studentId": {
+          "stringValue": "id-d792cmh4b-mumqqd1t"
+        },
+        "method": {
+          "stringValue": "تسجيل مباشر من الكشف"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "studentName": {
+          "stringValue": "يوسف سعيد"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "barcode": {
+          "stringValue": "يوسف سعيد  -  سنة ثالثه"
+        },
+        "timestamp": {
+          "integerValue": "1790881972473"
+        },
+        "studentCode": {
+          "stringValue": "يوسف سعيد  -  سنة ثالثه"
+        },
+        "id": {
+          "stringValue": "id-6gqgasimi-mupwvxtl"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        }
+      },
+      "createTime": "2026-10-01T19:13:04.310800Z",
+      "updateTime": "2026-10-01T19:13:04.310800Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-6kmfpq9in-mv0mk8xk",
+      "fields": {
+        "studentCode": {
+          "stringValue": "ايلاريا مرزق غالي  - سنه اولي"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "barcode": {
+          "stringValue": "ايلاريا مرزق غالي  - سنه اولي"
+        },
+        "timestamp": {
+          "integerValue": "1791529758776"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-6kmfpq9in-mv0mk8xk"
+        },
+        "studentName": {
+          "stringValue": "ايلاريا مرزق غالي"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "تسجيل مباشر من الكشف"
+        },
+        "studentId": {
+          "stringValue": "id-x9qixjvpz-mui3fbxr"
+        }
+      },
+      "createTime": "2026-10-09T07:09:19.547676Z",
+      "updateTime": "2026-10-09T07:09:19.547676Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-6v1nb41if-muqlpask",
+      "fields": {
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentId": {
+          "stringValue": "id-092v505ns-mumqj8g6"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "id": {
+          "stringValue": "id-6v1nb41if-muqlpask"
+        },
+        "studentCode": {
+          "stringValue": "بيشوي نبيل عبد الملاك  -  سنة ثانية"
+        },
+        "barcode": {
+          "stringValue": "بيشوي نبيل عبد الملاك  -  سنة ثانية"
+        },
+        "timestamp": {
+          "integerValue": "1790923653092"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "studentName": {
+          "stringValue": "بيشوي نبيل عبد الملاك"
+        }
+      },
+      "createTime": "2026-10-02T06:47:34.332577Z",
+      "updateTime": "2026-10-02T06:47:34.332577Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-6zhgnt301-muzrzai0",
+      "fields": {
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentCode": {
+          "stringValue": "مريم صموئيل  -  سنة ثانية"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "timestamp": {
+          "integerValue": "1791478392552"
+        },
+        "studentName": {
+          "stringValue": "مريم صموئيل"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "date": {
+          "stringValue": "2026-10-08"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "id": {
+          "stringValue": "id-6zhgnt301-muzrzai0"
+        },
+        "barcode": {
+          "stringValue": "مريم صموئيل  -  سنة ثانية"
+        },
+        "studentId": {
+          "stringValue": "id-gd6lxs2uf-mumqmo4c"
+        }
+      },
+      "createTime": "2026-10-08T19:39:13.347407Z",
+      "updateTime": "2026-10-08T19:39:13.347407Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-6zzsmqxyw-mv0liltn",
+      "fields": {
+        "barcode": {
+          "stringValue": "دميانه ميخائيل شوقي  - سنة ثالثة"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "studentCode": {
+          "stringValue": "دميانه ميخائيل شوقي  - سنة ثالثة"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "studentId": {
+          "stringValue": "id-mgly9glv8-muprxuir"
+        },
+        "id": {
+          "stringValue": "id-6zzsmqxyw-mv0liltn"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentName": {
+          "stringValue": "دميانه ميخائيل شوقي"
+        },
+        "timestamp": {
+          "integerValue": "1791528002555"
+        }
+      },
+      "createTime": "2026-10-09T06:40:02.418625Z",
+      "updateTime": "2026-10-09T06:40:02.418625Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-70sx6y7qn-mupvpd5g",
+      "fields": {
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "timestamp": {
+          "integerValue": "1790879986132"
+        },
+        "barcode": {
+          "stringValue": "أستيفن ميلاد عبيد  -  س��ة ثانية"
+        },
+        "studentCode": {
+          "stringValue": "أستيفن ميلاد عبيد  -  سنة ثانية"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "id": {
+          "stringValue": "id-70sx6y7qn-mupvpd5g"
+        },
+        "studentId": {
+          "stringValue": "id-dhy1ikv8f-mumqjk1o"
+        },
+        "studentName": {
+          "stringValue": "أستيفن ميلاد عبيد"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        }
+      },
+      "createTime": "2026-10-01T18:39:50.254262Z",
+      "updateTime": "2026-10-01T18:39:50.254262Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-71eiwz7ql-mv0mc83s",
+      "fields": {
+        "studentName": {
+          "stringValue": "سيلفيا عماد رأفت"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "تسجيل مباشر من الكشف"
+        },
+        "studentId": {
+          "stringValue": "id-65wgdajak-mui3gg6n"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "سيلفيا عماد رأفت  - سنه اولي"
+        },
+        "studentCode": {
+          "stringValue": "سيلفيا عماد رأفت  - سنه اولي"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "id": {
+          "stringValue": "id-71eiwz7ql-mv0mc83s"
+        },
+        "timestamp": {
+          "integerValue": "1791529384456"
+        }
+      },
+      "createTime": "2026-10-09T07:03:03.885052Z",
+      "updateTime": "2026-10-09T07:03:03.885052Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-729dpy3dp-mupwbcd5",
+      "fields": {
+        "studentCode": {
+          "stringValue": "ماريا ايمن نادي  - سنة ثالثة"
+        },
+        "id": {
+          "stringValue": "id-729dpy3dp-mupwbcd5"
+        },
+        "studentId": {
+          "stringValue": "id-817pvcjwq-muprxm8b"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "studentName": {
+          "stringValue": "ماريا ايمن نادي"
+        },
+        "timestamp": {
+          "integerValue": "1790881011545"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "ماريا ايمن نادي  - سنة ثالثة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        }
+      },
+      "createTime": "2026-10-01T18:56:54.149701Z",
+      "updateTime": "2026-10-01T18:56:54.149701Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-7e3e3ke5f-mv0lhu3a",
+      "fields": {
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "id": {
+          "stringValue": "id-7e3e3ke5f-mv0lhu3a"
+        },
+        "timestamp": {
+          "integerValue": "1791527966614"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "studentCode": {
+          "stringValue": "دميانه ايمن ميلاد  - سنة ثالثة"
+        },
+        "barcode": {
+          "stringValue": "دميانه ايمن ميلاد  - سنة ثالثة"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "studentId": {
+          "stringValue": "id-jc510zrp7-muprtq5w"
+        },
+        "studentName": {
+          "stringValue": "دميانه ايمن ميلاد"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        }
+      },
+      "createTime": "2026-10-09T06:39:26.071094Z",
+      "updateTime": "2026-10-09T06:39:26.071094Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-7jmxxo084-mv0hpsvh",
+      "fields": {
+        "studentId": {
+          "stringValue": "id-s618s1k7g-mui3ot3w"
+        },
+        "studentName": {
+          "stringValue": "بسنت اسحق جرجس"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "timestamp": {
+          "integerValue": "1791521619821"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentCode": {
+          "stringValue": "بسنت اسحق جرجس  - سنه اولي"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "بسنت اسحق جرجس  - سنه اولي"
+        },
+        "id": {
+          "stringValue": "id-7jmxxo084-mv0hpsvh"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        }
+      },
+      "createTime": "2026-10-09T04:53:41.284022Z",
+      "updateTime": "2026-10-09T04:53:41.284022Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-7lz1ta865-muqiqhfz",
+      "fields": {
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "timestamp": {
+          "integerValue": "1790918669519"
+        },
+        "barcode": {
+          "stringValue": "كرستين يوسف سمير  - سنه اولي"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "id": {
+          "stringValue": "id-7lz1ta865-muqiqhfz"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentCode": {
+          "stringValue": "كرستين يوسف سمير  - سنه اولي"
+        },
+        "studentId": {
+          "stringValue": "id-78gr1c4vr-mui3hsfq"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentName": {
+          "stringValue": "كرستين يوسف سمير"
+        }
+      },
+      "createTime": "2026-10-02T05:24:30.053890Z",
+      "updateTime": "2026-10-02T05:24:30.053890Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-7thc9yadp-muqhzf5z",
+      "fields": {
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "timestamp": {
+          "integerValue": "1790917406855"
+        },
+        "studentName": {
+          "stringValue": "ميخائيل جميل مكرم"
+        },
+        "id": {
+          "stringValue": "id-7thc9yadp-muqhzf5z"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "studentId": {
+          "stringValue": "id-nn82d7fbx-mui3ncpp"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "barcode": {
+          "stringValue": "ميخائيل جميل مكرم  - سنة اولي"
+        },
+        "studentCode": {
+          "stringValue": "ميخائيل جميل مكرم  - سنة اولي"
+        }
+      },
+      "createTime": "2026-10-02T05:03:27.524933Z",
+      "updateTime": "2026-10-02T05:03:27.524933Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-7xleu5g05-mupwf9qq",
+      "fields": {
+        "studentCode": {
+          "stringValue": "ماريا شريف جمال  - سنه اولي"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "timestamp": {
+          "integerValue": "1790881194770"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "barcode": {
+          "stringValue": "ماريا شريف جمال  - سنه اولي"
+        },
+        "studentId": {
+          "stringValue": "id-1xlcwdt3w-mui3gonn"
+        },
+        "studentName": {
+          "stringValue": "ماريا شريف جمال"
+        },
+        "id": {
+          "stringValue": "id-7xleu5g05-mupwf9qq"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        }
+      },
+      "createTime": "2026-10-01T18:59:58.194261Z",
+      "updateTime": "2026-10-01T18:59:58.194261Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-86bpqj95v-muqjly6c",
+      "fields": {
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "studentCode": {
+          "stringValue": "ماريا ايمن نادي  - سنة ثالثة"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "timestamp": {
+          "integerValue": "1790920137540"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "id": {
+          "stringValue": "id-86bpqj95v-muqjly6c"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "barcode": {
+          "stringValue": "ماريا ايمن نادي  - سنة ثالثة"
+        },
+        "studentId": {
+          "stringValue": "id-817pvcjwq-muprxm8b"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentName": {
+          "stringValue": "ماريا ايمن نادي"
+        }
+      },
+      "createTime": "2026-10-02T05:48:59.162014Z",
+      "updateTime": "2026-10-02T05:48:59.162014Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-8ntijhpaq-mv0huhet",
+      "fields": {
+        "studentCode": {
+          "stringValue": "مينا كيرلس نادي  -  سنه اولي"
+        },
+        "barcode": {
+          "stringValue": "مينا كيرلس نادي  -  سنه اولي"
+        },
+        "timestamp": {
+          "integerValue": "1791521838245"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "method": {
+          "stringValue": "تسجيل يدوي (بحث سريع)"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentName": {
+          "stringValue": "مينا كيرلس نادي"
+        },
+        "studentId": {
+          "stringValue": "id-xohkmv8qt-mufxje0a"
+        },
+        "id": {
+          "stringValue": "id-8ntijhpaq-mv0huhet"
+        }
+      },
+      "createTime": "2026-10-09T04:57:23.586443Z",
+      "updateTime": "2026-10-09T04:57:23.586443Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-8p6euxccw-mupwxs0n",
+      "fields": {
+        "studentName": {
+          "stringValue": "يوسف فارس"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "studentId": {
+          "stringValue": "id-shhm4ukbz-mui4vpsb"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "timestamp": {
+          "integerValue": "1790882058263"
+        },
+        "studentCode": {
+          "stringValue": "يوسف فارس  - سنة ثالثة"
+        },
+        "id": {
+          "stringValue": "id-8p6euxccw-mupwxs0n"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "تسجيل مباشر من الكشف"
+        },
+        "barcode": {
+          "stringValue": "يوسف فارس  - سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-01T19:14:20.348519Z",
+      "updateTime": "2026-10-01T19:14:20.348519Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-8wcxwe1yr-mv0lhxl0",
+      "fields": {
+        "timestamp": {
+          "integerValue": "1791527971140"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentName": {
+          "stringValue": "مريم جمال كمال"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "id": {
+          "stringValue": "id-8wcxwe1yr-mv0lhxl0"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-j7ivxyle1-mui3hdpo"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "barcode": {
+          "stringValue": "مريم جمال كمال  - سنه اولي"
+        },
+        "studentCode": {
+          "stringValue": "مريم جمال كمال  - سنه اولي"
+        }
+      },
+      "createTime": "2026-10-09T06:39:30.505898Z",
+      "updateTime": "2026-10-09T06:39:30.505898Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-8zpu2bgib-mupwaori",
+      "fields": {
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "studentId": {
+          "stringValue": "id-mgly9glv8-muprxuir"
+        },
+        "barcode": {
+          "stringValue": "دميانه ميخائيل شوقي  - سنة ثالثة"
+        },
+        "studentCode": {
+          "stringValue": "دميانه ميخائيل شوقي  - سنة ثالثة"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "timestamp": {
+          "integerValue": "1790880980958"
+        },
+        "id": {
+          "stringValue": "id-8zpu2bgib-mupwaori"
+        },
+        "studentName": {
+          "stringValue": "دميانه ميخائيل شوقي"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        }
+      },
+      "createTime": "2026-10-01T18:56:23.117324Z",
+      "updateTime": "2026-10-01T18:56:23.117324Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-984e20hhx-mv0gowh1",
+      "fields": {
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentCode": {
+          "stringValue": "أنجي رزق الله رسمي  - سنة ثالثة"
+        },
+        "barcode": {
+          "stringValue": "أنجي رزق الله رسمي  - سنة ثالثة"
+        },
+        "timestamp": {
+          "integerValue": "1791519898213"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "studentName": {
+          "stringValue": "أنجي رزق الله رسمي"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "id": {
+          "stringValue": "id-984e20hhx-mv0gowh1"
+        },
+        "studentId": {
+          "stringValue": "id-zdsqzbt45-muprvdq7"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        }
+      },
+      "createTime": "2026-10-09T04:24:57.634741Z",
+      "updateTime": "2026-10-09T04:24:57.634741Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-9i2w0g2rh-mv0hsju7",
+      "fields": {
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentName": {
+          "stringValue": "ميرنا روماني يوسف"
+        },
+        "id": {
+          "stringValue": "id-9i2w0g2rh-mv0hsju7"
+        },
+        "timestamp": {
+          "integerValue": "1791521748079"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "barcode": {
+          "stringValue": "ميرنا روماني يوسف  -  سنه اولي"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentCode": {
+          "stringValue": "ميرنا روماني يوسف  -  سنه اولي"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "studentId": {
+          "stringValue": "id-f1vu03uux-mui37bgj"
+        }
+      },
+      "createTime": "2026-10-09T04:55:51.475212Z",
+      "updateTime": "2026-10-09T04:55:51.475212Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-9r8ykqepp-mv0lk7bq",
+      "fields": {
+        "studentId": {
+          "stringValue": "id-xohkmv8qt-mufxje0a"
+        },
+        "method": {
+          "stringValue": "تسجيل يدوي (بحث سريع)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "id": {
+          "stringValue": "id-9r8ykqepp-mv0lk7bq"
+        },
+        "studentCode": {
+          "stringValue": "مينا كيرلس نادي  -  سنه اولي"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "مينا كيرلس نادي  -  سنه اولي"
+        },
+        "timestamp": {
+          "integerValue": "1791528077078"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentName": {
+          "stringValue": "مينا كيرلس نادي"
+        }
+      },
+      "createTime": "2026-10-09T06:41:17.442802Z",
+      "updateTime": "2026-10-09T06:41:17.442802Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-9x0i46h4u-muqlphmk",
+      "fields": {
+        "id": {
+          "stringValue": "id-9x0i46h4u-muqlphmk"
+        },
+        "studentName": {
+          "stringValue": "ابانوب سمير مسعود"
+        },
+        "timestamp": {
+          "integerValue": "1790923661948"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentCode": {
+          "stringValue": "ابانوب سمير مسعود  - سنة ثالثة"
+        },
+        "studentId": {
+          "stringValue": "id-9bmj4dalm-muprwlma"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "barcode": {
+          "stringValue": "ابانوب سمير مسعود  - سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-02T06:47:42.478164Z",
+      "updateTime": "2026-10-02T06:47:42.478164Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-a3qwz7lo3-mupwwol9",
+      "fields": {
+        "id": {
+          "stringValue": "id-a3qwz7lo3-mupwwol9"
+        },
+        "timestamp": {
+          "integerValue": "1790882007165"
+        },
+        "studentName": {
+          "stringValue": "متياس القس باخوميوس"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "studentCode": {
+          "stringValue": "متياس القس باخوميوس  - سنه اولي"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "تسجيل مباشر من الكشف"
+        },
+        "studentId": {
+          "stringValue": "id-in5pq7bs4-mui3exy6"
+        },
+        "barcode": {
+          "stringValue": "متياس القس باخوميوس  - سنه اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        }
+      },
+      "createTime": "2026-10-01T19:13:29.525961Z",
+      "updateTime": "2026-10-01T19:13:29.525961Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-a6mefroc6-mupwdyea",
+      "fields": {
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "studentId": {
+          "stringValue": "id-zdsqzbt45-muprvdq7"
+        },
+        "id": {
+          "stringValue": "id-a6mefroc6-mupwdyea"
+        },
+        "barcode": {
+          "stringValue": "أنجي رزق الله رسمي  - سنة ثالثة"
+        },
+        "studentName": {
+          "stringValue": "أنجي رزق الله رسمي"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "studentCode": {
+          "stringValue": "أنجي رزق الله رسمي  - سنة ثالثة"
+        },
+        "timestamp": {
+          "integerValue": "1790881133410"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        }
+      },
+      "createTime": "2026-10-01T18:58:55.549553Z",
+      "updateTime": "2026-10-01T18:58:55.549553Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-a6qrb975o-mv0hp3bt",
+      "fields": {
+        "id": {
+          "stringValue": "id-a6qrb975o-mv0hp3bt"
+        },
+        "studentName": {
+          "stringValue": "مريم مينا رشدي"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-3qevvwwkj-mui3shkv"
+        },
+        "barcode": {
+          "stringValue": "مريم مينا رشدي   - سنه اولي"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "studentCode": {
+          "stringValue": "مريم مينا رشدي   - سنه اولي"
+        },
+        "timestamp": {
+          "integerValue": "1791521586713"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        }
+      },
+      "createTime": "2026-10-09T04:53:06.277536Z",
+      "updateTime": "2026-10-09T04:53:06.277536Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-a9yh6c7pq-mv0hozk4",
+      "fields": {
+        "studentId": {
+          "stringValue": "id-dwkrtx7tk-mui3jjjs"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentName": {
+          "stringValue": "مهرائيل سمير مسعود"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "barcode": {
+          "stringValue": "مهرائيل سمير مسعود  - سنة اولي"
+        },
+        "timestamp": {
+          "integerValue": "1791521581828"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "id": {
+          "stringValue": "id-a9yh6c7pq-mv0hozk4"
+        },
+        "studentCode": {
+          "stringValue": "مهرائيل سمير مسعود  - سنة اولي"
+        }
+      },
+      "createTime": "2026-10-09T04:53:03.640557Z",
+      "updateTime": "2026-10-09T04:53:03.640557Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-aegn1aija-muzrrk8h",
+      "fields": {
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "barcode": {
+          "stringValue": "ايريني عبده هارون  - سنة ثالثة"
+        },
+        "timestamp": {
+          "integerValue": "1791478031921"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "date": {
+          "stringValue": "2026-10-08"
+        },
+        "studentCode": {
+          "stringValue": "ايريني عبده هارون  - سنة ثالثة"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "id": {
+          "stringValue": "id-aegn1aija-muzrrk8h"
+        },
+        "studentId": {
+          "stringValue": "id-4niz1cm03-muprwe9x"
+        },
+        "studentName": {
+          "stringValue": "ايريني عبده هارون"
+        }
+      },
+      "createTime": "2026-10-08T16:47:12.413213Z",
+      "updateTime": "2026-10-08T16:47:12.413213Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-akwlmbp32-muzrbx1q",
+      "fields": {
+        "studentId": {
+          "stringValue": "id-vr03ahz40-mumqq35b"
+        },
+        "barcode": {
+          "stringValue": "مريم جرجس  -  سنة ثانية"
+        },
+        "studentName": {
+          "stringValue": "مريم جرجس"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدا��"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "studentCode": {
+          "stringValue": "مريم جرجس  -  سنة ثانية"
+        },
+        "timestamp": {
+          "integerValue": "1791477302030"
+        },
+        "date": {
+          "stringValue": "2026-10-08"
+        },
+        "id": {
+          "stringValue": "id-akwlmbp32-muzrbx1q"
+        }
+      },
+      "createTime": "2026-10-08T16:35:02.570210Z",
+      "updateTime": "2026-10-08T16:35:02.570210Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-aojg2t6xr-mupvsyhh",
+      "fields": {
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "barcode": {
+          "stringValue": "مريم جمال كمال  - سنه اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentId": {
+          "stringValue": "id-j7ivxyle1-mui3hdpo"
+        },
+        "studentName": {
+          "stringValue": "مريم جمال كمال"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "timestamp": {
+          "integerValue": "1790880153749"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "id": {
+          "stringValue": "id-aojg2t6xr-mupvsyhh"
+        },
+        "studentCode": {
+          "stringValue": "مريم جمال كمال  - سنه اولي"
+        }
+      },
+      "createTime": "2026-10-01T18:42:35.738257Z",
+      "updateTime": "2026-10-01T18:42:35.738257Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-apwy681m1-muqiq9sp",
+      "fields": {
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "id": {
+          "stringValue": "id-apwy681m1-muqiq9sp"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentId": {
+          "stringValue": "id-ij2ysjfn3-mui3qa1v"
+        },
+        "studentName": {
+          "stringValue": "مريم امير لبيب"
+        },
+        "barcode": {
+          "stringValue": "مريم امير لبيب  - سنه اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "timestamp": {
+          "integerValue": "1790918659609"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "studentCode": {
+          "stringValue": "مريم امير لبيب  - سنه اولي"
+        }
+      },
+      "createTime": "2026-10-02T05:24:20.250992Z",
+      "updateTime": "2026-10-02T05:24:20.250992Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-atnrihtph-mupvrk1l",
+      "fields": {
+        "studentCode": {
+          "stringValue": "جرجس هاني  - سنة اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "id": {
+          "stringValue": "id-atnrihtph-mupvrk1l"
+        },
+        "barcode": {
+          "stringValue": "جرجس هاني  - سنة اولي"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "studentId": {
+          "stringValue": "id-n7423qtpq-mui3mw6u"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "studentName": {
+          "stringValue": "جرجس هاني"
+        },
+        "timestamp": {
+          "integerValue": "1790880088377"
+        }
+      },
+      "createTime": "2026-10-01T18:41:30.572180Z",
+      "updateTime": "2026-10-01T18:41:30.572180Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-az1pz00i7-mupwxacp",
+      "fields": {
+        "studentCode": {
+          "stringValue": "مينا عادل فرج  - سنه اولي"
+        },
+        "barcode": {
+          "stringValue": "مينا عادل فرج  - سنه اولي"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "تسجيل مباشر من الكشف"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "timestamp": {
+          "integerValue": "1790882035369"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "id": {
+          "stringValue": "id-az1pz00i7-mupwxacp"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentName": {
+          "stringValue": "مينا عادل فرج"
+        },
+        "studentId": {
+          "stringValue": "id-np5tgj6m2-mui3sqbl"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        }
+      },
+      "createTime": "2026-10-01T19:13:57.449516Z",
+      "updateTime": "2026-10-01T19:13:57.449516Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-b2cdoq0sl-mupwgerd",
+      "fields": {
+        "studentId": {
+          "stringValue": "id-bg6a81sro-mumqd47u"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "studentCode": {
+          "stringValue": "انجي هاني فتحي  -  سنة ثانية"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "barcode": {
+          "stringValue": "انجي هاني فتحي  -  سنة ثانية"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "timestamp": {
+          "integerValue": "1790881247929"
+        },
+        "id": {
+          "stringValue": "id-b2cdoq0sl-mupwgerd"
+        },
+        "studentName": {
+          "stringValue": "انجي هاني فتحي"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        }
+      },
+      "createTime": "2026-10-01T19:00:49.965928Z",
+      "updateTime": "2026-10-01T19:00:49.965928Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-b86bypgmf-mv0lgqeq",
+      "fields": {
+        "studentId": {
+          "stringValue": "id-adye5mca8-muprysqv"
+        },
+        "studentCode": {
+          "stringValue": "مريم جميل مكرم  - سنة ثالثة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "id": {
+          "stringValue": "id-b86bypgmf-mv0lgqeq"
+        },
+        "timestamp": {
+          "integerValue": "1791527915186"
+        },
+        "studentName": {
+          "stringValue": "مريم جميل مكرم"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "barcode": {
+          "stringValue": "مريم جميل مكرم  - سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-09T06:38:34.524091Z",
+      "updateTime": "2026-10-09T06:38:34.524091Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-b9o51mimg-muqhzl40",
+      "fields": {
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "id": {
+          "stringValue": "id-b9o51mimg-muqhzl40"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentCode": {
+          "stringValue": "مينا روماني   - سنه اولي"
+        },
+        "studentId": {
+          "stringValue": "id-rqqos04yi-mui3qkj9"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "barcode": {
+          "stringValue": "مينا روماني   - سنه اولي"
+        },
+        "studentName": {
+          "stringValue": "مينا روماني"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "timestamp": {
+          "integerValue": "1790917414560"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        }
+      },
+      "createTime": "2026-10-02T05:03:35.084476Z",
+      "updateTime": "2026-10-02T05:03:35.084476Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-bbho4m43w-mv0hpg3h",
+      "fields": {
+        "id": {
+          "stringValue": "id-bbho4m43w-mv0hpg3h"
+        },
+        "studentId": {
+          "stringValue": "id-jc510zrp7-muprtq5w"
+        },
+        "studentCode": {
+          "stringValue": "دميانه ايمن ميلاد  - سنة ثالثة"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "timestamp": {
+          "integerValue": "1791521603261"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentName": {
+          "stringValue": "دميانه ايمن ميلاد"
+        },
+        "barcode": {
+          "stringValue": "دميانه ايمن ميلاد  - سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-09T04:53:27.196124Z",
+      "updateTime": "2026-10-09T04:53:27.196124Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-bj2wlm7lk-mv0lg400",
+      "fields": {
+        "id": {
+          "stringValue": "id-bj2wlm7lk-mv0lg400"
+        },
+        "timestamp": {
+          "integerValue": "1791527886144"
+        },
+        "studentName": {
+          "stringValue": "مينا ملاك إبراهيم"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "studentId": {
+          "stringValue": "id-amya5lq20-muprwsz7"
+        },
+        "barcode": {
+          "stringValue": "مينا ملاك إبراهيم  - سنة ثالثة"
+        },
+        "studentCode": {
+          "stringValue": "مينا ملاك إبراهيم  - سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-09T06:38:05.504143Z",
+      "updateTime": "2026-10-09T06:38:05.504143Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-bm2vetp0t-mupwef2w",
+      "fields": {
+        "studentName": {
+          "stringValue": "ميرنا شريف جمال"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-tqpdbsgkh-muprvm9h"
+        },
+        "id": {
+          "stringValue": "id-bm2vetp0t-mupwef2w"
+        },
+        "barcode": {
+          "stringValue": "ميرنا شريف جمال  - سنة ثالثة"
+        },
+        "studentCode": {
+          "stringValue": "ميرنا شريف جمال  - سنة ثالثة"
+        },
+        "timestamp": {
+          "integerValue": "1790881155032"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        }
+      },
+      "createTime": "2026-10-01T18:59:19.720371Z",
+      "updateTime": "2026-10-01T18:59:19.720371Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-boccd81lk-mv0lhpxp",
+      "fields": {
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "barcode": {
+          "stringValue": "ميرا ناصف سمير  - سنه اولي"
+        },
+        "timestamp": {
+          "integerValue": "1791527961229"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        },
+        "id": {
+          "stringValue": "id-boccd81lk-mv0lhpxp"
+        },
+        "studentCode": {
+          "stringValue": "ميرا ناصف سمير  - سنه اولي"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentId": {
+          "stringValue": "id-lc32npjqw-mui3q0fj"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentName": {
+          "stringValue": "ميرا ناصف سمير"
+        }
+      },
+      "createTime": "2026-10-09T06:39:20.679392Z",
+      "updateTime": "2026-10-09T06:39:20.679392Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-bu2ojcysz-muqiqe9v",
+      "fields": {
+        "barcode": {
+          "stringValue": "اناسيمون مجدي  -  سنة ثانية"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentName": {
+          "stringValue": "اناسيمون مجدي"
+        },
+        "timestamp": {
+          "integerValue": "1790918665411"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "id": {
+          "stringValue": "id-bu2ojcysz-muqiqe9v"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "studentId": {
+          "stringValue": "id-6jactaz1q-mumqckzf"
+        },
+        "studentCode": {
+          "stringValue": "اناسيمون مجدي  -  سنة ثانية"
+        }
+      },
+      "createTime": "2026-10-02T05:24:25.913427Z",
+      "updateTime": "2026-10-02T05:24:25.913427Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-bwjljga8z-mupvs0kv",
+      "fields": {
+        "studentCode": {
+          "stringValue": "أنجي رزق الله رسمي  - سنة ثالثة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "barcode": {
+          "stringValue": "أنجي رزق الله رسمي  - سنة ثالثة"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "id": {
+          "stringValue": "id-bwjljga8z-mupvs0kv"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "timestamp": {
+          "integerValue": "1790880109807"
+        },
+        "studentName": {
+          "stringValue": "أنجي رزق الله رسمي"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "studentId": {
+          "stringValue": "id-zdsqzbt45-muprvdq7"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        }
+      },
+      "createTime": "2026-10-01T18:41:51.769075Z",
+      "updateTime": "2026-10-01T18:41:51.769075Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-c3akmswo8-muqlauww",
+      "fields": {
+        "studentCode": {
+          "stringValue": "مهرائيل يوسف زكريا  -  سنة ثانية"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "barcode": {
+          "stringValue": "مهرائيل يوسف زكريا  -  سنة ثانية"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "timestamp": {
+          "integerValue": "1790922979328"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "studentName": {
+          "stringValue": "مهرائيل يوسف زكريا"
+        },
+        "id": {
+          "stringValue": "id-c3akmswo8-muqlauww"
+        },
+        "studentId": {
+          "stringValue": "id-j25rgxbuw-mumqk0tw"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        }
+      },
+      "createTime": "2026-10-02T06:36:19.870049Z",
+      "updateTime": "2026-10-02T06:36:19.870049Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-c3pm6jvyf-muqjm1ih",
+      "fields": {
+        "studentName": {
+          "stringValue": "مارتينا ابراهيم صالح"
+        },
+        "studentId": {
+          "stringValue": "id-86c2cis9u-muprzijl"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentCode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثالثة"
+        },
+        "timestamp": {
+          "integerValue": "1790920141865"
+        },
+        "id": {
+          "stringValue": "id-c3pm6jvyf-muqjm1ih"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "قداس"
+        },
+        "barcode": {
+          "stringValue": "مارتينا ابراهيم صالح  -  سنة ثالثة"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        }
+      },
+      "createTime": "2026-10-02T05:49:02.856898Z",
+      "updateTime": "2026-10-02T05:49:02.856898Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-c9te8jmtw-mupvtypd",
+      "fields": {
+        "studentName": {
+          "stringValue": "ماريا عطا"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "timestamp": {
+          "integerValue": "1790880200689"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "id": {
+          "stringValue": "id-c9te8jmtw-mupvtypd"
+        },
+        "barcode": {
+          "stringValue": "ماريا عطا  - سنة ثالثة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-m9s0z9gud-muprx3gj"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "studentCode": {
+          "stringValue": "ماريا عطا  - سنة ثالثة"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        }
+      },
+      "createTime": "2026-10-01T18:43:22.913018Z",
+      "updateTime": "2026-10-01T18:43:22.913018Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-cbope9n3q-mupvs5iu",
+      "fields": {
+        "id": {
+          "stringValue": "id-cbope9n3q-mupvs5iu"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "studentCode": {
+          "stringValue": "مريم جميل مكرم  - سنة ثالثة"
+        },
+        "studentId": {
+          "stringValue": "id-adye5mca8-muprysqv"
+        },
+        "period": {
+          "stringValue": "تسبحة"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "barcode": {
+          "stringValue": "مريم جميل مكرم  - سنة ثالثة"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "timestamp": {
+          "integerValue": "1790880116214"
+        },
+        "studentName": {
+          "stringValue": "مريم جميل مكرم"
+        }
+      },
+      "createTime": "2026-10-01T18:41:58.520612Z",
+      "updateTime": "2026-10-01T18:41:58.520612Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-cd7dk7t08-muqiq31w",
+      "fields": {
+        "period": {
+          "stringValue": "قداس"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        },
+        "studentName": {
+          "stringValue": "مريم اشرف نبيل"
+        },
+        "timestamp": {
+          "integerValue": "1790918650868"
+        },
+        "id": {
+          "stringValue": "id-cd7dk7t08-muqiq31w"
+        },
+        "barcode": {
+          "stringValue": "مريم اشرف نبيل  - سنة ثالثة"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentId": {
+          "stringValue": "id-mee85rr41-mupru8t2"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentCode": {
+          "stringValue": "مريم اشرف نبيل  - سنة ثالثة"
+        }
+      },
+      "createTime": "2026-10-02T05:24:12.960278Z",
+      "updateTime": "2026-10-02T05:24:12.960278Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-chqrfdjir-muqlpyev",
+      "fields": {
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "timestamp": {
+          "integerValue": "1790923683703"
+        },
+        "barcode": {
+          "stringValue": "ماريا عطا  - سنة ثالثة"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentName": {
+          "stringValue": "ماريا عطا"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "id": {
+          "stringValue": "id-chqrfdjir-muqlpyev"
+        },
+        "studentId": {
+          "stringValue": "id-m9s0z9gud-muprx3gj"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "studentCode": {
+          "stringValue": "ماريا عطا  - سنة ثالثة"
+        },
+        "stage": {
+          "stringValue": "تالتة إعداد خدام"
+        }
+      },
+      "createTime": "2026-10-02T06:48:04.255341Z",
+      "updateTime": "2026-10-02T06:48:04.255341Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-cjg2ca3zz-muqlr7sz",
+      "fields": {
+        "id": {
+          "stringValue": "id-cjg2ca3zz-muqlr7sz"
+        },
+        "barcode": {
+          "stringValue": "مارتينا هاني عزيز  -  سنه اولي"
+        },
+        "timestamp": {
+          "integerValue": "1790923742531"
+        },
+        "date": {
+          "stringValue": "2026-10-02"
+        },
+        "studentCode": {
+          "stringValue": "مارتينا هاني عزيز  -  سنه اولي"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "studentId": {
+          "stringValue": "id-xa81mzz5w-mufxitiv"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "studentName": {
+          "stringValue": "مارتينا هاني عزيز"
+        }
+      },
+      "createTime": "2026-10-02T06:49:03.115278Z",
+      "updateTime": "2026-10-02T06:49:03.115278Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-d0uvzo4us-mupwr8fl",
+      "fields": {
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "barcode": {
+          "stringValue": "مريم مينا رشدي   - سنه اولي"
+        },
+        "date": {
+          "stringValue": "2026-10-01"
+        },
+        "dayName": {
+          "stringValue": "الخميس"
+        },
+        "timestamp": {
+          "integerValue": "1790881752945"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "studentCode": {
+          "stringValue": "مريم مينا رشدي   - سنه اولي"
+        },
+        "stage": {
+          "stringValue": "أولى إعداد خدام"
+        },
+        "studentId": {
+          "stringValue": "id-3qevvwwkj-mui3shkv"
+        },
+        "studentName": {
+          "stringValue": "مريم مينا رشدي"
+        },
+        "id": {
+          "stringValue": "id-d0uvzo4us-mupwr8fl"
+        }
+      },
+      "createTime": "2026-10-01T19:09:14.978325Z",
+      "updateTime": "2026-10-01T19:09:14.978325Z"
+    },
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/attendance/id-d2osd1weu-mv0lgfe8",
+      "fields": {
+        "studentName": {
+          "stringValue": "ريموندا هاني سمير"
+        },
+        "method": {
+          "stringValue": "ماسح الكاميرا (باركود)"
+        },
+        "period": {
+          "stringValue": "محاضرة"
+        },
+        "stage": {
+          "stringValue": "تانية إعداد خدام"
+        },
+        "timestamp": {
+          "integerValue": "1791527900912"
+        },
+        "barcode": {
+          "stringValue": "ريموندا هاني سمير  -  سنة ثانية"
+        },
+        "studentCode": {
+          "stringValue": "ريموندا هاني سمير  -  سنة ثانية"
+        },
+        "supervisor": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "id": {
+          "stringValue": "id-d2osd1weu-mv0lgfe8"
+        },
+        "studentId": {
+          "stringValue": "id-pkwdc0909-mumqnke8"
+        },
+        "dayName": {
+          "stringValue": "الجمعة"
+        },
+        "date": {
+          "stringValue": "2026-10-09"
+        }
+      },
+      "createTime": "2026-10-09T06:38:21.401889Z",
+      "updateTime": "2026-10-09T06:38:21.401889Z"
+    }
+  ],
+  "settings": [
+    {
+      "name": "projects/abo-sefen-d143a/databases/(default)/documents/settings/general",
+      "fields": {
+        "churchLeader": {
+          "stringValue": "أمين إعداد الخدام"
+        },
+        "serviceName": {
+          "stringValue": "إعداد الخدام ومدارس الأحد (خميس وجمعة)"
+        },
+        "scanCooldownSeconds": {
+          "integerValue": "4"
+        },
+        "adminUsername": {
+          "stringValue": "Remon94"
+        },
+        "adminPassword": {
+          "stringValue": "92026"
+        },
+        "churchName": {
+          "stringValue": "كنيسة الشهيد العظيم فيلوباتير مرقوريوس أبي سيفين بكوم المحرص"
+        }
+      },
+      "createTime": "2026-09-26T08:18:22.148395Z",
+      "updateTime": "2026-09-26T08:18:22.148395Z"
+    }
+  ]
+}

@@ -6,6 +6,7 @@
 const SettingsManager = {
   init() {
     this.loadSettings();
+    this.loadScheduleSettings();
     this.renderAuditLogs();
   },
 
@@ -24,6 +25,54 @@ const SettingsManager = {
     if (usernameInput) usernameInput.value = s.adminUsername || 'admin';
     if (passwordInput) passwordInput.value = s.adminPassword || '123';
     if (cooldownInput) cooldownInput.value = s.scanCooldownSeconds || 5;
+  },
+
+  loadScheduleSettings() {
+    const sched = DB.getAttendanceSchedule();
+    const enabledToggle = document.getElementById('schedule-enabled-toggle');
+    const thursEnabled = document.getElementById('schedule-thursday-enabled');
+    const thursStart = document.getElementById('schedule-thursday-start');
+    const thursEnd = document.getElementById('schedule-thursday-end');
+    const friEnabled = document.getElementById('schedule-friday-enabled');
+    const friStart = document.getElementById('schedule-friday-start');
+    const friEnd = document.getElementById('schedule-friday-end');
+
+    if (enabledToggle) enabledToggle.checked = !!sched.enabled;
+    if (thursEnabled) thursEnabled.checked = sched.thursday?.enabled ?? true;
+    if (thursStart) thursStart.value = sched.thursday?.startTime || '17:00';
+    if (thursEnd) thursEnd.value = sched.thursday?.endTime || '22:00';
+    if (friEnabled) friEnabled.checked = sched.friday?.enabled ?? true;
+    if (friStart) friStart.value = sched.friday?.startTime || '08:00';
+    if (friEnd) friEnd.value = sched.friday?.endTime || '13:00';
+  },
+
+  saveScheduleSettings() {
+    const enabledToggle = document.getElementById('schedule-enabled-toggle');
+    const thursEnabled = document.getElementById('schedule-thursday-enabled');
+    const thursStart = document.getElementById('schedule-thursday-start');
+    const thursEnd = document.getElementById('schedule-thursday-end');
+    const friEnabled = document.getElementById('schedule-friday-enabled');
+    const friStart = document.getElementById('schedule-friday-start');
+    const friEnd = document.getElementById('schedule-friday-end');
+
+    const scheduleData = {
+      enabled: enabledToggle ? enabledToggle.checked : false,
+      timezone: 'Africa/Cairo',
+      thursday: {
+        enabled: thursEnabled ? thursEnabled.checked : true,
+        startTime: thursStart ? thursStart.value : '17:00',
+        endTime: thursEnd ? thursEnd.value : '22:00'
+      },
+      friday: {
+        enabled: friEnabled ? friEnabled.checked : true,
+        startTime: friStart ? friStart.value : '08:00',
+        endTime: friEnd ? friEnd.value : '13:00'
+      }
+    };
+
+    DB.saveAttendanceSchedule(scheduleData);
+    Activity.log('تعديل مواعيد الحضور', 'قام المشرف بتحديث وتثبيت مواعيد تسجيل الحضور الدائمة للأسبوع.');
+    Utils.showToast('تم حفظ وتثبيت مواعيد تسجيل الحضور بنجاح!', 'success');
   },
 
   saveSettings() {
@@ -52,15 +101,20 @@ const SettingsManager = {
     Utils.showToast('تم حفظ الإعدادات بنجاح!', 'success');
   },
 
-  // Export Full JSON Backup
+  // Export Full JSON Backup with all new tables preserved
   exportBackup() {
     const backupData = {
-      version: '1.0',
+      version: '2.0',
       exportedAt: new Date().toISOString(),
       church: 'كنيسة أبي سيفين',
       students: DB.getStudents(),
       attendance: DB.getAttendance(),
       settings: DB.getSettings(),
+      confessions: DB.getConfessions(),
+      subjects: DB.getSubjects(true),
+      assessments: DB.getAssessments(),
+      grades: DB.getGrades(),
+      attendanceSchedule: DB.getAttendanceSchedule(),
       auditLogs: Activity.getLogs()
     };
 
@@ -94,6 +148,11 @@ const SettingsManager = {
           localStorage.setItem(DB.STORAGE_KEYS.STUDENTS, JSON.stringify(data.students));
           if (data.attendance) localStorage.setItem(DB.STORAGE_KEYS.ATTENDANCE, JSON.stringify(data.attendance));
           if (data.settings) localStorage.setItem(DB.STORAGE_KEYS.SETTINGS, JSON.stringify(data.settings));
+          if (data.confessions) localStorage.setItem(DB.STORAGE_KEYS.CONFESSIONS, JSON.stringify(data.confessions));
+          if (data.subjects) localStorage.setItem(DB.STORAGE_KEYS.SUBJECTS, JSON.stringify(data.subjects));
+          if (data.assessments) localStorage.setItem(DB.STORAGE_KEYS.ASSESSMENTS, JSON.stringify(data.assessments));
+          if (data.grades) localStorage.setItem(DB.STORAGE_KEYS.GRADES, JSON.stringify(data.grades));
+          if (data.attendanceSchedule) localStorage.setItem(DB.STORAGE_KEYS.SCHEDULE, JSON.stringify(data.attendanceSchedule));
 
           Activity.log('استعادة نسخة احتياطية', `تمت استعادة نسخة احتياطية تضم ${data.students.length} طالب.`);
           Utils.showToast('تمت استعادة البيانات بنجاح! سيتم إعادة تحميل الصفحة...', 'success');

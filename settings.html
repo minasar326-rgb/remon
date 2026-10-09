@@ -25,6 +25,7 @@
     <li><a href="dashboard.html" class="nav-link "><span>📊</span><span>لوحة التحكم</span></a></li>
     <li><a href="attendance.html" class="nav-link "><span>📷</span><span>تسجيل الحضور</span></a></li>
     <li><a href="students.html" class="nav-link "><span>👥</span><span>دليل الطلاب</span></a></li>
+    <li><a href="evaluations.html" class="nav-link "><span>📝</span><span>التقييمات والدرجات</span></a></li>
     <li><a href="reports.html" class="nav-link "><span>📄</span><span>التقارير و Word</span></a></li>
     <li><a href="settings.html" class="nav-link active"><span>⚙️</span><span>الإعدادات</span></a></li>
   </ul>
@@ -95,6 +96,78 @@
             <span>حفظ وتحديث الإعدادات</span>
           </button>
         </div>
+      </div>
+    </div>
+
+    <!-- إعدادات مواعيد تسجيل الحضور (Attendance Schedule Constraints) -->
+    <div class="glass-panel" style="padding: 1.8rem; margin-bottom: 2rem; border: 2px solid var(--accent-gold);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+            <span>⏰</span>
+            <span>إعدادات مواعيد تسجيل الحضور (خميس وجمعة)</span>
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.3rem;">
+            تحديد الأيام وساعات البداية والنهاية المسموح فيها بتسجيل الحضور. تُحفظ هذه الإعدادات بشكل دائم في السحابة بتوقيت مصر (Africa/Cairo) ولا تتغير إلا بواسطة المسؤول.
+          </p>
+        </div>
+        <div>
+          <label style="display: inline-flex; align-items: center; gap: 0.6rem; cursor: pointer; padding: 0.6rem 1.2rem; border-radius: 8px; border: 2px solid var(--primary); background: var(--bg-card); font-weight: 800;">
+            <input type="checkbox" id="schedule-enabled-toggle" style="width: 1.3rem; height: 1.3rem; accent-color: var(--primary);">
+            <span>تفعيل القيود الزمنية لتسجيل الحضور</span>
+          </label>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.2rem;">
+        <!-- يوم الخميس -->
+        <div style="background: var(--bg-card); padding: 1.4rem; border-radius: 10px; border: 1px solid var(--border-color);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h4 style="margin: 0; color: var(--primary); font-size: 1.1rem; font-weight: 800;">📅 يوم الخميس</h4>
+            <label style="display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+              <input type="checkbox" id="schedule-thursday-enabled" style="accent-color: var(--primary);">
+              <span style="font-size: 0.85rem; font-weight: bold;">تفعيل الحضور يوم الخميس</span>
+            </label>
+          </div>
+          <div style="display: flex; gap: 1rem;">
+            <div style="flex: 1;">
+              <label class="form-label" style="font-size: 0.85rem;">وقت البداية:</label>
+              <input type="time" id="schedule-thursday-start" class="form-input" style="font-weight: bold;">
+            </div>
+            <div style="flex: 1;">
+              <label class="form-label" style="font-size: 0.85rem;">وقت النهاية:</label>
+              <input type="time" id="schedule-thursday-end" class="form-input" style="font-weight: bold;">
+            </div>
+          </div>
+        </div>
+
+        <!-- يوم الجمعة -->
+        <div style="background: var(--bg-card); padding: 1.4rem; border-radius: 10px; border: 1px solid var(--border-color);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h4 style="margin: 0; color: var(--accent-gold); font-size: 1.1rem; font-weight: 800;">📅 يوم الجمعة</h4>
+            <label style="display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+              <input type="checkbox" id="schedule-friday-enabled" style="accent-color: var(--accent-gold);">
+              <span style="font-size: 0.85rem; font-weight: bold;">تفعيل الحضور يوم الجمعة</span>
+            </label>
+          </div>
+          <div style="display: flex; gap: 1rem;">
+            <div style="flex: 1;">
+              <label class="form-label" style="font-size: 0.85rem;">وقت البداية:</label>
+              <input type="time" id="schedule-friday-start" class="form-input" style="font-weight: bold;">
+            </div>
+            <div style="flex: 1;">
+              <label class="form-label" style="font-size: 0.85rem;">وقت النهاية:</label>
+              <input type="time" id="schedule-friday-end" class="form-input" style="font-weight: bold;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem; text-align: left;">
+        <button class="btn btn-primary" onclick="SettingsManager.saveScheduleSettings()" style="font-weight: 800; padding: 0.7rem 1.8rem;">
+          <span>💾</span>
+          <span>حفظ وتثبيت مواعيد الحضور الدائمة</span>
+        </button>
       </div>
     </div>
 
