@@ -485,17 +485,20 @@ const EvaluationsManager = {
 
       const gradeInputCell = hasActiveLesson
         ? `
-          <div style="display: flex; align-items: center; justify-content: center; gap: 0.3rem;">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
             <input type="number" step="0.5" min="0" max="${maxScore}" value="${scoreVal}" class="form-input grade-input" data-student-id="${s.id}" placeholder="من ${maxScore}" style="
-              width: 85px; text-align: center; font-weight: 800; font-size: 1rem; border: 2px solid ${r.hasGrade ? 'var(--primary)' : 'var(--border-color)'}; padding: 0.35rem 0.4rem;
+              width: 80px; text-align: center; font-weight: 800; font-size: 1rem; border: 2px solid ${r.hasGrade ? 'var(--primary)' : 'var(--border-color)'}; padding: 0.35rem 0.4rem;
             " onchange="EvaluationsManager.onSingleGradeChange('${s.id}', this.value, ${maxScore})">
-            <span style="font-size: 0.8rem; color: var(--text-muted);">/ ${maxScore}</span>
+            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: bold;">/ ${maxScore}</span>
+            <button type="button" class="btn btn-sm btn-primary" onclick="EvaluationsManager.saveSingleStudentRow('${s.id}', ${maxScore})" title="حفظ درجة ${Utils.sanitize(s.name)} فقط" style="padding: 0.25rem 0.45rem; font-size: 0.8rem; font-weight: bold; background: var(--primary);">
+              💾
+            </button>
           </div>
         `
         : `
-          <span class="badge" style="background: var(--bg-tertiary); color: var(--text-muted); font-size: 0.78rem; padding: 0.25rem 0.5rem;">
-            اختر درساً للرصد
-          </span>
+          <button type="button" class="btn btn-primary btn-sm" onclick="EvaluationsManager.openStudentGradesModal('${s.id}')" title="إدخال ورصد جميع درجات ${Utils.sanitize(s.name)}" style="padding: 0.35rem 0.75rem; font-size: 0.82rem; font-weight: bold; background: var(--primary);">
+            📝 إدخال درجاته
+          </button>
         `;
 
       const noteInputCell = hasActiveLesson
@@ -518,8 +521,8 @@ const EvaluationsManager = {
           </td>
           <td>${noteInputCell}</td>
           <td style="text-align: center;">
-            <button class="btn btn-secondary btn-sm" onclick="EvaluationsManager.openStudentGradesModal('${s.id}')" title="عرض جميع درجات هذا المخدوم في جميع المواد من هنا مباشرة" style="padding: 0.3rem 0.65rem; font-size: 0.8rem; font-weight: bold; background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color);">
-              📋 كشف درجاته
+            <button class="btn btn-secondary btn-sm" onclick="EvaluationsManager.openStudentGradesModal('${s.id}')" title="إدخال وتعديل وعرض جميع درجات هذا المخدوم في المواد والدروس" style="padding: 0.35rem 0.75rem; font-size: 0.82rem; font-weight: 800; background: var(--bg-tertiary); color: var(--primary); border: 2px solid var(--primary); border-radius: 6px;">
+              📝 رصد وكشف درجاته
             </button>
           </td>
           <td style="text-align: center;">
@@ -568,6 +571,34 @@ const EvaluationsManager = {
     if (val !== '') {
       DB.saveGrade(studentId, this.activeAssessmentId, Number(val), noteVal);
     }
+  },
+
+  saveSingleStudentRow(studentId, maxScore) {
+    if (!this.activeAssessmentId) {
+      this.openStudentGradesModal(studentId);
+      return;
+    }
+    const input = document.querySelector(`.grade-input[data-student-id="${studentId}"]`);
+    const noteInput = document.querySelector(`.note-input[data-student-id="${studentId}"]`);
+    if (!input) return;
+
+    const val = input.value.trim();
+    const notes = noteInput ? noteInput.value.trim() : '';
+
+    if (val === '') {
+      DB.saveGrade(studentId, this.activeAssessmentId, null, notes);
+      Utils.showToast('تم إزالة الدرجة (غير مسجل)', 'info');
+    } else {
+      const num = Number(val);
+      if (isNaN(num) || num < 0 || num > maxScore) {
+        alert(`⚠️ يرجى إدخال درجة صالحة بين 0 و ${maxScore}`);
+        return;
+      }
+      DB.saveGrade(studentId, this.activeAssessmentId, num, notes);
+      Utils.playBeep('success');
+      Utils.showToast('تم حفظ درجة المخدوم بنجاح ✓', 'success');
+    }
+    this.renderGradesSheet();
   },
 
   saveAllCurrentGrades() {
@@ -1172,7 +1203,7 @@ const EvaluationsManager = {
   },
 
   // ==========================================
-  // 7. نافذة عرض درجات مخدوم معين من قسم التقييمات
+  // 7. نافذة رصد وإدارة درجات مخدوم معين بالكامل من قسم التقييمات
   // ==========================================
   openStudentGradesModal(studentId) {
     const student = DB.getStudentById(studentId);
@@ -1185,15 +1216,21 @@ const EvaluationsManager = {
 
     if (!modal || !contentEl) return;
 
-    nameEl.textContent = `سجل درجات: ${student.name}`;
-    subinfoEl.textContent = `المرحلة: ${student.stage} | الباركود / الكود: ${student.barcode || student.code || 'بدون'}`;
+    nameEl.textContent = `📝 رصد وكشف درجات: ${student.name}`;
+    subinfoEl.textContent = `المرحلة: ${student.stage} | الباركود / الكود: ${student.barcode || student.code || 'بدون'} | يمكنك رصد درجات الطالب في كل درس بالأسفل وحفظها فورياً`;
 
     const subjects = DB.getSubjects(true).filter(s => this.matchStage(s.stage, student.stage));
 
     if (subjects.length === 0) {
       contentEl.innerHTML = `
-        <div style="padding: 2rem; text-align: center; color: var(--text-muted);">
-          لا توجد مواد مضافة لمرحلة هذا المخدوم (${student.stage}) حتى الآن.
+        <div style="padding: 2.5rem; text-align: center; color: var(--text-muted);">
+          <div style="font-size: 1.15rem; font-weight: bold; margin-bottom: 0.6rem; color: var(--text-primary);">
+            ⚠️ لا توجد مواد دراسية مضافة لمرحلة هذا المخدوم (${student.stage}) حتى الآن
+          </div>
+          <p style="margin-bottom: 1.2rem; font-size: 0.9rem;">أضف المادة الأولى وعناصر التقييم للبدء في رصد درجات الطلاب.</p>
+          <button type="button" class="btn btn-primary" onclick="EvaluationsManager.closeStudentGradesModal(); EvaluationsManager.openAddSubjectModal();">
+            <span>➕</span><span>إضافة مادة دراسية الآن</span>
+          </button>
         </div>
       `;
       modal.classList.add('open');
@@ -1222,16 +1259,30 @@ const EvaluationsManager = {
           grandTotalEarned += score;
         }
 
+        const scoreVal = score !== null ? score : '';
+        const noteVal = g ? (g.notes || '') : '';
+
         return `
           <tr style="border-bottom: 1px solid var(--border-color);">
-            <td style="padding: 0.4rem 0.6rem; text-align: center;">${idx + 1}</td>
-            <td style="padding: 0.4rem 0.6rem;">${Utils.sanitize(a.partName || 'الجزء الأول')}</td>
-            <td style="padding: 0.4rem 0.6rem; font-weight: 600;">${Utils.sanitize(a.title)}</td>
-            <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: bold; color: ${score !== null ? 'var(--primary)' : 'var(--text-muted)'};">
-              ${score !== null ? score : 'لم ترصد بعد'}
+            <td style="padding: 0.5rem 0.6rem; text-align: center;">${idx + 1}</td>
+            <td style="padding: 0.5rem 0.6rem;">${Utils.sanitize(a.partName || 'الجزء الأول')}</td>
+            <td style="padding: 0.5rem 0.6rem; font-weight: 700; color: var(--text-primary);">${Utils.sanitize(a.title)}</td>
+            <td style="padding: 0.5rem 0.6rem; text-align: center;">
+              <div style="display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
+                <input type="number" step="0.5" min="0" max="${a.maxScore}" value="${scoreVal}" class="form-input modal-grade-input" data-student-id="${student.id}" data-assessment-id="${a.id}" data-max-score="${a.maxScore}" placeholder="من ${a.maxScore}" style="
+                  width: 80px; text-align: center; font-weight: 800; font-size: 1rem; border: 2px solid ${score !== null ? 'var(--primary)' : 'var(--border-color)'}; padding: 0.35rem 0.4rem; background: var(--bg-primary);
+                " onchange="EvaluationsManager.saveModalSingleGrade('${student.id}', '${a.id}', this.value, ${a.maxScore})">
+                <span style="font-size: 0.82rem; color: var(--text-muted); font-weight: bold;">/ ${a.maxScore}</span>
+              </div>
             </td>
-            <td style="padding: 0.4rem 0.6rem; text-align: center;">${a.maxScore}</td>
-            <td style="padding: 0.4rem 0.6rem; font-size: 0.82rem; color: var(--text-muted);">${g ? Utils.sanitize(g.notes) : '-'}</td>
+            <td style="padding: 0.5rem 0.6rem;">
+              <input type="text" class="form-input modal-note-input" data-student-id="${student.id}" data-assessment-id="${a.id}" value="${Utils.sanitize(noteVal)}" placeholder="ملاحظات اختيارية..." style="padding: 0.35rem 0.6rem; font-size: 0.85rem;" onchange="EvaluationsManager.saveModalSingleNote('${student.id}', '${a.id}', this.value)">
+            </td>
+            <td style="padding: 0.5rem 0.6rem; text-align: center;">
+              <button type="button" class="btn btn-sm btn-primary" onclick="EvaluationsManager.saveModalRow('${student.id}', '${a.id}', ${a.maxScore})" title="حفظ درجة هذا الدرس" style="padding: 0.3rem 0.65rem; font-size: 0.8rem; font-weight: bold;">
+                💾 حفظ
+              </button>
+            </td>
           </tr>
         `;
       }).join('');
@@ -1251,20 +1302,25 @@ const EvaluationsManager = {
           </div>
 
           ${assessments.length === 0 ? `
-            <div style="padding: 0.8rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
-              لا توجد دروس أو عناصر تقييم مضافة داخل هذه المادة.
+            <div style="padding: 1.2rem; text-align: center; color: var(--text-muted); font-size: 0.88rem; background: var(--bg-secondary); border-radius: 6px;">
+              لا توجد دروس أو عناصر تقييم بعد داخل هذه المادة (${Utils.sanitize(sub.name)}).
+              <div style="margin-top: 0.6rem;">
+                <button type="button" class="btn btn-primary btn-sm" onclick="EvaluationsManager.closeStudentGradesModal(); EvaluationsManager.activeSubjectId='${sub.id}'; EvaluationsManager.openAddLessonModal();">
+                  ➕ إضافة درس جديد في هذه المادة
+                </button>
+              </div>
             </div>
           ` : `
             <div style="overflow-x: auto;">
               <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
                 <thead>
                   <tr style="background: var(--bg-secondary); border-bottom: 2px solid var(--border-color);">
-                    <th style="padding: 0.4rem; text-align: center; width: 35px;">#</th>
-                    <th style="padding: 0.4rem;">الجزء</th>
-                    <th style="padding: 0.4rem;">الدرس / عنصر التقييم</th>
-                    <th style="padding: 0.4rem; text-align: center;">الدرجة</th>
-                    <th style="padding: 0.4rem; text-align: center;">العظمى</th>
-                    <th style="padding: 0.4rem;">الملاحظات</th>
+                    <th style="padding: 0.5rem; text-align: center; width: 35px;">#</th>
+                    <th style="padding: 0.5rem;">الجزء</th>
+                    <th style="padding: 0.5rem;">الدرس / عنصر التقييم</th>
+                    <th style="padding: 0.5rem; text-align: center; width: 140px;">درجة الطالب</th>
+                    <th style="padding: 0.5rem;">الملاحظات</th>
+                    <th style="padding: 0.5rem; text-align: center; width: 75px;">إجراء</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1282,7 +1338,7 @@ const EvaluationsManager = {
     contentEl.innerHTML = `
       <div style="background: rgba(30, 58, 138, 0.08); border: 2px solid var(--primary); border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
         <div>
-          <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">المجموع العام في جميع المواد:</span>
+          <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">المجموع العام للطالب في جميع المواد:</span>
           <strong style="font-size: 1.3rem; color: var(--primary); font-weight: 900;">${grandTotalEarned} <span style="font-size: 0.95rem; font-weight: normal;">من</span> ${grandTotalMax}</strong>
         </div>
         <div>
@@ -1297,8 +1353,79 @@ const EvaluationsManager = {
       </div>
     `;
 
+    const saveAllBtn = document.getElementById('btn-modal-save-all-student');
+    if (saveAllBtn) {
+      saveAllBtn.onclick = () => this.saveAllModalStudentGrades(studentId);
+    }
+
     modal.classList.add('open');
     modal.style.display = 'flex';
+  },
+
+  saveModalSingleGrade(studentId, assessmentId, val, maxScore) {
+    val = (val || '').trim();
+    const noteInput = document.querySelector(`.modal-note-input[data-student-id="${studentId}"][data-assessment-id="${assessmentId}"]`);
+    const notes = noteInput ? noteInput.value.trim() : '';
+
+    if (val === '') {
+      DB.saveGrade(studentId, assessmentId, null, notes);
+      Utils.showToast('تم إزالة الدرجة (غير مسجل)', 'info');
+    } else {
+      const num = Number(val);
+      if (isNaN(num) || num < 0 || num > maxScore) {
+        alert(`⚠️ يرجى إدخال درجة صالحة بين 0 و ${maxScore}`);
+        this.openStudentGradesModal(studentId);
+        return;
+      }
+      DB.saveGrade(studentId, assessmentId, num, notes);
+      Utils.playBeep('success');
+      Utils.showToast('تم حفظ درجة المخدوم بنجاح ✓', 'success', 2000);
+    }
+    this.openStudentGradesModal(studentId);
+    this.renderGradesSheet();
+  },
+
+  saveModalSingleNote(studentId, assessmentId, noteVal) {
+    const gradeInput = document.querySelector(`.modal-grade-input[data-student-id="${studentId}"][data-assessment-id="${assessmentId}"]`);
+    const val = gradeInput ? gradeInput.value.trim() : '';
+    if (val !== '') {
+      DB.saveGrade(studentId, assessmentId, Number(val), (noteVal || '').trim());
+    }
+  },
+
+  saveModalRow(studentId, assessmentId, maxScore) {
+    const gradeInput = document.querySelector(`.modal-grade-input[data-student-id="${studentId}"][data-assessment-id="${assessmentId}"]`);
+    const val = gradeInput ? gradeInput.value : '';
+    this.saveModalSingleGrade(studentId, assessmentId, val, maxScore);
+  },
+
+  saveAllModalStudentGrades(studentId) {
+    const student = DB.getStudentById(studentId);
+    const gradeInputs = document.querySelectorAll(`.modal-grade-input[data-student-id="${studentId}"]`);
+    let saved = 0;
+
+    gradeInputs.forEach(input => {
+      const assessmentId = input.getAttribute('data-assessment-id');
+      const maxScore = Number(input.getAttribute('data-max-score')) || 10;
+      const val = input.value.trim();
+      const noteInput = document.querySelector(`.modal-note-input[data-student-id="${studentId}"][data-assessment-id="${assessmentId}"]`);
+      const notes = noteInput ? noteInput.value.trim() : '';
+
+      if (val !== '') {
+        const num = Number(val);
+        if (!isNaN(num) && num >= 0 && num <= maxScore) {
+          DB.saveGrade(studentId, assessmentId, num, notes);
+          saved++;
+        }
+      } else {
+        DB.saveGrade(studentId, assessmentId, null, notes);
+      }
+    });
+
+    Utils.playBeep('success');
+    Utils.showToast(`تم حفظ جميع درجات الطالب ${student ? student.name : ''} (${saved} مسجلة) بنجاح ✓`, 'success');
+    this.openStudentGradesModal(studentId);
+    this.renderGradesSheet();
   },
 
   closeStudentGradesModal() {

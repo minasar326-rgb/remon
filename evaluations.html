@@ -180,8 +180,11 @@
           <!-- Dynamic student grades content -->
         </div>
 
-        <div style="display: flex; justify-content: flex-end; gap: 0.8rem; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
-          <button class="btn btn-secondary" onclick="EvaluationsManager.closeStudentGradesModal()">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem; flex-wrap: wrap;">
+          <button id="btn-modal-save-all-student" type="button" class="btn btn-primary" style="font-weight: 800;">
+            <span>💾</span><span>حفظ جميع درجات هذا المخدوم</span>
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="EvaluationsManager.closeStudentGradesModal()">
             إغلاق النافذة
           </button>
         </div>
