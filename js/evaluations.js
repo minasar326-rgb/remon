@@ -12,10 +12,54 @@ const EvaluationsManager = {
   studentSearchTerm: '',
   sortMode: 'name', // name | scoreDesc | scoreAsc
 
+  // مطابقة ذكية ودقيقة للمرحلة لضمان عدم فقدان أي طالب ومنع اختلاط المراحل
+  matchStage(student, targetStage) {
+    if (!targetStage) return false;
+    const stageStr = typeof student === 'string' ? student : (student ? (student.stage || '') : '');
+    const codeStr = typeof student === 'object' && student ? `${student.code || ''} ${student.barcode || ''}` : '';
+
+    const clean = str => (str || '')
+      .replace(/[\s\u00A0\uFEFF]+/g, ' ')
+      .replace(/[أإآ]/g, 'ا')
+      .replace(/ة/g, 'ه')
+      .replace(/ى/g, 'ي')
+      .trim();
+
+    const s = clean(stageStr);
+    const t = clean(targetStage);
+    const c = clean(codeStr);
+
+    if (s === t) return true;
+
+    // ابتدائي
+    if (t.includes('ابتدائي')) {
+      return s.includes('ابتدائي') || c.includes('ابتدائي');
+    }
+
+    // أولى إعداد خدام
+    if (t.includes('اولي') || t.includes('اولى')) {
+      return (s.includes('اولي') || s.includes('اولى') || c.includes('اولي') || c.includes('اولى')) &&
+             !s.includes('تانيه') && !s.includes('تانية') && !s.includes('تالته') && !s.includes('تالتة');
+    }
+
+    // تانية إعداد خدام
+    if (t.includes('تانيه') || t.includes('تانية') || t.includes('ثانيه') || t.includes('ثانية')) {
+      return (s.includes('تانيه') || s.includes('تانية') || s.includes('ثانيه') || s.includes('ثانية') || c.includes('تانيه') || c.includes('تانية') || c.includes('ثانيه') || c.includes('ثانية')) &&
+             !s.includes('اولي') && !s.includes('اولى') && !s.includes('تالته') && !s.includes('تالتة');
+    }
+
+    // تالتة إعداد خدام
+    if (t.includes('تالته') || t.includes('تالتة') || t.includes('ثالثه') || t.includes('ثالثة')) {
+      return (s.includes('تالته') || s.includes('تالتة') || s.includes('ثالثه') || s.includes('ثالثة') || c.includes('تالته') || c.includes('تالتة') || c.includes('ثالثه') || c.includes('ثالثة')) &&
+             !s.includes('اولي') && !s.includes('اولى') && !s.includes('تانيه') && !s.includes('تانية');
+    }
+
+    return false;
+  },
+
   init() {
-    // تحديد المرحلة الافتراضية بناءً على المرحلة التي بها طلاب فعلياً إن وجدت
     const allStudents = DB.getStudents();
-    const stageWithStudents = DB.STAGES.find(st => allStudents.some(s => s.stage && s.stage.trim() === st.trim()));
+    const stageWithStudents = DB.STAGES.find(st => allStudents.some(s => this.matchStage(s, st)));
     if (stageWithStudents) {
       this.currentStage = stageWithStudents;
     }
@@ -23,6 +67,7 @@ const EvaluationsManager = {
     this.initEventListeners();
     this.renderStagesSelector();
     this.renderSubjectsList();
+    this.renderGradesSheet();
   },
 
   initEventListeners() {
@@ -34,8 +79,6 @@ const EvaluationsManager = {
         this.activePartName = null;
         this.activeAssessmentId = null;
         this.renderSubjectsList();
-        this.renderLessonNavigation();
-        this.renderGradesSheet();
       });
     }
 
@@ -56,7 +99,19 @@ const EvaluationsManager = {
     }
 
     window.addEventListener('abs-students-updated', () => {
-      // إعادة ملء المراحل وتحديث كشف الدرجات لحظياً فور وصول الطلاب
+      // إعادة تقييم المرحلة الافتراضية إذا كانت الحالية بلا طلاب
+      const allStudents = DB.getStudents();
+      const currentHasStudents = allStudents.some(s => this.matchStage(s, this.currentStage));
+      if (!currentHasStudents) {
+        const found = DB.STAGES.find(st => allStudents.some(s => this.matchStage(s, st)));
+        if (found) {
+          this.currentStage = found;
+          this.activeSubjectId = null;
+          this.activePartName = null;
+          this.activeAssessmentId = null;
+          this.renderSubjectsList();
+        }
+      }
       this.renderStagesSelector();
       this.renderGradesSheet();
     });
@@ -82,16 +137,16 @@ const EvaluationsManager = {
     this.activePartName = null;
     this.activeAssessmentId = null;
     this.renderSubjectsList();
-    this.renderLessonNavigation();
-    this.renderGradesSheet();
   },
 
   renderStagesSelector() {
     const stageSelect = document.getElementById('eval-stage-select');
     if (!stageSelect) return;
-    stageSelect.innerHTML = DB.STAGES.map(st => `
-      <option value="${st}" ${st === this.currentStage ? 'selected' : ''}>${st}</option>
-    `).join('');
+    const allStudents = DB.getStudents();
+    stageSelect.innerHTML = DB.STAGES.map(st => {
+      const count = allStudents.filter(s => this.matchStage(s, st)).length;
+      return `<option value="${st}" ${st === this.currentStage ? 'selected' : ''}>${st} (${count} مخدوم)</option>`;
+    }).join('');
   },
 
   // 1. عرض المواد للمرحلة المحددة
@@ -101,7 +156,7 @@ const EvaluationsManager = {
 
     const allSubjects = DB.getSubjects(true);
     const subjectsForStage = allSubjects.filter(s => 
-      s.stage === this.currentStage && 
+      this.matchStage(s.stage, this.currentStage) && 
       (this.viewArchived ? s.status === 'archived' : s.status !== 'archived')
     );
 
@@ -280,73 +335,10 @@ const EvaluationsManager = {
     const headerInfo = document.getElementById('eval-active-lesson-info');
     if (!tbody) return;
 
-    if (!this.activeSubjectId) {
-      tbody.innerHTML = `
-        <tr><td colspan="8" style="padding: 2.5rem; text-align: center; color: var(--text-muted);">
-          <div style="font-size: 1.15rem; font-weight: bold; margin-bottom: 0.6rem; color: var(--text-primary);">
-            📌 يرجى اختيار مادة دراسية أولاً أو الضغط على "إضافة مادة"
-          </div>
-          <div style="font-size: 0.88rem; margin-bottom: 1rem;">
-            لكل مرحلة موادها الخاصة. بمجرد إضافة أو اختيار مادة وإضافة درس داخلها، ستظهر قائمة جميع مخدومي المرحلة فوراً لرصد درجاتهم.
-          </div>
-          <button class="btn btn-primary btn-sm" onclick="EvaluationsManager.openAddSubjectModal()">
-            <span>➕</span><span>إضافة مادة دراسية جديدة</span>
-          </button>
-        </td></tr>
-      `;
-      if (headerInfo) headerInfo.textContent = 'يرجى اختيار مادة لعرض الدروس والطلاب...';
-      return;
-    }
+    // مطابقة الطلاب للمرحلة المحددة بدقة تامة
+    let students = DB.getStudents().filter(s => this.matchStage(s, this.currentStage));
 
-    if (!this.activeAssessmentId) {
-      tbody.innerHTML = `
-        <tr><td colspan="8" style="padding: 2.5rem; text-align: center; color: var(--text-muted);">
-          <div style="font-size: 1.15rem; font-weight: bold; margin-bottom: 0.6rem; color: var(--text-primary);">
-            📝 يرجى اختيار الدرس أو عنصر التقييم المطلوب رصد درجاته
-          </div>
-          <div style="font-size: 0.88rem; margin-bottom: 1rem;">
-            اضغط على زر الدرس في لوحة "أجزاء المادة والدروس" أعلاه، أو اضغط على "إضافة درس جديد" للبدء في رصد درجات المخدومين.
-          </div>
-          <button class="btn btn-primary btn-sm" onclick="EvaluationsManager.openAddLessonModal()">
-            <span>➕</span><span>إضافة درس / عنصر تقييم جديد</span>
-          </button>
-        </td></tr>
-      `;
-      if (headerInfo) headerInfo.textContent = 'في انتظار اختيار الدرس لرصد الدرجات...';
-      return;
-    }
-
-    const currentSubject = DB.getSubjectById(this.activeSubjectId);
-    const currentLesson = DB.getAssessmentById(this.activeAssessmentId);
-
-    if (!currentLesson) return;
-
-    if (headerInfo) {
-      headerInfo.innerHTML = `
-        المادة: <strong style="color:var(--primary);">${Utils.sanitize(currentSubject ? currentSubject.name : '')}</strong> |
-        الجزء: <strong>${Utils.sanitize(currentLesson.partName || 'العام')}</strong> |
-        الدرس: <strong style="color:var(--accent-gold);">${Utils.sanitize(currentLesson.title)}</strong> |
-        الدرجة العظمى: <span class="badge" style="background:var(--accent-gold); color:#000; font-weight:800;">${currentLesson.maxScore} درجة</span>
-      `;
-    }
-
-    // مطابقة ذكية ودقيقة للمرحلة لضمان عدم فقدان أي طالب
-    const matchStage = (studentStage, targetStage) => {
-      if (!studentStage || !targetStage) return false;
-      const clean = str => str.replace(/[\s\u00A0\uFEFF]+/g, ' ').replace(/[^\u0600-\u06FF\w\s]/g, '').trim();
-      const s = clean(studentStage);
-      const t = clean(targetStage);
-      if (s === t) return true;
-      if ((t.includes('ابتدائي') || t.includes('ابتدائيه')) && (s.includes('ابتدائي') || s.includes('ابتدائيه'))) return true;
-      if ((t.includes('اولى') || t.includes('أولى')) && (s.includes('اولى') || s.includes('أولى'))) return true;
-      if ((t.includes('تانية') || t.includes('ثانية') || t.includes('تانيه')) && (s.includes('تانية') || s.includes('ثانية') || s.includes('تانيه'))) return true;
-      if ((t.includes('تالتة') || t.includes('ثالثة') || t.includes('تالته')) && (s.includes('تالتة') || s.includes('ثالثة') || s.includes('تالته'))) return true;
-      return false;
-    };
-
-    let students = DB.getStudents().filter(s => matchStage(s.stage, this.currentStage));
-
-    // تطبيق فلتر البحث
+    // فلتر البحث
     if (this.studentSearchTerm) {
       students = students.filter(s => 
         s.name.toLowerCase().includes(this.studentSearchTerm) ||
@@ -355,20 +347,68 @@ const EvaluationsManager = {
       );
     }
 
-    const gradesList = DB.getGradesByAssessment(this.activeAssessmentId);
+    // التحقق هل المرحلة بلا طلاب
+    if (students.length === 0) {
+      tbody.innerHTML = `
+        <tr><td colspan="9" style="padding: 2.5rem; text-align: center; color: var(--text-muted);">
+          <div style="font-size: 1.15rem; font-weight: bold; margin-bottom: 0.5rem; color: var(--text-primary);">
+            ⚠️ لا يوجد مخدومين مقيدين في مرحلة (${this.currentStage})
+          </div>
+          <div style="font-size: 0.88rem; color: var(--text-muted);">
+            يرجى اختيار المرحلة الدراسية المقيد بها مخدوموك من القائمة أعلى اليمين (مثال: أولى إعداد خدام أو تانية إعداد خدام أو تالتة إعداد خدام).
+          </div>
+        </td></tr>
+      `;
+      if (headerInfo) {
+        headerInfo.innerHTML = `لا يوجد مخدومين مقيدين في مرحلة (${this.currentStage})`;
+      }
+      return;
+    }
 
-    // حساب الدرجات التراكمية للمادة ككل (المجموع الكلي: كام من كام)
-    const allSubjectAssessments = DB.getAssessmentsBySubject(this.activeSubjectId);
+    const currentSubject = this.activeSubjectId ? DB.getSubjectById(this.activeSubjectId) : null;
+    const currentLesson = this.activeAssessmentId ? DB.getAssessmentById(this.activeAssessmentId) : null;
+    const hasActiveLesson = !!(currentSubject && currentLesson);
+
+    if (hasActiveLesson) {
+      if (headerInfo) {
+        headerInfo.innerHTML = `
+          المادة: <strong style="color:var(--primary);">${Utils.sanitize(currentSubject.name)}</strong> |
+          الجزء: <strong>${Utils.sanitize(currentLesson.partName || 'العام')}</strong> |
+          الدرس: <strong style="color:var(--accent-gold);">${Utils.sanitize(currentLesson.title)}</strong> |
+          الدرجة العظمى: <span class="badge" style="background:var(--accent-gold); color:#000; font-weight:800;">${currentLesson.maxScore} درجة</span> |
+          عدد مخدومي المرحلة: <span class="badge" style="background:var(--primary-light); color:var(--primary); font-weight:bold;">${students.length} مخدوم</span>
+        `;
+      }
+    } else if (currentSubject) {
+      if (headerInfo) {
+        headerInfo.innerHTML = `
+          المادة: <strong style="color:var(--primary);">${Utils.sanitize(currentSubject.name)}</strong> |
+          <span style="color:var(--accent-gold); font-weight:bold;">اختر درساً من قائمة "أجزاء المادة والدروس" أعلاه لرصد الدرجات، أو اضغط "إضافة درس جديد". (${students.length} مخدوم)</span>
+        `;
+      }
+    } else {
+      if (headerInfo) {
+        headerInfo.innerHTML = `
+          المرحلة: <strong style="color:var(--primary);">${this.currentStage}</strong> |
+          <span style="color:var(--text-muted);">جميع مخدومي المرحلة (${students.length} مخدوم) معروضون أدناه. اختر أو أضف مادة ودرساً لرصد الدرجات.</span>
+        `;
+      }
+    }
+
+    const maxScore = hasActiveLesson ? (Number(currentLesson.maxScore) || 10) : 10;
+    const gradesList = hasActiveLesson ? DB.getGradesByAssessment(this.activeAssessmentId) : [];
+
+    // حساب الدرجات التراكمية للمادة ككل إن وجدت
+    const allSubjectAssessments = this.activeSubjectId ? DB.getAssessmentsBySubject(this.activeSubjectId) : [];
     const subjectTotalMaxScore = allSubjectAssessments.reduce((sum, a) => sum + (Number(a.maxScore) || 0), 0);
-    const allSubjectGrades = DB.getGradesBySubject(this.activeSubjectId);
+    const allSubjectGrades = this.activeSubjectId ? DB.getGradesBySubject(this.activeSubjectId) : [];
 
-    // دمج الدرجة مع الطالب للفرز وحساب إجمالي المادة لكل طالب
+    // دمج البيانات مع كل طالب للفرز والعرض
     let studentRows = students.map(s => {
-      const gRecord = gradesList.find(g => g.studentId === s.id);
-      const hasGrade = gRecord !== undefined && gRecord.score !== null;
+      const gRecord = hasActiveLesson ? gradesList.find(g => g.studentId === s.id) : null;
+      const hasGrade = gRecord !== null && gRecord !== undefined && gRecord.score !== null && gRecord.score !== undefined;
       const score = hasGrade ? gRecord.score : null;
 
-      // مجموع المادة لهذا الطالب
       const studentGradesInSubject = allSubjectGrades.filter(g => g.studentId === s.id && g.score !== null && g.score !== undefined);
       const totalSubjectEarned = studentGradesInSubject.reduce((sum, g) => sum + (Number(g.score) || 0), 0);
       const hasAnyGradesInSubject = studentGradesInSubject.length > 0;
@@ -378,7 +418,7 @@ const EvaluationsManager = {
         gradeRecord: gRecord,
         hasGrade: hasGrade,
         score: score,
-        notes: gRecord ? gRecord.notes : '',
+        notes: gRecord ? (gRecord.notes || '') : '',
         totalSubjectEarned: totalSubjectEarned,
         hasAnyGradesInSubject: hasAnyGradesInSubject
       };
@@ -393,27 +433,14 @@ const EvaluationsManager = {
       studentRows.sort((a, b) => a.student.name.localeCompare(b.student.name, 'ar'));
     }
 
-    if (studentRows.length === 0) {
-      tbody.innerHTML = `
-        <tr><td colspan="8" style="padding: 2.5rem; text-align: center; color: var(--text-muted);">
-          <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem; color: var(--text-primary);">
-            ⚠️ لا يوجد مخدومين مسجلين في مرحلة (${this.currentStage})
-          </div>
-          <div style="font-size: 0.88rem;">
-            يرجى اختيار المرحلة الدراسية التي يتواجد بها مخدوموك من القائمة أعلى اليمين (مثال: أولى إعداد خدام أو تانية إعداد خدام).
-          </div>
-        </td></tr>
-      `;
-      return;
-    }
-
-    const maxScore = Number(currentLesson.maxScore) || 10;
-
     tbody.innerHTML = studentRows.map((r, idx) => {
       const s = r.student;
       const scoreVal = r.hasGrade ? r.score : '';
       const percent = r.hasGrade && maxScore > 0 ? Math.round((r.score / maxScore) * 100) : null;
-      const statusBadge = !r.hasGrade
+
+      const statusBadge = !hasActiveLesson
+        ? `<span style="color: var(--text-muted); font-size: 0.85rem;">—</span>`
+        : !r.hasGrade
         ? `<span class="stat-badge" style="background: var(--bg-tertiary); color: var(--text-muted);">لم ترصد</span>`
         : percent >= 85
         ? `<span class="stat-badge" style="background: var(--success-light); color: var(--success); font-weight:800;">ممتاز (${percent}%)</span>`
@@ -423,10 +450,9 @@ const EvaluationsManager = {
         ? `<span class="stat-badge" style="background: var(--warning-light); color: var(--warning); font-weight:800;">ناجح (${percent}%)</span>`
         : `<span class="stat-badge" style="background: var(--danger-light); color: var(--danger); font-weight:800;">ضعيف (${percent}%)</span>`;
 
-      // نسبة إجمالي المادة كام من كام
       const subjectPercent = subjectTotalMaxScore > 0 ? Math.round((r.totalSubjectEarned / subjectTotalMaxScore) * 100) : 0;
-      const totalSubjectBadge = subjectTotalMaxScore === 0
-        ? `<span style="color:var(--text-muted); font-size:0.85rem;">-</span>`
+      const totalSubjectBadge = !this.activeSubjectId || subjectTotalMaxScore === 0
+        ? `<span style="color:var(--text-muted); font-size:0.85rem;">—</span>`
         : !r.hasAnyGradesInSubject
         ? `<span style="font-weight:700; color:var(--text-muted); font-size:0.9rem;">0 من ${subjectTotalMaxScore}</span>`
         : `
@@ -444,6 +470,25 @@ const EvaluationsManager = {
           </div>
         `;
 
+      const gradeInputCell = hasActiveLesson
+        ? `
+          <div style="display: flex; align-items: center; justify-content: center; gap: 0.3rem;">
+            <input type="number" step="0.5" min="0" max="${maxScore}" value="${scoreVal}" class="form-input grade-input" data-student-id="${s.id}" placeholder="من ${maxScore}" style="
+              width: 85px; text-align: center; font-weight: 800; font-size: 1rem; border: 2px solid ${r.hasGrade ? 'var(--primary)' : 'var(--border-color)'}; padding: 0.35rem 0.4rem;
+            " onchange="EvaluationsManager.onSingleGradeChange('${s.id}', this.value, ${maxScore})">
+            <span style="font-size: 0.8rem; color: var(--text-muted);">/ ${maxScore}</span>
+          </div>
+        `
+        : `
+          <span class="badge" style="background: var(--bg-tertiary); color: var(--text-muted); font-size: 0.78rem; padding: 0.25rem 0.5rem;">
+            اختر درساً للرصد
+          </span>
+        `;
+
+      const noteInputCell = hasActiveLesson
+        ? `<input type="text" class="form-input note-input" data-student-id="${s.id}" value="${Utils.sanitize(r.notes)}" placeholder="ملاحظات اختيارية..." style="padding: 0.35rem 0.6rem; font-size: 0.85rem;" onchange="EvaluationsManager.onNoteChange('${s.id}', this.value)">`
+        : `<span style="color:var(--text-muted); font-size:0.85rem;">—</span>`;
+
       return `
         <tr data-student-id="${s.id}">
           <td style="text-align: center;">${idx + 1}</td>
@@ -453,21 +498,12 @@ const EvaluationsManager = {
             </a>
           </td>
           <td style="text-align: center;"><strong style="font-family: monospace; background: var(--bg-tertiary); padding: 0.15rem 0.5rem; border-radius: 4px;">📟 ${s.barcode || s.code}</strong></td>
-          <td style="width: 140px; text-align: center;">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 0.3rem;">
-              <input type="number" step="0.5" min="0" max="${maxScore}" value="${scoreVal}" class="form-input grade-input" data-student-id="${s.id}" placeholder="من ${maxScore}" style="
-                width: 85px; text-align: center; font-weight: 800; font-size: 1rem; border: 2px solid ${r.hasGrade ? 'var(--primary)' : 'var(--border-color)'}; padding: 0.35rem 0.4rem;
-              " onchange="EvaluationsManager.onSingleGradeChange('${s.id}', this.value, ${maxScore})">
-              <span style="font-size: 0.8rem; color: var(--text-muted);">/ ${maxScore}</span>
-            </div>
-          </td>
+          <td style="width: 140px; text-align: center;">${gradeInputCell}</td>
           <td style="text-align: center;" id="status-cell-${s.id}">${statusBadge}</td>
           <td style="text-align: center; background: rgba(30, 58, 138, 0.03);" id="subject-total-cell-${s.id}">
             ${totalSubjectBadge}
           </td>
-          <td>
-            <input type="text" class="form-input note-input" data-student-id="${s.id}" value="${Utils.sanitize(r.notes)}" placeholder="ملاحظات اختيارية..." style="padding: 0.35rem 0.6rem; font-size: 0.85rem;" onchange="EvaluationsManager.onNoteChange('${s.id}', this.value)">
-          </td>
+          <td>${noteInputCell}</td>
           <td style="text-align: center;">
             <button class="btn btn-secondary btn-sm" onclick="EvaluationsManager.openStudentGradesModal('${s.id}')" title="عرض جميع درجات هذا المخدوم في جميع المواد من هنا مباشرة" style="padding: 0.3rem 0.65rem; font-size: 0.8rem; font-weight: bold; background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color);">
               📋 كشف درجاته
@@ -522,7 +558,10 @@ const EvaluationsManager = {
   },
 
   saveAllCurrentGrades() {
-    if (!this.activeAssessmentId) return;
+    if (!this.activeAssessmentId) {
+      alert('يرجى اختيار درس أو إضافة درس جديد أولاً لرصد وحفظ درجات مخدومي المرحلة!');
+      return;
+    }
     const currentLesson = DB.getAssessmentById(this.activeAssessmentId);
     const maxScore = Number(currentLesson ? currentLesson.maxScore : 10);
 
@@ -758,7 +797,7 @@ const EvaluationsManager = {
     if (!subject) return;
 
     const churchSettings = DB.getSettings();
-    const students = DB.getStudents().filter(s => s.stage === this.currentStage);
+    const students = DB.getStudents().filter(s => this.matchStage(s, this.currentStage));
     const assessments = DB.getAssessmentsBySubject(this.activeSubjectId);
     const allGrades = DB.getGradesBySubject(this.activeSubjectId);
 
@@ -867,7 +906,7 @@ const EvaluationsManager = {
     if (!student) return;
 
     const churchSettings = DB.getSettings();
-    const allSubjects = DB.getSubjects(true).filter(s => s.stage === student.stage);
+    const allSubjects = DB.getSubjects(true).filter(s => this.matchStage(s.stage, student.stage));
     const exportDateStr = new Date().toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
     let subjectsHtml = '';
@@ -996,8 +1035,8 @@ const EvaluationsManager = {
   // 3. تقرير مرحلة كاملة (جميع مواد المرحلة ودرجات طلابها)
   exportStageFullReport() {
     const churchSettings = DB.getSettings();
-    const students = DB.getStudents().filter(s => s.stage === this.currentStage);
-    const subjects = DB.getSubjects(true).filter(s => s.stage === this.currentStage);
+    const students = DB.getStudents().filter(s => this.matchStage(s, this.currentStage));
+    const subjects = DB.getSubjects(true).filter(s => this.matchStage(s.stage, this.currentStage));
 
     if (students.length === 0 || subjects.length === 0) {
       alert('لا توجد بيانات طلاب أو مواد كافية في هذه المرحلة لاستخراج التقرير!');
@@ -1128,7 +1167,7 @@ const EvaluationsManager = {
     nameEl.textContent = `سجل درجات: ${student.name}`;
     subinfoEl.textContent = `المرحلة: ${student.stage} | الباركود / الكود: ${student.barcode || student.code || 'بدون'}`;
 
-    const subjects = DB.getSubjects(true).filter(s => s.stage === student.stage);
+    const subjects = DB.getSubjects(true).filter(s => this.matchStage(s.stage, student.stage));
 
     if (subjects.length === 0) {
       contentEl.innerHTML = `
