@@ -1,4 +1,4 @@
-const CACHE_NAME = 'abu-sefeen-cache-v11';
+const CACHE_NAME = 'abu-sefeen-cache-v12';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -34,7 +34,7 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[SW] Caching fresh assets v2');
+      console.log('[SW] Caching fresh assets v12');
       return cache.addAll(ASSETS_TO_CACHE).catch(err => console.log('SW cache error:', err));
     })
   );
@@ -60,15 +60,30 @@ self.addEventListener('activate', (event) => {
 // Network-First with Cache Fallback for absolute freshness
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
-  // Ignore external CDNs from hard caching
-  if (event.request.url.includes('firebase') || event.request.url.includes('googleapis')) return;
+
+  const url = event.request.url;
+
+  // Ignore non-http/https schemes (e.g. chrome-extension://, moz-extension://)
+  if (!url.startsWith('http://') && !url.startsWith('https://')) return;
+
+  // Ignore external cloud databases and CDNs from hard caching
+  if (
+    url.includes('firebase') ||
+    url.includes('googleapis') ||
+    url.includes('gstatic') ||
+    url.includes('firestore')
+  ) {
+    return;
+  }
 
   event.respondWith(
     fetch(event.request)
       .then((networkResponse) => {
         if (networkResponse && networkResponse.status === 200) {
           const cacheCopy = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, cacheCopy));
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, cacheCopy).catch(() => {});
+          }).catch(() => {});
         }
         return networkResponse;
       })
