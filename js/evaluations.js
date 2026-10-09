@@ -13,6 +13,13 @@ const EvaluationsManager = {
   sortMode: 'name', // name | scoreDesc | scoreAsc
 
   init() {
+    // تحديد المرحلة الافتراضية بناءً على المرحلة التي بها طلاب فعلياً إن وجدت
+    const allStudents = DB.getStudents();
+    const stageWithStudents = DB.STAGES.find(st => allStudents.some(s => s.stage && s.stage.trim() === st.trim()));
+    if (stageWithStudents) {
+      this.currentStage = stageWithStudents;
+    }
+
     this.initEventListeners();
     this.renderStagesSelector();
     this.renderSubjectsList();
@@ -48,6 +55,11 @@ const EvaluationsManager = {
       });
     }
 
+    window.addEventListener('abs-students-updated', () => {
+      // إعادة ملء المراحل وتحديث كشف الدرجات لحظياً فور وصول الطلاب
+      this.renderStagesSelector();
+      this.renderGradesSheet();
+    });
     window.addEventListener('abs-subjects-updated', () => this.renderSubjectsList());
     window.addEventListener('abs-assessments-updated', () => {
       this.renderLessonNavigation();
@@ -268,13 +280,39 @@ const EvaluationsManager = {
     const headerInfo = document.getElementById('eval-active-lesson-info');
     if (!tbody) return;
 
-    if (!this.activeSubjectId || !this.activeAssessmentId) {
+    if (!this.activeSubjectId) {
       tbody.innerHTML = `
         <tr><td colspan="8" style="padding: 2.5rem; text-align: center; color: var(--text-muted);">
-          يرجى اختيار مادة ودرس من القائمة أعلاه لعرض شيت تسجيل درجات الطلاب.
+          <div style="font-size: 1.15rem; font-weight: bold; margin-bottom: 0.6rem; color: var(--text-primary);">
+            📌 يرجى اختيار مادة دراسية أولاً أو الضغط على "إضافة مادة"
+          </div>
+          <div style="font-size: 0.88rem; margin-bottom: 1rem;">
+            لكل مرحلة موادها الخاصة. بمجرد إضافة أو اختيار مادة وإضافة درس داخلها، ستظهر قائمة جميع مخدومي المرحلة فوراً لرصد درجاتهم.
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="EvaluationsManager.openAddSubjectModal()">
+            <span>➕</span><span>إضافة مادة دراسية جديدة</span>
+          </button>
         </td></tr>
       `;
-      if (headerInfo) headerInfo.textContent = 'في انتظار اختيار الدرس...';
+      if (headerInfo) headerInfo.textContent = 'يرجى اختيار مادة لعرض الدروس والطلاب...';
+      return;
+    }
+
+    if (!this.activeAssessmentId) {
+      tbody.innerHTML = `
+        <tr><td colspan="8" style="padding: 2.5rem; text-align: center; color: var(--text-muted);">
+          <div style="font-size: 1.15rem; font-weight: bold; margin-bottom: 0.6rem; color: var(--text-primary);">
+            📝 يرجى اختيار الدرس أو عنصر التقييم المطلوب رصد درجاته
+          </div>
+          <div style="font-size: 0.88rem; margin-bottom: 1rem;">
+            اضغط على زر الدرس في لوحة "أجزاء المادة والدروس" أعلاه، أو اضغط على "إضافة درس جديد" للبدء في رصد درجات المخدومين.
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="EvaluationsManager.openAddLessonModal()">
+            <span>➕</span><span>إضافة درس / عنصر تقييم جديد</span>
+          </button>
+        </td></tr>
+      `;
+      if (headerInfo) headerInfo.textContent = 'في انتظار اختيار الدرس لرصد الدرجات...';
       return;
     }
 
@@ -292,7 +330,13 @@ const EvaluationsManager = {
       `;
     }
 
-    let students = DB.getStudents().filter(s => s.stage === this.currentStage);
+    const normalizeStage = (st) => (st || '').trim().replace(/\s+/g, ' ');
+    const activeStageNorm = normalizeStage(this.currentStage);
+
+    let students = DB.getStudents().filter(s => {
+      const sStageNorm = normalizeStage(s.stage);
+      return sStageNorm === activeStageNorm || s.stage === this.currentStage;
+    });
 
     // تطبيق فلتر البحث
     if (this.studentSearchTerm) {
@@ -344,7 +388,12 @@ const EvaluationsManager = {
     if (studentRows.length === 0) {
       tbody.innerHTML = `
         <tr><td colspan="8" style="padding: 2.5rem; text-align: center; color: var(--text-muted);">
-          لا يوجد طلاب في مرحلة (${this.currentStage}) يطابقون البحث.
+          <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem; color: var(--text-primary);">
+            ⚠️ لا يوجد مخدومين مسجلين في مرحلة (${this.currentStage})
+          </div>
+          <div style="font-size: 0.88rem;">
+            يرجى اختيار المرحلة الدراسية التي يتواجد بها مخدوموك من القائمة أعلى اليمين (مثال: أولى إعداد خدام أو تانية إعداد خدام).
+          </div>
         </td></tr>
       `;
       return;
