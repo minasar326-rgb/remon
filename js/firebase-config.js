@@ -93,6 +93,7 @@ const DB = {
       // Dynamic import of Firebase SDK (Modular v11)
       const { initializeApp } = await import("https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js");
       const { 
+        initializeFirestore,
         getFirestore, 
         collection, 
         doc, 
@@ -105,7 +106,13 @@ const DB = {
       } = await import("https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js");
 
       this.firebaseApp = initializeApp(firebaseConfig);
-      this.firestore = getFirestore(this.firebaseApp);
+      try {
+        this.firestore = initializeFirestore(this.firebaseApp, {
+          experimentalAutoDetectLongPolling: true
+        });
+      } catch (e) {
+        this.firestore = getFirestore(this.firebaseApp);
+      }
       this.firestoreSdk = { collection, doc, getDoc, getDocs, setDoc, deleteDoc, onSnapshot, writeBatch };
 
       console.log("🔥 [Firebase] تهيئة SDK لمشروع كنيسة أبي سيفين (abo-sefen-d143a)...");
